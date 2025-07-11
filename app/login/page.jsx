@@ -1,46 +1,27 @@
 'use client';
-import { supabase } from '@/lib/supabaseClient';
-import { useState } from 'react';
+
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { supabase } from '../../utils/supabase';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    const { error } = await supabase.auth.signInWithOtp({
-      email,
-      options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback`
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (session) {
+        // If user is authenticated, redirect to dashboard
+        router.replace('/dashboard');
+      } else {
+        // If not authenticated, redirect to home page where login modal is
+        router.replace('/');
       }
-    });
-    setLoading(false);
-    if (error) alert(error.message);
-    else alert('Check your email for a magic login link!');
-  };
+    };
 
-  return (
-    <div className="max-w-sm mx-auto mt-20 p-6 border rounded shadow">
-      <h1 className="text-xl font-bold mb-4">Login with Magic Link</h1>
-      <form onSubmit={handleLogin} className="space-y-4">
-        <input
-          type="email"
-          className="w-full p-2 border rounded"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-blue-600 text-white py-2 rounded disabled:bg-blue-400"
-        >
-          {loading ? 'Sending...' : 'Send Login Link'}
-        </button>
-      </form>
-    </div>
-  );
-}
+    checkAuth();
+  }, [router]);
+
+  return null;
+} 

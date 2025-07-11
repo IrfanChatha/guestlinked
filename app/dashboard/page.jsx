@@ -1,41 +1,45 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
+import { supabase } from '../../utils/supabase';
 
-export default function Dashboard() {
-    const [user, setUser] = useState(null);
-    const router = useRouter();
-  
-    useEffect(() => {
-      supabase.auth.getUser().then(({ data: { user } }) => {
-        if (!user) router.push('/login');
-        else setUser(user);
-      });
-    }, [router]);
-  
-    const handleLogout = async () => {
-      await supabase.auth.signOut();
-      router.push('/login');
+export default function DashboardPage() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        if (!session) {
+          // If not authenticated, redirect to home page
+          router.replace('/');
+        } else {
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error('Error checking auth:', error);
+        router.replace('/');
+      }
     };
-  
-    if (!user) return <p>Loading...</p>;
-  
+
+    checkAuth();
+  }, [router]);
+
+  if (loading) {
     return (
-      <div className="max-w-4xl mx-auto p-6">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold">Welcome, {user.email}</h1>
-          <button
-            onClick={handleLogout}
-            className="bg-red-500 text-white px-4 py-2 rounded"
-          >
-            Logout
-          </button>
-        </div>
-  
-        {/* Your dashboard content goes here */}
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
       </div>
     );
   }
-  
+
+  return (
+    <div className="min-h-screen bg-gray-100 p-8">
+      <h1 className="text-3xl font-bold text-gray-800 mb-8">Dashboard</h1>
+      {/* Add your dashboard content here */}
+    </div>
+  );
+}
