@@ -1,18 +1,29 @@
 'use client';
-import { useEffect } from 'react';
-import { supabase } from '@/lib/supabaseClient';
+import { useEffect, useState } from 'react';
+import { getSupabase } from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
 
 export default function CallbackPage() {
   const router = useRouter();
+  const [message, setMessage] = useState('Verifying login...');
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    const supabase = getSupabase();
+    supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
-        router.push('/dashboard'); // or wherever
+        // Redirect to dashboard on successful login
+        router.push('/dashboard');
+        console.log('Login successful');
+        console.log(session);
+        console.log(event);
+        
+      } else {
+        // Handle cases where login fails or session is not found
+        setMessage('Login failed. Please try again.');
+        setTimeout(() => router.push('/'), 3000); // Redirect to home after 3 seconds
       }
     });
   }, [router]);
 
-  return <p className="text-center mt-20">Verifying login...</p>;
+  return <p className="text-center mt-20">{message}</p>;
 }
