@@ -5,11 +5,19 @@ import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const { error } = await supabase.auth.signInWithOtp({ email });
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: {
+        emailRedirectTo: `${window.location.origin}/auth/callback`
+      }
+    });
+    setLoading(false);
     if (error) alert(error.message);
     else alert('Check your email for a magic login link!');
   };
@@ -22,13 +30,15 @@ export default function LoginPage() {
           type="email"
           className="w-full p-2 border rounded"
           placeholder="Enter your email"
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded"
+          disabled={loading}
+          className="w-full bg-blue-600 text-white py-2 rounded disabled:bg-blue-400"
         >
-          Send Login Link
+          {loading ? 'Sending...' : 'Send Login Link'}
         </button>
       </form>
     </div>

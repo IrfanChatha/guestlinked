@@ -32,7 +32,7 @@ export default function HomePage() {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/websites`
+          redirectTo: `${window.location.origin}/dashboard`
         }
       });
 
@@ -105,8 +105,8 @@ export default function HomePage() {
         setTimeout(() => {
           setShowLoginModal(false);
           setMessage('');
-          // Redirect to dashboard or websites page
-          window.location.href = '/websites';
+          // Redirect to dashboard
+          window.location.href = '/dashboard';
         }, 2000);
       }
     } catch (error) {
