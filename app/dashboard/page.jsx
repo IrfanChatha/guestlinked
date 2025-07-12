@@ -6,9 +6,8 @@ import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import { getSupabase } from '@/lib/supabaseClient';
 
-const supabase = getSupabase();
-
 const getWebSites = async () => {
+  const supabase = getSupabase();
   const { data, error } = await supabase.from('web_sites').select('*');
   if (error) {
     console.error('Error fetching websites:', error);
@@ -25,6 +24,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     const checkUserAndFetchData = async () => {
+      const supabase = getSupabase();
       // Wait for the auth session to be restored
       await supabase.auth.getSession();
       
@@ -44,6 +44,7 @@ export default function Dashboard() {
     checkUserAndFetchData();
 
     // Listen for auth changes
+    const supabase = getSupabase();
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_OUT') {
         router.push('/');

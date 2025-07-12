@@ -5,8 +5,6 @@ import { useRouter } from 'next/navigation';
 import Navbar from '../components/Navbar';
 import { getSupabase } from '@/lib/supabaseClient';
 
-const supabase = getSupabase();
-
 export default function AddWebsite() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -30,6 +28,7 @@ export default function AddWebsite() {
 
   useEffect(() => {
     const checkUser = async () => {
+      const supabase = getSupabase();
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
         router.push('/');
@@ -47,6 +46,7 @@ export default function AddWebsite() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const supabase = getSupabase();
     const { error } = await supabase.from('web_sites').insert([formData]);
     if (error) alert('Error saving: ' + error.message);
     else alert('Website added successfully!');

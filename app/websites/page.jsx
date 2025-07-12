@@ -4,8 +4,6 @@ import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import { getSupabase } from '@/lib/supabaseClient';
 
-const supabase = getSupabase();
-
 export default function WebsitesPage() {
   const [websites, setWebsites] = useState([]);
   const [filtered, setFiltered] = useState([]);
@@ -28,6 +26,7 @@ export default function WebsitesPage() {
 
   useEffect(() => {
     const fetchWebsites = async () => {
+      const supabase = getSupabase();
       const { data, error } = await supabase
         .from('web_sites')
         .select('*')

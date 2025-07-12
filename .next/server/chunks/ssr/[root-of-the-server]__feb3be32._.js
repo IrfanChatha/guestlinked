@@ -136,6 +136,9 @@ const supabaseAnonKey = ("TURBOPACK compile-time value", "eyJhbGciOiJIUzI1NiIsIn
 let supabase;
 const getSupabase = ()=>{
     if (!supabase) {
+        if ("TURBOPACK compile-time falsy", 0) {
+            "TURBOPACK unreachable";
+        }
         supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$createBrowserClient$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createBrowserClient"])(supabaseUrl, supabaseAnonKey);
     }
     return supabase;
@@ -162,7 +165,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabaseClient$2e$js_
 ;
 ;
 ;
-const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabaseClient$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getSupabase"])();
 function HomePage() {
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
     const [showSignUpModal, setShowSignUpModal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -191,6 +193,7 @@ function HomePage() {
         setLoading(true);
         setMessage('');
         try {
+            const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabaseClient$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getSupabase"])();
             const { data, error } = await supabase.auth.signUp({
                 email: signUpData.email,
                 password: signUpData.password
@@ -220,6 +223,7 @@ function HomePage() {
         setLoading(true);
         setMessage('');
         try {
+            const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabaseClient$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getSupabase"])();
             const { data, error } = await supabase.auth.signInWithPassword({
                 email: loginData.email,
                 password: loginData.password

@@ -6,8 +6,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getSupabase } from '@/lib/supabaseClient';
 
-const supabase = getSupabase();
-
 export default function HomePage() {
   const router = useRouter();
   const [showSignUpModal, setShowSignUpModal] = useState(false);
@@ -41,6 +39,7 @@ export default function HomePage() {
     setMessage('');
 
     try {
+      const supabase = getSupabase();
       const { data, error } = await supabase.auth.signUp({
         email: signUpData.email,
         password: signUpData.password,
@@ -70,6 +69,7 @@ export default function HomePage() {
     setMessage('');
 
     try {
+      const supabase = getSupabase();
       const { data, error } = await supabase.auth.signInWithPassword({
         email: loginData.email,
         password: loginData.password,

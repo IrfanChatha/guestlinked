@@ -2,13 +2,8 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import { useRouter, usePathname } from 'next/navigation';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-);
+import { getSupabase } from '@/lib/supabaseClient';
 
 export default function Navbar() {
   const [user, setUser] = useState(null);
@@ -17,12 +12,14 @@ export default function Navbar() {
 
   useEffect(() => {
     const fetchUser = async () => {
+      const supabase = getSupabase();
       const { data: { user } } = await supabase.auth.getUser();
       setUser(user);
     };
 
     fetchUser();
 
+    const supabase = getSupabase();
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_OUT') {
         setUser(null);
@@ -36,6 +33,7 @@ export default function Navbar() {
   }, [router]);
 
   const handleSignOut = async () => {
+    const supabase = getSupabase();
     await supabase.auth.signOut();
   };
 
