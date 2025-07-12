@@ -33,12 +33,36 @@ export default function Dashboard() {
       if (!user) {
         // Redirect to home page if not authenticated
         router.push('/');
-      } else {
-        setUser(user);
-        const websites = await getWebSites();
-        setWebsitesCount(websites.length);
-        setLoading(false);
+        return;
       }
+
+      // Fetch user settings to determine role and redirect accordingly
+      const { data: settings, error: settingsError } = await supabase
+        .from('users_settings_tb')
+        .select('*')
+        .eq('user_id', user.id)
+        .single();
+
+      if (settingsError || !settings) {
+        console.error('Error fetching user settings:', settingsError);
+        router.push('/');
+        return;
+      }
+
+      // Redirect to role-specific dashboards
+      if (settings.role === 'Buyer') {
+        router.push('/buyer/buyer-dashboard');
+        return;
+      } else if (settings.role === 'Seller') {
+        router.push('/seller/seller-dashboard');
+        return;
+      }
+
+      // If user has no specific role, continue with general dashboard
+      setUser(user);
+      const websites = await getWebSites();
+      setWebsitesCount(websites.length);
+      setLoading(false);
     };
 
     checkUserAndFetchData();
@@ -132,7 +156,7 @@ export default function Dashboard() {
                 Add New Website
               </Link>
               <Link 
-                href="/websites"
+                href="/buyer/websites"
                 className="w-full bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg text-center font-medium transition-all duration-300 block"
               >
                 Browse Websites

@@ -11,9 +11,11 @@ export default function HomePage() {
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [signUpData, setSignUpData] = useState({
+    name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    role: ''
   });
   const [loginData, setLoginData] = useState({
     email: '',
@@ -24,6 +26,16 @@ export default function HomePage() {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+
+    if (!signUpData.name.trim()) {
+      setMessage('Name is required');
+      return;
+    }
+
+    if (!signUpData.role) {
+      setMessage('Please select your role (Buyer or Seller)');
+      return;
+    }
 
     if (signUpData.password !== signUpData.confirmPassword) {
       setMessage('Passwords do not match');
@@ -40,22 +52,49 @@ export default function HomePage() {
 
     try {
       const supabase = getSupabase();
+      
+      // Sign up user with Supabase Auth
       const { data, error } = await supabase.auth.signUp({
         email: signUpData.email,
         password: signUpData.password,
+        options: {
+          data: {
+            display_name: signUpData.name,
+            role: signUpData.role
+          }
+        }
       });
 
       if (error) {
         setMessage(error.message);
-      } else {
-        setMessage('Account created successfully! Please check your email to verify your account.');
-        setSignUpData({ email: '', password: '', confirmPassword: '' });
-        setTimeout(() => {
-          setShowSignUpModal(false);
-          setMessage('');
-        }, 3000);
+      } else if (data.user) {
+        // Store additional user data in custom users_settings_tb table
+        const { error: insertError } = await supabase
+          .from('users_settings_tb')
+          .insert([
+            {
+              user_id: data.user.id,
+              name: signUpData.name,
+              email: signUpData.email,
+              role: signUpData.role,
+              created_at: new Date().toISOString()
+            }
+          ]);
+
+        if (insertError) {
+          console.error('Error storing user settings:', insertError);
+          setMessage('Account created but there was an issue storing your preferences. Please contact support.');
+        } else {
+          setMessage('Account created successfully! Please check your email to verify your account.');
+          setSignUpData({ name: '', email: '', password: '', confirmPassword: '', role: '' });
+          setTimeout(() => {
+            setShowSignUpModal(false);
+            setMessage('');
+          }, 3000);
+        }
       }
     } catch (error) {
+      console.error('Signup error:', error);
       setMessage('An error occurred. Please try again.');
     } finally {
       setLoading(false);
@@ -77,17 +116,61 @@ export default function HomePage() {
 
       if (error) {
         setMessage(error.message);
-      } else {
-        setMessage('Login successful! Redirecting to dashboard...');
+        console.error('Login error:', error);
+      } else if (data.user) {
+        console.log('Login successful, user:', data.user.id);
+        
+        // Close modal immediately
+        setShowLoginModal(false);
         setLoginData({ email: '', password: '' });
-        setTimeout(() => {
-          setShowLoginModal(false);
-          setMessage('');
-          // Redirect to dashboard
-          router.push('/dashboard');
-        }, 2000);
+        setMessage('Login successful! Redirecting...');
+        
+        // Wait for auth state to propagate, then redirect
+        const redirectUser = async () => {
+          try {
+            // Wait a bit for auth state to propagate
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Fetch user role from users_settings_tb
+            const { data: userSettings, error: settingsError } = await supabase
+              .from('users_settings_tb')
+              .select('role')
+              .eq('user_id', data.user.id)
+              .single();
+
+            console.log('User settings:', userSettings, 'Error:', settingsError);
+
+            if (settingsError) {
+              console.error('Error fetching user settings:', settingsError);
+              setMessage('Login successful but could not load user preferences. Please contact support.');
+            } else if (userSettings && userSettings.role) {
+              console.log('Redirecting user with role:', userSettings.role);
+              
+              // Redirect to appropriate dashboard based on role
+              if (userSettings.role === 'Buyer') {
+                console.log('Redirecting to buyer dashboard');
+                window.location.href = '/buyer/buyer-dashboard';
+              } else if (userSettings.role === 'Seller') {
+                console.log('Redirecting to seller dashboard');
+                window.location.href = '/seller/seller-dashboard';
+              } else {
+                console.log('Redirecting to general dashboard');
+                window.location.href = '/dashboard';
+              }
+            } else {
+              console.error('No role found for user');
+              setMessage('Login successful but no role found. Please contact support.');
+            }
+          } catch (redirectError) {
+            console.error('Redirect error:', redirectError);
+            setMessage('Login successful but redirect failed. Please refresh the page.');
+          }
+        };
+
+        redirectUser();
       }
     } catch (error) {
+      console.error('Login error:', error);
       setMessage('An error occurred. Please try again.');
     } finally {
       setLoading(false);
@@ -120,7 +203,7 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/websites"
+                href="/buyer/websites"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 text-center"
               >
                 Browse Websites
@@ -223,7 +306,7 @@ export default function HomePage() {
                 onClick={() => {
                   setShowSignUpModal(false);
                   setMessage('');
-                  setSignUpData({ name: '', email: '', password: '', confirmPassword: '' });
+                  setSignUpData({ name: '', email: '', password: '', confirmPassword: '', role: '' });
                 }}
                 className="text-gray-400 hover:text-gray-600 text-2xl"
               >
@@ -240,8 +323,8 @@ export default function HomePage() {
                 <input
                   type="text"
                   required
-                  value={signUpData.display_name}
-                  onChange={(e) => setSignUpData({ ...signUpData, display_name: e.target.value })}
+                  value={signUpData.name}
+                  onChange={(e) => setSignUpData({ ...signUpData, name: e.target.value })}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                   placeholder="Enter your name"
                 />
@@ -287,6 +370,36 @@ export default function HomePage() {
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                   placeholder="Confirm your password"
                 />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Role
+                </label>
+                <div className="flex gap-4">
+                  <button
+                    type="button"
+                    onClick={() => setSignUpData({ ...signUpData, role: 'Buyer' })}
+                    className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 text-center ${
+                      signUpData.role === 'Buyer'
+                        ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                        : 'bg-gray-200 hover:bg-gray-300 text-gray-800'
+                    }`}
+                  >
+                    Buyer
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSignUpData({ ...signUpData, role: 'Seller' })}
+                    className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 text-center ${
+                      signUpData.role === 'Seller'
+                        ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                        : 'bg-gray-200 hover:bg-gray-300 text-gray-800'
+                    }`}
+                  >
+                    Seller
+                  </button>
+                </div>
               </div>
 
               {message && (

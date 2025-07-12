@@ -32,10 +32,34 @@ export default function AddWebsite() {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
         router.push('/');
-      } else {
-        setUser(user);
-        setLoading(false);
+        return;
       }
+
+      // Fetch user settings to verify role
+      const { data: settings, error: settingsError } = await supabase
+        .from('users_settings_tb')
+        .select('*')
+        .eq('user_id', user.id)
+        .single();
+
+      if (settingsError || !settings) {
+        console.error('Error fetching user settings:', settingsError);
+        router.push('/');
+        return;
+      }
+
+      // Only sellers can add websites
+      if (settings.role !== 'Seller') {
+        if (settings.role === 'Buyer') {
+          router.push('/buyer/buyer-dashboard');
+        } else {
+          router.push('/dashboard');
+        }
+        return;
+      }
+
+      setUser(user);
+      setLoading(false);
     };
     checkUser();
   }, [router]);
@@ -47,9 +71,36 @@ export default function AddWebsite() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const supabase = getSupabase();
-    const { error } = await supabase.from('web_sites').insert([formData]);
-    if (error) alert('Error saving: ' + error.message);
-    else alert('Website added successfully!');
+    
+    // Add seller_id to the form data
+    const websiteData = {
+      ...formData,
+      seller_id: user.id,
+      created_at: new Date().toISOString()
+    };
+
+    const { error } = await supabase.from('web_sites').insert([websiteData]);
+    if (error) {
+      alert('Error saving: ' + error.message);
+    } else {
+      alert('Website added successfully!');
+      // Reset form
+      setFormData({
+        link: '',
+        badge: '',
+        category_1: '',
+        category_2: '',
+        category_3: '',
+        price_from: '',
+        price_to: '',
+        similarweb_traffic: '',
+        moz_da: '',
+        semrush_as: '',
+        ahrefs_dr_range: '',
+        tat: '',
+        link_attribution_type: '',
+      });
+    }
   };
 
   if (loading) {
