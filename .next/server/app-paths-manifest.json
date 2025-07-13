@@ -1,5 +1,4 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/buyer/buyer-dashboard/page": "app/buyer/buyer-dashboard/page.js",
   "/buyer/websites/page": "app/buyer/websites/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",

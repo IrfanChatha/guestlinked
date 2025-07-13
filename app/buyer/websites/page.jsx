@@ -108,8 +108,8 @@ export default function WebsitesPage() {
 
             while (hasMore) {
               const { data: batch, error } = await supabase
-                .from('web_sites')
-                .select('*')
+        .from('web_sites')
+        .select('*')
                 .range(from, from + batchSize - 1)
                 .order('created_at', { ascending: false })
 
@@ -165,7 +165,7 @@ export default function WebsitesPage() {
                 categories.forEach(cat => {
                   if (cat && typeof cat === 'string' && cat.trim()) {
                     allCategories.add(cat.trim())
-                  }
+            }
                 })
               }
             })
@@ -300,7 +300,7 @@ export default function WebsitesPage() {
             {isDropdownOpen && (
               <div className="absolute z-10 w-full mt-1 bg-gray-700 border border-gray-600 rounded-lg shadow-lg max-h-60 overflow-y-auto">
                 <div className="p-2">
-                  {categories.map((category) => (
+            {categories.map((category) => (
                     <label key={category} className="flex items-center p-2 hover:bg-gray-600 rounded cursor-pointer">
                       <input
                         type="checkbox"
@@ -310,7 +310,7 @@ export default function WebsitesPage() {
                       />
                       <span className="text-white text-sm">{category}</span>
                     </label>
-                  ))}
+            ))}
                 </div>
               </div>
             )}
@@ -402,14 +402,14 @@ export default function WebsitesPage() {
                           categories = []
                         }
                         return categories
-                          .filter(Boolean)
-                          .map((category, index) => (
-                            <span 
-                              key={index}
-                              className="bg-blue-900/50 text-blue-300 px-2 py-1 rounded-md text-xs font-medium"
-                            >
-                              {category}
-                            </span>
+                        .filter(Boolean)
+                        .map((category, index) => (
+                          <span 
+                            key={index}
+                            className="bg-blue-900/50 text-blue-300 px-2 py-1 rounded-md text-xs font-medium"
+                          >
+                            {category}
+                          </span>
                           ))
                       })()}
                     </div>

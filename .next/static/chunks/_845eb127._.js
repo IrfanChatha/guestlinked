@@ -107,8 +107,28 @@ function Navbar() {
         router
     ]);
     const handleSignOut = async ()=>{
-        const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabaseClient$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getSupabase"])();
-        await supabase.auth.signOut();
+        try {
+            console.log('Starting sign out process...');
+            const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabaseClient$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getSupabase"])();
+            // Sign out from Supabase
+            const { error } = await supabase.auth.signOut();
+            if (error) {
+                console.error('Error signing out:', error);
+            } else {
+                console.log('Successfully signed out from Supabase');
+            }
+            // Clear local state immediately
+            setUser(null);
+            setUserSettings(null);
+            // Small delay to ensure cookies are cleared
+            await new Promise((resolve)=>setTimeout(resolve, 100));
+            // Force redirect to home page using window.location for a hard refresh
+            window.location.href = '/';
+        } catch (error) {
+            console.error('Error in handleSignOut:', error);
+            // Force redirect even on error
+            window.location.href = '/';
+        }
     };
     // Define navigation items based on user role
     const getNavItems = ()=>{
@@ -185,7 +205,7 @@ function Navbar() {
                             children: "GuestLinked"
                         }, void 0, false, {
                             fileName: "[project]/app/components/Navbar.jsx",
-                            lineNumber: 115,
+                            lineNumber: 141,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -194,28 +214,28 @@ function Navbar() {
                                 className: "h-4 bg-gray-600 rounded w-24"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Navbar.jsx",
-                                lineNumber: 119,
+                                lineNumber: 145,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/components/Navbar.jsx",
-                            lineNumber: 118,
+                            lineNumber: 144,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/Navbar.jsx",
-                    lineNumber: 114,
+                    lineNumber: 140,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/components/Navbar.jsx",
-                lineNumber: 113,
+                lineNumber: 139,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/components/Navbar.jsx",
-            lineNumber: 112,
+            lineNumber: 138,
             columnNumber: 7
         }, this);
     }
@@ -235,7 +255,7 @@ function Navbar() {
                                 children: "GuestLinked"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Navbar.jsx",
-                                lineNumber: 132,
+                                lineNumber: 158,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -246,18 +266,18 @@ function Navbar() {
                                         children: item.label
                                     }, item.href, false, {
                                         fileName: "[project]/app/components/Navbar.jsx",
-                                        lineNumber: 138,
+                                        lineNumber: 164,
                                         columnNumber: 19
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Navbar.jsx",
-                                lineNumber: 135,
+                                lineNumber: 161,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Navbar.jsx",
-                        lineNumber: 131,
+                        lineNumber: 157,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -273,7 +293,7 @@ function Navbar() {
                                             children: userSettings.name || 'User'
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/Navbar.jsx",
-                                            lineNumber: 157,
+                                            lineNumber: 183,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -281,13 +301,13 @@ function Navbar() {
                                             children: user.email
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/Navbar.jsx",
-                                            lineNumber: 160,
+                                            lineNumber: 186,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/components/Navbar.jsx",
-                                    lineNumber: 156,
+                                    lineNumber: 182,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -297,12 +317,12 @@ function Navbar() {
                                         children: userSettings.name?.[0]?.toUpperCase() || 'U'
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Navbar.jsx",
-                                        lineNumber: 165,
+                                        lineNumber: 191,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/Navbar.jsx",
-                                    lineNumber: 164,
+                                    lineNumber: 190,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -321,25 +341,25 @@ function Navbar() {
                                                 d: "M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/Navbar.jsx",
-                                                lineNumber: 174,
+                                                lineNumber: 200,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/Navbar.jsx",
-                                            lineNumber: 173,
+                                            lineNumber: 199,
                                             columnNumber: 19
                                         }, this),
                                         "Sign Out"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/components/Navbar.jsx",
-                                    lineNumber: 169,
+                                    lineNumber: 195,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/components/Navbar.jsx",
-                            lineNumber: 155,
+                            lineNumber: 181,
                             columnNumber: 15
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                             href: "/",
@@ -347,28 +367,28 @@ function Navbar() {
                             children: "Sign In"
                         }, void 0, false, {
                             fileName: "[project]/app/components/Navbar.jsx",
-                            lineNumber: 180,
+                            lineNumber: 206,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/components/Navbar.jsx",
-                        lineNumber: 153,
+                        lineNumber: 179,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/Navbar.jsx",
-                lineNumber: 130,
+                lineNumber: 156,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/components/Navbar.jsx",
-            lineNumber: 129,
+            lineNumber: 155,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/components/Navbar.jsx",
-        lineNumber: 128,
+        lineNumber: 154,
         columnNumber: 5
     }, this);
 }
@@ -427,13 +447,40 @@ function MyOrders() {
     const [submitting, setSubmitting] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [message, setMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     const [activeTab, setActiveTab] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('my-orders'); // Start with orders for faster perceived loading
-    // Website filtering state
+    // Website filtering state - same as buyer/websites page
     const [websiteFilters, setWebsiteFilters] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
         search: '',
+        categories: [],
         minDA: '',
-        maxPrice: '',
-        category: ''
+        maxPrice: ''
     });
+    // Category dropdown state
+    const [showCategoryDropdown, setShowCategoryDropdown] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    // Available categories (you can expand this list as needed)
+    const availableCategories = [
+        'Agriculture',
+        'Animals and Pets',
+        'Art',
+        'Automobiles',
+        'Beauty',
+        'Business',
+        'Education',
+        'Entertainment',
+        'Fashion',
+        'Finance',
+        'Food and Drink',
+        'Health and Fitness',
+        'Home and Garden',
+        'Law and Government',
+        'Lifestyle',
+        'News and Media',
+        'Real Estate',
+        'Science',
+        'Sports',
+        'Technology',
+        'Travel',
+        'Other'
+    ];
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "MyOrders.useEffect": ()=>{
@@ -489,12 +536,12 @@ function MyOrders() {
             setWebsitesLoading(false);
         }, 10000); // 10 second timeout
         try {
-            // Get top 50 websites based on quality metrics (DA, traffic, etc.)
+            // Load all websites like buyer/websites page
             const { data: websitesData, error: websitesError } = await supabase.from('web_sites').select('*').not('moz_da', 'is', null).not('similarweb_traffic', 'is', null).order('moz_da', {
                 ascending: false
             }).order('similarweb_traffic', {
                 ascending: false
-            }).limit(50);
+            });
             if (websitesError) {
                 console.error('Error loading websites:', websitesError);
                 setWebsitesLoading(false);
@@ -544,102 +591,54 @@ function MyOrders() {
         }
     };
     // Filter websites based on search and filter criteria
-    const filterWebsites = async ()=>{
-        const { search, minDA, maxPrice, category } = websiteFilters;
-        // If no filters are applied, show the loaded top 50 websites
-        if (!search && !minDA && !maxPrice && !category) {
-            setFilteredWebsites(websites);
-            return;
-        }
-        // If filters are applied, search the entire database
-        setWebsitesLoading(true);
-        const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabaseClient$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getSupabase"])();
-        try {
-            let query = supabase.from('web_sites').select('*');
-            // Apply DA filter
-            if (minDA) {
-                query = query.gte('moz_da', parseInt(minDA));
+    // Filter websites client-side like buyer/websites page
+    const filterWebsites = ()=>{
+        const { search, categories, minDA, maxPrice } = websiteFilters;
+        const results = websites.filter((site)=>{
+            // Parse categories for this site
+            let siteCategories = site.category;
+            if (typeof siteCategories === 'string') {
+                try {
+                    siteCategories = JSON.parse(siteCategories);
+                } catch (e) {
+                    siteCategories = [];
+                }
             }
-            // Apply price filter
-            if (maxPrice) {
-                query = query.lte('price_to', parseInt(maxPrice));
+            if (!Array.isArray(siteCategories)) {
+                siteCategories = [];
             }
-            // Order by quality metrics and limit to reasonable number
-            query = query.not('moz_da', 'is', null).order('moz_da', {
-                ascending: false
-            }).order('similarweb_traffic', {
-                ascending: false
-            }).limit(search ? 200 : 100); // Get more results when searching to allow for category filtering
-            const { data: searchResults, error } = await query;
-            if (error) {
-                console.error('Error searching websites:', error);
-                setFilteredWebsites([]);
-                setWebsitesLoading(false);
-                return;
-            }
-            let filteredResults = searchResults || [];
-            // Apply search and category filters client-side
-            if (search || category) {
-                filteredResults = filteredResults.filter((website)=>{
-                    let categories = website.category;
-                    if (typeof categories === 'string') {
-                        try {
-                            categories = JSON.parse(categories);
-                        } catch (e) {
-                            categories = [];
-                        }
-                    }
-                    if (!Array.isArray(categories)) {
-                        categories = [];
-                    }
-                    // Check search filter (link or category)
-                    const matchesSearch = !search || website.link?.toLowerCase().includes(search.toLowerCase()) || categories.some((cat)=>cat?.toLowerCase().includes(search.toLowerCase()));
-                    // Check category filter
-                    const matchesCategory = !category || categories.some((cat)=>cat?.toLowerCase().includes(category.toLowerCase()));
-                    return matchesSearch && matchesCategory;
-                });
-            }
-            // Get seller names for the filtered results
-            const websitesWithSellerIds = filteredResults.filter((w)=>w.seller_id);
-            if (websitesWithSellerIds.length === 0) {
-                const websitesWithSellers = filteredResults.map((website)=>({
-                        ...website,
-                        seller_name: 'Unknown'
-                    }));
-                setFilteredWebsites(websitesWithSellers);
-                setWebsitesLoading(false);
-                return;
-            }
-            const sellerIds = [
-                ...new Set(websitesWithSellerIds.map((w)=>w.seller_id))
-            ];
-            const { data: sellersData, error: sellersError } = await supabase.from('users_settings_tb').select('user_id, name').in('user_id', sellerIds);
-            if (sellersError) {
-                console.error('Error loading sellers for search results:', sellersError);
-            }
-            // Combine the data
-            const websitesWithSellers = filteredResults.map((website)=>({
-                    ...website,
-                    seller_name: sellersData?.find((s)=>s.user_id === website.seller_id)?.name || 'Unknown'
-                }));
-            setFilteredWebsites(websitesWithSellers);
-        } catch (error) {
-            console.error('Error in filterWebsites:', error);
-            setFilteredWebsites([]);
-        } finally{
-            setWebsitesLoading(false);
-        }
+            // Check search filter (searches link and categories)
+            const matchSearch = !search || site.link?.toLowerCase().includes(search.toLowerCase()) || siteCategories.some((cat)=>cat?.toLowerCase().includes(search.toLowerCase()));
+            // Check category filter (all selected categories must match)
+            const matchCategories = categories.length === 0 || categories.every((selectedCat)=>siteCategories.some((cat)=>cat?.toLowerCase() === selectedCat.toLowerCase()));
+            // Check DA filter
+            const matchDA = !minDA || (site.moz_da || 0) >= parseInt(minDA);
+            // Check price filter
+            const matchPrice = !maxPrice || (site.price_to || 0) <= parseInt(maxPrice);
+            return matchSearch && matchCategories && matchDA && matchPrice;
+        });
+        setFilteredWebsites(results);
     };
-    // Clear all filters
+    // Toggle category selection like buyer/websites page
+    const handleCategoryToggle = (category)=>{
+        setWebsiteFilters((prev)=>({
+                ...prev,
+                categories: prev.categories.includes(category) ? prev.categories.filter((c)=>c !== category) : [
+                    ...prev.categories,
+                    category
+                ]
+            }));
+    };
+    // Clear all filters like buyer/websites page
     const clearWebsiteFilters = ()=>{
         setWebsiteFilters({
             search: '',
+            categories: [],
             minDA: '',
-            maxPrice: '',
-            category: ''
+            maxPrice: ''
         });
     };
-    // Effect to filter websites when filters change
+    // Effect to filter websites when filters change - like buyer/websites page
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "MyOrders.useEffect": ()=>{
             filterWebsites();
@@ -647,6 +646,26 @@ function MyOrders() {
     }["MyOrders.useEffect"], [
         websiteFilters,
         websites
+    ]);
+    // Close dropdown when clicking outside
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "MyOrders.useEffect": ()=>{
+            const handleClickOutside = {
+                "MyOrders.useEffect.handleClickOutside": (event)=>{
+                    if (showCategoryDropdown && !event.target.closest('.category-dropdown')) {
+                        setShowCategoryDropdown(false);
+                    }
+                }
+            }["MyOrders.useEffect.handleClickOutside"];
+            document.addEventListener('mousedown', handleClickOutside);
+            return ({
+                "MyOrders.useEffect": ()=>{
+                    document.removeEventListener('mousedown', handleClickOutside);
+                }
+            })["MyOrders.useEffect"];
+        }
+    }["MyOrders.useEffect"], [
+        showCategoryDropdown
     ]);
     const loadMyOrders = async (userId)=>{
         setOrdersLoading(true);
@@ -842,14 +861,14 @@ function MyOrders() {
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$Navbar$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/app/my-orders/page.jsx",
-                    lineNumber: 514,
+                    lineNumber: 494,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black opacity-90 pointer-events-none"
                 }, void 0, false, {
                     fileName: "[project]/app/my-orders/page.jsx",
-                    lineNumber: 515,
+                    lineNumber: 495,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -862,20 +881,20 @@ function MyOrders() {
                                     className: "h-8 bg-gray-700 rounded w-64 animate-pulse"
                                 }, void 0, false, {
                                     fileName: "[project]/app/my-orders/page.jsx",
-                                    lineNumber: 518,
+                                    lineNumber: 498,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "h-4 bg-gray-700 rounded w-96 mt-2 animate-pulse"
                                 }, void 0, false, {
                                     fileName: "[project]/app/my-orders/page.jsx",
-                                    lineNumber: 519,
+                                    lineNumber: 499,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/my-orders/page.jsx",
-                            lineNumber: 517,
+                            lineNumber: 497,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -887,25 +906,25 @@ function MyOrders() {
                                         className: "h-8 bg-gray-700 rounded w-32 animate-pulse"
                                     }, void 0, false, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 523,
+                                        lineNumber: 503,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "h-8 bg-gray-700 rounded w-24 animate-pulse"
                                     }, void 0, false, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 524,
+                                        lineNumber: 504,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/my-orders/page.jsx",
-                                lineNumber: 522,
+                                lineNumber: 502,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/my-orders/page.jsx",
-                            lineNumber: 521,
+                            lineNumber: 501,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -914,24 +933,24 @@ function MyOrders() {
                                 className: "animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"
                             }, void 0, false, {
                                 fileName: "[project]/app/my-orders/page.jsx",
-                                lineNumber: 528,
+                                lineNumber: 508,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/my-orders/page.jsx",
-                            lineNumber: 527,
+                            lineNumber: 507,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/my-orders/page.jsx",
-                    lineNumber: 516,
+                    lineNumber: 496,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/my-orders/page.jsx",
-            lineNumber: 513,
+            lineNumber: 493,
             columnNumber: 7
         }, this);
     }
@@ -940,14 +959,14 @@ function MyOrders() {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$Navbar$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/app/my-orders/page.jsx",
-                lineNumber: 537,
+                lineNumber: 517,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black opacity-90 pointer-events-none"
             }, void 0, false, {
                 fileName: "[project]/app/my-orders/page.jsx",
-                lineNumber: 538,
+                lineNumber: 518,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -961,7 +980,7 @@ function MyOrders() {
                                 children: "Guest Posting Orders"
                             }, void 0, false, {
                                 fileName: "[project]/app/my-orders/page.jsx",
-                                lineNumber: 542,
+                                lineNumber: 522,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -969,13 +988,13 @@ function MyOrders() {
                                 children: "Browse available websites and place your guest posting orders"
                             }, void 0, false, {
                                 fileName: "[project]/app/my-orders/page.jsx",
-                                lineNumber: 543,
+                                lineNumber: 523,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/my-orders/page.jsx",
-                        lineNumber: 541,
+                        lineNumber: 521,
                         columnNumber: 9
                     }, this),
                     message && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -983,7 +1002,7 @@ function MyOrders() {
                         children: message
                     }, void 0, false, {
                         fileName: "[project]/app/my-orders/page.jsx",
-                        lineNumber: 547,
+                        lineNumber: 527,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1006,7 +1025,7 @@ function MyOrders() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 556,
+                                        lineNumber: 536,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1019,7 +1038,7 @@ function MyOrders() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 569,
+                                        lineNumber: 549,
                                         columnNumber: 15
                                     }, this),
                                     activeTab === 'my-orders' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1029,23 +1048,23 @@ function MyOrders() {
                                         children: ordersLoading ? 'Refreshing...' : 'Refresh'
                                     }, void 0, false, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 580,
+                                        lineNumber: 560,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/my-orders/page.jsx",
-                                lineNumber: 555,
+                                lineNumber: 535,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/my-orders/page.jsx",
-                            lineNumber: 554,
+                            lineNumber: 534,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/my-orders/page.jsx",
-                        lineNumber: 553,
+                        lineNumber: 533,
                         columnNumber: 9
                     }, this),
                     activeTab === 'browse' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -1057,126 +1076,205 @@ function MyOrders() {
                                         className: "grid grid-cols-1 md:grid-cols-4 gap-4 mb-4",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                className: "p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-white",
                                                 type: "text",
-                                                placeholder: "Search websites or categories...",
+                                                placeholder: "Search by link or niche",
                                                 value: websiteFilters.search,
                                                 onChange: (e)=>setWebsiteFilters({
                                                         ...websiteFilters,
                                                         search: e.target.value
-                                                    }),
-                                                className: "p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-white"
+                                                    })
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 598,
+                                                lineNumber: 578,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "relative category-dropdown",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                        type: "button",
+                                                        className: "w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-white text-left flex items-center justify-between",
+                                                        onClick: ()=>setShowCategoryDropdown(!showCategoryDropdown),
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                children: websiteFilters.categories.length === 0 ? 'All Categories' : `${websiteFilters.categories.length} selected`
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/my-orders/page.jsx",
+                                                                lineNumber: 591,
+                                                                columnNumber: 21
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                                className: `w-4 h-4 transition-transform ${showCategoryDropdown ? 'rotate-180' : ''}`,
+                                                                fill: "none",
+                                                                stroke: "currentColor",
+                                                                viewBox: "0 0 24 24",
+                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                                    strokeLinecap: "round",
+                                                                    strokeLinejoin: "round",
+                                                                    strokeWidth: 2,
+                                                                    d: "M19 9l-7 7-7-7"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/app/my-orders/page.jsx",
+                                                                    lineNumber: 597,
+                                                                    columnNumber: 23
+                                                                }, this)
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/my-orders/page.jsx",
+                                                                lineNumber: 596,
+                                                                columnNumber: 21
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/app/my-orders/page.jsx",
+                                                        lineNumber: 586,
+                                                        columnNumber: 19
+                                                    }, this),
+                                                    showCategoryDropdown && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "absolute z-10 w-full mt-1 bg-gray-700 border border-gray-600 rounded-lg shadow-lg max-h-60 overflow-y-auto",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "p-2",
+                                                            children: availableCategories.map((category)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                                    className: "flex items-center p-2 hover:bg-gray-600 rounded cursor-pointer",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                                            type: "checkbox",
+                                                                            checked: websiteFilters.categories.includes(category),
+                                                                            onChange: ()=>handleCategoryToggle(category),
+                                                                            className: "mr-3 w-4 h-4 text-blue-600 bg-gray-600 border-gray-500 rounded focus:ring-blue-500 focus:ring-2"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/my-orders/page.jsx",
+                                                                            lineNumber: 606,
+                                                                            columnNumber: 29
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                            className: "text-white text-sm",
+                                                                            children: category
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/my-orders/page.jsx",
+                                                                            lineNumber: 612,
+                                                                            columnNumber: 29
+                                                                        }, this)
+                                                                    ]
+                                                                }, category, true, {
+                                                                    fileName: "[project]/app/my-orders/page.jsx",
+                                                                    lineNumber: 605,
+                                                                    columnNumber: 27
+                                                                }, this))
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/my-orders/page.jsx",
+                                                            lineNumber: 603,
+                                                            columnNumber: 23
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/my-orders/page.jsx",
+                                                        lineNumber: 602,
+                                                        columnNumber: 21
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/my-orders/page.jsx",
+                                                lineNumber: 585,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                className: "p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-white",
                                                 type: "number",
                                                 placeholder: "Min DA",
                                                 value: websiteFilters.minDA,
                                                 onChange: (e)=>setWebsiteFilters({
                                                         ...websiteFilters,
                                                         minDA: e.target.value
-                                                    }),
-                                                className: "p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-white"
+                                                    })
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 605,
+                                                lineNumber: 619,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                className: "p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-white",
                                                 type: "number",
                                                 placeholder: "Max Price",
                                                 value: websiteFilters.maxPrice,
                                                 onChange: (e)=>setWebsiteFilters({
                                                         ...websiteFilters,
                                                         maxPrice: e.target.value
-                                                    }),
-                                                className: "p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-white"
+                                                    })
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 612,
-                                                columnNumber: 17
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                type: "text",
-                                                placeholder: "Category",
-                                                value: websiteFilters.category,
-                                                onChange: (e)=>setWebsiteFilters({
-                                                        ...websiteFilters,
-                                                        category: e.target.value
-                                                    }),
-                                                className: "p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-white"
-                                            }, void 0, false, {
-                                                fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 619,
+                                                lineNumber: 626,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 597,
+                                        lineNumber: 577,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex justify-between items-center",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-gray-400 text-sm",
-                                                children: (()=>{
-                                                    const hasFilters = websiteFilters.search || websiteFilters.minDA || websiteFilters.maxPrice || websiteFilters.category;
-                                                    if (hasFilters) {
-                                                        return `Found ${filteredWebsites.length} websites matching your filters`;
-                                                    } else {
-                                                        return `Showing top ${filteredWebsites.length} websites`;
-                                                    }
-                                                })()
-                                            }, void 0, false, {
-                                                fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 630,
-                                                columnNumber: 17
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                onClick: clearWebsiteFilters,
-                                                className: "bg-gray-700 hover:bg-gray-600 text-gray-300 px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center gap-2",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                        className: "w-4 h-4",
-                                                        fill: "none",
-                                                        stroke: "currentColor",
-                                                        viewBox: "0 0 24 24",
-                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                                            strokeLinecap: "round",
-                                                            strokeLinejoin: "round",
-                                                            strokeWidth: 2,
-                                                            d: "M6 18L18 6M6 6l12 12"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/app/my-orders/page.jsx",
-                                                            lineNumber: 645,
-                                                            columnNumber: 21
-                                                        }, this)
+                                        className: "flex justify-end",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: clearWebsiteFilters,
+                                            className: "bg-gray-700 hover:bg-gray-600 text-gray-300 px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center gap-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                    className: "w-4 h-4",
+                                                    fill: "none",
+                                                    stroke: "currentColor",
+                                                    viewBox: "0 0 24 24",
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                        strokeLinecap: "round",
+                                                        strokeLinejoin: "round",
+                                                        strokeWidth: 2,
+                                                        d: "M6 18L18 6M6 6l12 12"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/my-orders/page.jsx",
-                                                        lineNumber: 644,
-                                                        columnNumber: 19
-                                                    }, this),
-                                                    "Clear Filters"
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 640,
-                                                columnNumber: 17
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
+                                                        lineNumber: 642,
+                                                        columnNumber: 21
+                                                    }, this)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/my-orders/page.jsx",
+                                                    lineNumber: 641,
+                                                    columnNumber: 19
+                                                }, this),
+                                                "Clear Filters"
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/my-orders/page.jsx",
+                                            lineNumber: 637,
+                                            columnNumber: 17
+                                        }, this)
+                                    }, void 0, false, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 629,
+                                        lineNumber: 636,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/my-orders/page.jsx",
-                                lineNumber: 596,
+                                lineNumber: 576,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "mb-4 flex justify-between items-center",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-gray-400",
+                                    children: (()=>{
+                                        const hasFilters = websiteFilters.search || websiteFilters.categories.length > 0 || websiteFilters.minDA || websiteFilters.maxPrice;
+                                        if (hasFilters) {
+                                            return `Found ${filteredWebsites.length} websites matching your filters`;
+                                        } else {
+                                            return `Showing top ${filteredWebsites.length} websites`;
+                                        }
+                                    })()
+                                }, void 0, false, {
+                                    fileName: "[project]/app/my-orders/page.jsx",
+                                    lineNumber: 651,
+                                    columnNumber: 15
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/app/my-orders/page.jsx",
+                                lineNumber: 650,
                                 columnNumber: 13
                             }, this),
                             websitesLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1186,21 +1284,21 @@ function MyOrders() {
                                         className: "animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"
                                     }, void 0, false, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 654,
+                                        lineNumber: 665,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         className: "ml-4 text-gray-400",
-                                        children: websiteFilters.search || websiteFilters.minDA || websiteFilters.maxPrice || websiteFilters.category ? 'Searching database...' : 'Loading top websites...'
+                                        children: "Loading top websites..."
                                     }, void 0, false, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 655,
+                                        lineNumber: 666,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/my-orders/page.jsx",
-                                lineNumber: 653,
+                                lineNumber: 664,
                                 columnNumber: 15
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6",
@@ -1219,18 +1317,18 @@ function MyOrders() {
                                                 d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 666,
+                                                lineNumber: 673,
                                                 columnNumber: 23
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/my-orders/page.jsx",
-                                            lineNumber: 665,
+                                            lineNumber: 672,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-gray-400 text-lg",
                                             children: (()=>{
-                                                const hasFilters = websiteFilters.search || websiteFilters.minDA || websiteFilters.maxPrice || websiteFilters.category;
+                                                const hasFilters = websiteFilters.search || websiteFilters.categories.length > 0 || websiteFilters.minDA || websiteFilters.maxPrice;
                                                 if (websites.length === 0) {
                                                     return 'No websites available yet';
                                                 } else if (hasFilters) {
@@ -1241,13 +1339,13 @@ function MyOrders() {
                                             })()
                                         }, void 0, false, {
                                             fileName: "[project]/app/my-orders/page.jsx",
-                                            lineNumber: 668,
+                                            lineNumber: 675,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-gray-500 text-sm mt-2",
                                             children: (()=>{
-                                                const hasFilters = websiteFilters.search || websiteFilters.minDA || websiteFilters.maxPrice || websiteFilters.category;
+                                                const hasFilters = websiteFilters.search || websiteFilters.categories.length > 0 || websiteFilters.minDA || websiteFilters.maxPrice;
                                                 if (websites.length === 0) {
                                                     return 'Sellers haven\'t added any websites yet. Check back later or contact sellers directly.';
                                                 } else if (hasFilters) {
@@ -1258,7 +1356,7 @@ function MyOrders() {
                                             })()
                                         }, void 0, false, {
                                             fileName: "[project]/app/my-orders/page.jsx",
-                                            lineNumber: 680,
+                                            lineNumber: 687,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1273,7 +1371,7 @@ function MyOrders() {
                                                 children: "Refresh"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 694,
+                                                lineNumber: 701,
                                                 columnNumber: 25
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                 onClick: clearWebsiteFilters,
@@ -1281,18 +1379,18 @@ function MyOrders() {
                                                 children: "Clear Filters"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 705,
+                                                lineNumber: 712,
                                                 columnNumber: 25
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/my-orders/page.jsx",
-                                            lineNumber: 692,
+                                            lineNumber: 699,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/my-orders/page.jsx",
-                                    lineNumber: 664,
+                                    lineNumber: 671,
                                     columnNumber: 19
                                 }, this) : filteredWebsites.map((website)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-700",
@@ -1309,7 +1407,7 @@ function MyOrders() {
                                                                 children: website.link
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                                lineNumber: 720,
+                                                                lineNumber: 727,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1320,7 +1418,7 @@ function MyOrders() {
                                                                         children: website.badge
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/my-orders/page.jsx",
-                                                                        lineNumber: 723,
+                                                                        lineNumber: 730,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1331,24 +1429,24 @@ function MyOrders() {
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/app/my-orders/page.jsx",
-                                                                        lineNumber: 727,
+                                                                        lineNumber: 734,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                                lineNumber: 721,
+                                                                lineNumber: 728,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/my-orders/page.jsx",
-                                                        lineNumber: 719,
+                                                        lineNumber: 726,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/my-orders/page.jsx",
-                                                    lineNumber: 718,
+                                                    lineNumber: 725,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1373,7 +1471,7 @@ function MyOrders() {
                                                                         children: category
                                                                     }, index, false, {
                                                                         fileName: "[project]/app/my-orders/page.jsx",
-                                                                        lineNumber: 750,
+                                                                        lineNumber: 757,
                                                                         columnNumber: 27
                                                                     }, this));
                                                             })(),
@@ -1398,19 +1496,19 @@ function MyOrders() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/my-orders/page.jsx",
-                                                                    lineNumber: 771,
+                                                                    lineNumber: 778,
                                                                     columnNumber: 27
                                                                 }, this);
                                                             })()
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/my-orders/page.jsx",
-                                                        lineNumber: 736,
+                                                        lineNumber: 743,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/my-orders/page.jsx",
-                                                    lineNumber: 735,
+                                                    lineNumber: 742,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1427,7 +1525,7 @@ function MyOrders() {
                                                                             children: "Price:"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                                            lineNumber: 782,
+                                                                            lineNumber: 789,
                                                                             columnNumber: 25
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1440,13 +1538,13 @@ function MyOrders() {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                                            lineNumber: 783,
+                                                                            lineNumber: 790,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/my-orders/page.jsx",
-                                                                    lineNumber: 781,
+                                                                    lineNumber: 788,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1457,7 +1555,7 @@ function MyOrders() {
                                                                             children: "Traffic:"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                                            lineNumber: 786,
+                                                                            lineNumber: 793,
                                                                             columnNumber: 25
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1465,13 +1563,13 @@ function MyOrders() {
                                                                             children: website.similarweb_traffic ? Number(website.similarweb_traffic).toLocaleString() : 'N/A'
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                                            lineNumber: 787,
+                                                                            lineNumber: 794,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/my-orders/page.jsx",
-                                                                    lineNumber: 785,
+                                                                    lineNumber: 792,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1482,7 +1580,7 @@ function MyOrders() {
                                                                             children: "TAT:"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                                            lineNumber: 792,
+                                                                            lineNumber: 799,
                                                                             columnNumber: 25
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1490,19 +1588,19 @@ function MyOrders() {
                                                                             children: website.tat || 'N/A'
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                                            lineNumber: 793,
+                                                                            lineNumber: 800,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/my-orders/page.jsx",
-                                                                    lineNumber: 791,
+                                                                    lineNumber: 798,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                            lineNumber: 780,
+                                                            lineNumber: 787,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1516,7 +1614,7 @@ function MyOrders() {
                                                                             children: "AS:"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                                            lineNumber: 798,
+                                                                            lineNumber: 805,
                                                                             columnNumber: 25
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1524,13 +1622,13 @@ function MyOrders() {
                                                                             children: website.semrush_as || 'N/A'
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                                            lineNumber: 799,
+                                                                            lineNumber: 806,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/my-orders/page.jsx",
-                                                                    lineNumber: 797,
+                                                                    lineNumber: 804,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1541,7 +1639,7 @@ function MyOrders() {
                                                                             children: "DR:"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                                            lineNumber: 802,
+                                                                            lineNumber: 809,
                                                                             columnNumber: 25
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1549,13 +1647,13 @@ function MyOrders() {
                                                                             children: website.ahrefs_dr_range || 'N/A'
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                                            lineNumber: 803,
+                                                                            lineNumber: 810,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/my-orders/page.jsx",
-                                                                    lineNumber: 801,
+                                                                    lineNumber: 808,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1566,7 +1664,7 @@ function MyOrders() {
                                                                             children: "Link Type:"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                                            lineNumber: 806,
+                                                                            lineNumber: 813,
                                                                             columnNumber: 25
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1574,25 +1672,25 @@ function MyOrders() {
                                                                             children: website.link_attribution_type || 'N/A'
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                                            lineNumber: 807,
+                                                                            lineNumber: 814,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/my-orders/page.jsx",
-                                                                    lineNumber: 805,
+                                                                    lineNumber: 812,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                            lineNumber: 796,
+                                                            lineNumber: 803,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/my-orders/page.jsx",
-                                                    lineNumber: 779,
+                                                    lineNumber: 786,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1605,7 +1703,7 @@ function MyOrders() {
                                                                 children: "Seller:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                                lineNumber: 820,
+                                                                lineNumber: 827,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1613,18 +1711,18 @@ function MyOrders() {
                                                                 children: website.seller_name || 'Unknown'
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                                lineNumber: 821,
+                                                                lineNumber: 828,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/my-orders/page.jsx",
-                                                        lineNumber: 819,
+                                                        lineNumber: 826,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/my-orders/page.jsx",
-                                                    lineNumber: 818,
+                                                    lineNumber: 825,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1633,23 +1731,23 @@ function MyOrders() {
                                                     children: "Place Order"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/my-orders/page.jsx",
-                                                    lineNumber: 825,
+                                                    lineNumber: 832,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/my-orders/page.jsx",
-                                            lineNumber: 717,
+                                            lineNumber: 724,
                                             columnNumber: 17
                                         }, this)
                                     }, website.id, false, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 716,
+                                        lineNumber: 723,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/app/my-orders/page.jsx",
-                                lineNumber: 662,
+                                lineNumber: 669,
                                 columnNumber: 15
                             }, this)
                         ]
@@ -1661,12 +1759,12 @@ function MyOrders() {
                                 className: "animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"
                             }, void 0, false, {
                                 fileName: "[project]/app/my-orders/page.jsx",
-                                lineNumber: 845,
+                                lineNumber: 852,
                                 columnNumber: 17
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/my-orders/page.jsx",
-                            lineNumber: 844,
+                            lineNumber: 851,
                             columnNumber: 15
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "bg-gray-800 shadow-md rounded-lg overflow-hidden border border-gray-700",
@@ -1685,7 +1783,7 @@ function MyOrders() {
                                                             children: "Website"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                            lineNumber: 853,
+                                                            lineNumber: 860,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1693,7 +1791,7 @@ function MyOrders() {
                                                             children: "Article Title"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                            lineNumber: 856,
+                                                            lineNumber: 863,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1701,7 +1799,7 @@ function MyOrders() {
                                                             children: "Budget"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                            lineNumber: 859,
+                                                            lineNumber: 866,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1709,7 +1807,7 @@ function MyOrders() {
                                                             children: "Status"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                            lineNumber: 862,
+                                                            lineNumber: 869,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1717,7 +1815,7 @@ function MyOrders() {
                                                             children: "Seller"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                            lineNumber: 865,
+                                                            lineNumber: 872,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1725,18 +1823,18 @@ function MyOrders() {
                                                             children: "Date"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/my-orders/page.jsx",
-                                                            lineNumber: 868,
+                                                            lineNumber: 875,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/my-orders/page.jsx",
-                                                    lineNumber: 852,
+                                                    lineNumber: 859,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 851,
+                                                lineNumber: 858,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -1752,7 +1850,7 @@ function MyOrders() {
                                                                         children: order.web_sites?.link
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/my-orders/page.jsx",
-                                                                        lineNumber: 877,
+                                                                        lineNumber: 884,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1760,13 +1858,13 @@ function MyOrders() {
                                                                         children: order.web_sites?.category_1
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/my-orders/page.jsx",
-                                                                        lineNumber: 878,
+                                                                        lineNumber: 885,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                                lineNumber: 876,
+                                                                lineNumber: 883,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1776,12 +1874,12 @@ function MyOrders() {
                                                                     children: order.article_title
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/my-orders/page.jsx",
-                                                                    lineNumber: 881,
+                                                                    lineNumber: 888,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                                lineNumber: 880,
+                                                                lineNumber: 887,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1792,7 +1890,7 @@ function MyOrders() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                                lineNumber: 883,
+                                                                lineNumber: 890,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1802,12 +1900,12 @@ function MyOrders() {
                                                                     children: order.status.charAt(0).toUpperCase() + order.status.slice(1)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/my-orders/page.jsx",
-                                                                    lineNumber: 887,
+                                                                    lineNumber: 894,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                                lineNumber: 886,
+                                                                lineNumber: 893,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1815,7 +1913,7 @@ function MyOrders() {
                                                                 children: order.seller_name || 'Unknown'
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                                lineNumber: 891,
+                                                                lineNumber: 898,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1823,24 +1921,24 @@ function MyOrders() {
                                                                 children: new Date(order.created_at).toLocaleDateString()
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                                lineNumber: 894,
+                                                                lineNumber: 901,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, order.id, true, {
                                                         fileName: "[project]/app/my-orders/page.jsx",
-                                                        lineNumber: 875,
+                                                        lineNumber: 882,
                                                         columnNumber: 21
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 873,
+                                                lineNumber: 880,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 850,
+                                        lineNumber: 857,
                                         columnNumber: 19
                                     }, this),
                                     orders.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1848,25 +1946,25 @@ function MyOrders() {
                                         children: "No orders found. Start by browsing websites and placing your first order!"
                                     }, void 0, false, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 902,
+                                        lineNumber: 909,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/my-orders/page.jsx",
-                                lineNumber: 849,
+                                lineNumber: 856,
                                 columnNumber: 17
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/my-orders/page.jsx",
-                            lineNumber: 848,
+                            lineNumber: 855,
                             columnNumber: 15
                         }, this)
                     }, void 0, false)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/my-orders/page.jsx",
-                lineNumber: 540,
+                lineNumber: 520,
                 columnNumber: 7
             }, this),
             showOrderModal && selectedWebsite && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1887,7 +1985,7 @@ function MyOrders() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 919,
+                                        lineNumber: 926,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1905,23 +2003,23 @@ function MyOrders() {
                                                 d: "M6 18L18 6M6 6l12 12"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 927,
+                                                lineNumber: 934,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/my-orders/page.jsx",
-                                            lineNumber: 926,
+                                            lineNumber: 933,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 922,
+                                        lineNumber: 929,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/my-orders/page.jsx",
-                                lineNumber: 918,
+                                lineNumber: 925,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -1935,7 +2033,7 @@ function MyOrders() {
                                                 children: "Article Title *"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 934,
+                                                lineNumber: 941,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1949,13 +2047,13 @@ function MyOrders() {
                                                 required: true
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 937,
+                                                lineNumber: 944,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 933,
+                                        lineNumber: 940,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1965,7 +2063,7 @@ function MyOrders() {
                                                 children: "Article Content *"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 947,
+                                                lineNumber: 954,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -1980,13 +2078,13 @@ function MyOrders() {
                                                 required: true
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 950,
+                                                lineNumber: 957,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 946,
+                                        lineNumber: 953,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1996,7 +2094,7 @@ function MyOrders() {
                                                 children: "Target URL *"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 961,
+                                                lineNumber: 968,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2011,13 +2109,13 @@ function MyOrders() {
                                                 required: true
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 964,
+                                                lineNumber: 971,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 960,
+                                        lineNumber: 967,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2027,7 +2125,7 @@ function MyOrders() {
                                                 children: "Anchor Text"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 975,
+                                                lineNumber: 982,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2041,13 +2139,13 @@ function MyOrders() {
                                                 placeholder: "Link anchor text"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 978,
+                                                lineNumber: 985,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 974,
+                                        lineNumber: 981,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2057,7 +2155,7 @@ function MyOrders() {
                                                 children: "Budget ($)"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 988,
+                                                lineNumber: 995,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2073,7 +2171,7 @@ function MyOrders() {
                                                 step: "0.01"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 991,
+                                                lineNumber: 998,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2086,13 +2184,13 @@ function MyOrders() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 1000,
+                                                lineNumber: 1007,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 987,
+                                        lineNumber: 994,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2102,7 +2200,7 @@ function MyOrders() {
                                                 children: "Special Requirements"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 1006,
+                                                lineNumber: 1013,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -2116,13 +2214,13 @@ function MyOrders() {
                                                 placeholder: "Any special requirements or notes..."
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 1009,
+                                                lineNumber: 1016,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 1005,
+                                        lineNumber: 1012,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2135,7 +2233,7 @@ function MyOrders() {
                                                 children: "Cancel"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 1019,
+                                                lineNumber: 1026,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2145,45 +2243,45 @@ function MyOrders() {
                                                 children: submitting ? 'Placing Order...' : 'Place Order'
                                             }, void 0, false, {
                                                 fileName: "[project]/app/my-orders/page.jsx",
-                                                lineNumber: 1026,
+                                                lineNumber: 1033,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/my-orders/page.jsx",
-                                        lineNumber: 1018,
+                                        lineNumber: 1025,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/my-orders/page.jsx",
-                                lineNumber: 932,
+                                lineNumber: 939,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/my-orders/page.jsx",
-                        lineNumber: 917,
+                        lineNumber: 924,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/my-orders/page.jsx",
-                    lineNumber: 916,
+                    lineNumber: 923,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/my-orders/page.jsx",
-                lineNumber: 915,
+                lineNumber: 922,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/my-orders/page.jsx",
-        lineNumber: 536,
+        lineNumber: 516,
         columnNumber: 5
     }, this);
 }
-_s(MyOrders, "adEnePm07CsBDaWwb6H2BejOowg=", false, function() {
+_s(MyOrders, "g/D//cOqjjKifszkPzdk2SAy1/8=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];

@@ -70,8 +70,34 @@ export default function Navbar() {
   }, [router]);
 
   const handleSignOut = async () => {
-    const supabase = getSupabase();
-    await supabase.auth.signOut();
+    try {
+      console.log('Starting sign out process...');
+      const supabase = getSupabase();
+      
+      // Sign out from Supabase
+      const { error } = await supabase.auth.signOut();
+      
+      if (error) {
+        console.error('Error signing out:', error);
+      } else {
+        console.log('Successfully signed out from Supabase');
+      }
+      
+      // Clear local state immediately
+      setUser(null);
+      setUserSettings(null);
+      
+      // Small delay to ensure cookies are cleared
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
+      // Force redirect to home page using window.location for a hard refresh
+      window.location.href = '/';
+      
+    } catch (error) {
+      console.error('Error in handleSignOut:', error);
+      // Force redirect even on error
+      window.location.href = '/';
+    }
   };
 
   // Define navigation items based on user role

@@ -27,13 +27,42 @@ export default function MyOrders() {
   const [message, setMessage] = useState('');
   const [activeTab, setActiveTab] = useState('my-orders'); // Start with orders for faster perceived loading
   
-  // Website filtering state
+  // Website filtering state - same as buyer/websites page
   const [websiteFilters, setWebsiteFilters] = useState({
     search: '',
+    categories: [],
     minDA: '',
-    maxPrice: '',
-    category: ''
+    maxPrice: ''
   });
+  
+  // Category dropdown state
+  const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
+  
+  // Available categories (you can expand this list as needed)
+  const availableCategories = [
+    'Agriculture',
+    'Animals and Pets',
+    'Art',
+    'Automobiles',
+    'Beauty',
+    'Business',
+    'Education',
+    'Entertainment',
+    'Fashion',
+    'Finance',
+    'Food and Drink',
+    'Health and Fitness',
+    'Home and Garden',
+    'Law and Government',
+    'Lifestyle',
+    'News and Media',
+    'Real Estate',
+    'Science',
+    'Sports',
+    'Technology',
+    'Travel',
+    'Other'
+  ];
   
   const router = useRouter();
 
@@ -100,15 +129,14 @@ export default function MyOrders() {
     }, 10000); // 10 second timeout
     
     try {
-      // Get top 50 websites based on quality metrics (DA, traffic, etc.)
+      // Load all websites like buyer/websites page
       const { data: websitesData, error: websitesError } = await supabase
         .from('web_sites')
         .select('*')
         .not('moz_da', 'is', null)
         .not('similarweb_traffic', 'is', null)
         .order('moz_da', { ascending: false })
-        .order('similarweb_traffic', { ascending: false })
-        .limit(50);
+        .order('similarweb_traffic', { ascending: false });
 
       if (websitesError) {
         console.error('Error loading websites:', websitesError);
@@ -169,133 +197,85 @@ export default function MyOrders() {
   };
 
   // Filter websites based on search and filter criteria
-  const filterWebsites = async () => {
-    const { search, minDA, maxPrice, category } = websiteFilters;
+  // Filter websites client-side like buyer/websites page
+  const filterWebsites = () => {
+    const { search, categories, minDA, maxPrice } = websiteFilters;
     
-    // If no filters are applied, show the loaded top 50 websites
-    if (!search && !minDA && !maxPrice && !category) {
-      setFilteredWebsites(websites);
-      return;
-    }
+    const results = websites.filter((site) => {
+      // Parse categories for this site
+      let siteCategories = site.category;
+      if (typeof siteCategories === 'string') {
+        try {
+          siteCategories = JSON.parse(siteCategories);
+        } catch (e) {
+          siteCategories = [];
+        }
+      }
+      if (!Array.isArray(siteCategories)) {
+        siteCategories = [];
+      }
+      
+      // Check search filter (searches link and categories)
+      const matchSearch = !search || 
+        site.link?.toLowerCase().includes(search.toLowerCase()) ||
+        siteCategories.some(cat => cat?.toLowerCase().includes(search.toLowerCase()));
+      
+      // Check category filter (all selected categories must match)
+      const matchCategories = categories.length === 0 ||
+        categories.every(selectedCat => 
+          siteCategories.some(cat => cat?.toLowerCase() === selectedCat.toLowerCase())
+        );
+      
+      // Check DA filter
+      const matchDA = !minDA || (site.moz_da || 0) >= parseInt(minDA);
+      
+      // Check price filter
+      const matchPrice = !maxPrice || (site.price_to || 0) <= parseInt(maxPrice);
+
+      return matchSearch && matchCategories && matchDA && matchPrice;
+    });
     
-    // If filters are applied, search the entire database
-    setWebsitesLoading(true);
-    const supabase = getSupabase();
-    
-    try {
-      let query = supabase
-        .from('web_sites')
-        .select('*');
-      
-      // Apply DA filter
-      if (minDA) {
-        query = query.gte('moz_da', parseInt(minDA));
-      }
-      
-      // Apply price filter
-      if (maxPrice) {
-        query = query.lte('price_to', parseInt(maxPrice));
-      }
-      
-      // Order by quality metrics and limit to reasonable number
-      query = query
-        .not('moz_da', 'is', null)
-        .order('moz_da', { ascending: false })
-        .order('similarweb_traffic', { ascending: false })
-        .limit(search ? 200 : 100); // Get more results when searching to allow for category filtering
-      
-      const { data: searchResults, error } = await query;
-      
-      if (error) {
-        console.error('Error searching websites:', error);
-        setFilteredWebsites([]);
-        setWebsitesLoading(false);
-        return;
-      }
-      
-      let filteredResults = searchResults || [];
-      
-      // Apply search and category filters client-side
-      if (search || category) {
-        filteredResults = filteredResults.filter(website => {
-          let categories = website.category;
-          if (typeof categories === 'string') {
-            try {
-              categories = JSON.parse(categories);
-            } catch (e) {
-              categories = [];
-            }
-          }
-          if (!Array.isArray(categories)) {
-            categories = [];
-          }
-          
-          // Check search filter (link or category)
-          const matchesSearch = !search || 
-            website.link?.toLowerCase().includes(search.toLowerCase()) ||
-            categories.some(cat => cat?.toLowerCase().includes(search.toLowerCase()));
-          
-          // Check category filter
-          const matchesCategory = !category || 
-            categories.some(cat => cat?.toLowerCase().includes(category.toLowerCase()));
-          
-          return matchesSearch && matchesCategory;
-        });
-      }
-      
-      // Get seller names for the filtered results
-      const websitesWithSellerIds = filteredResults.filter(w => w.seller_id);
-      
-      if (websitesWithSellerIds.length === 0) {
-        const websitesWithSellers = filteredResults.map(website => ({
-          ...website,
-          seller_name: 'Unknown'
-        }));
-        setFilteredWebsites(websitesWithSellers);
-        setWebsitesLoading(false);
-        return;
-      }
-      
-      const sellerIds = [...new Set(websitesWithSellerIds.map(w => w.seller_id))];
-      const { data: sellersData, error: sellersError } = await supabase
-        .from('users_settings_tb')
-        .select('user_id, name')
-        .in('user_id', sellerIds);
-      
-      if (sellersError) {
-        console.error('Error loading sellers for search results:', sellersError);
-      }
-      
-      // Combine the data
-      const websitesWithSellers = filteredResults.map(website => ({
-        ...website,
-        seller_name: sellersData?.find(s => s.user_id === website.seller_id)?.name || 'Unknown'
-      }));
-      
-      setFilteredWebsites(websitesWithSellers);
-      
-    } catch (error) {
-      console.error('Error in filterWebsites:', error);
-      setFilteredWebsites([]);
-    } finally {
-      setWebsitesLoading(false);
-    }
+    setFilteredWebsites(results);
   };
 
-  // Clear all filters
+  // Toggle category selection like buyer/websites page
+  const handleCategoryToggle = (category) => {
+    setWebsiteFilters(prev => ({
+      ...prev,
+      categories: prev.categories.includes(category)
+        ? prev.categories.filter(c => c !== category)
+        : [...prev.categories, category]
+    }));
+  };
+
+  // Clear all filters like buyer/websites page
   const clearWebsiteFilters = () => {
     setWebsiteFilters({
       search: '',
+      categories: [],
       minDA: '',
-      maxPrice: '',
-      category: ''
+      maxPrice: ''
     });
   };
 
-  // Effect to filter websites when filters change
+  // Effect to filter websites when filters change - like buyer/websites page
   useEffect(() => {
     filterWebsites();
   }, [websiteFilters, websites]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showCategoryDropdown && !event.target.closest('.category-dropdown')) {
+        setShowCategoryDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showCategoryDropdown]);
 
   const loadMyOrders = async (userId) => {
     setOrdersLoading(true);
@@ -592,51 +572,68 @@ export default function MyOrders() {
         {/* Browse Websites Tab */}
         {activeTab === 'browse' && (
           <>
-            {/* Search and Filter Bar */}
+            {/* Search and Filter Bar - Same as buyer/websites page */}
             <div className="mb-6 bg-gray-800 p-6 rounded-2xl border border-gray-700">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
                 <input
-                  type="text"
-                  placeholder="Search websites or categories..."
-                  value={websiteFilters.search}
-                  onChange={(e) => setWebsiteFilters({...websiteFilters, search: e.target.value})}
                   className="p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-white"
+                  type="text"
+                  placeholder="Search by link or niche"
+                  value={websiteFilters.search}
+                  onChange={(e) => setWebsiteFilters({ ...websiteFilters, search: e.target.value })}
                 />
+                <div className="relative category-dropdown">
+                  <button
+                    type="button"
+                    className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-white text-left flex items-center justify-between"
+                    onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}
+                  >
+                    <span>
+                      {websiteFilters.categories.length === 0 
+                        ? 'All Categories' 
+                        : `${websiteFilters.categories.length} selected`}
+                    </span>
+                    <svg className={`w-4 h-4 transition-transform ${showCategoryDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  
+                  {showCategoryDropdown && (
+                    <div className="absolute z-10 w-full mt-1 bg-gray-700 border border-gray-600 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                      <div className="p-2">
+                        {availableCategories.map((category) => (
+                          <label key={category} className="flex items-center p-2 hover:bg-gray-600 rounded cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={websiteFilters.categories.includes(category)}
+                              onChange={() => handleCategoryToggle(category)}
+                              className="mr-3 w-4 h-4 text-blue-600 bg-gray-600 border-gray-500 rounded focus:ring-blue-500 focus:ring-2"
+                            />
+                            <span className="text-white text-sm">{category}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
                 <input
+                  className="p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-white"
                   type="number"
                   placeholder="Min DA"
                   value={websiteFilters.minDA}
-                  onChange={(e) => setWebsiteFilters({...websiteFilters, minDA: e.target.value})}
-                  className="p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-white"
+                  onChange={(e) => setWebsiteFilters({ ...websiteFilters, minDA: e.target.value })}
                 />
                 <input
+                  className="p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-white"
                   type="number"
                   placeholder="Max Price"
                   value={websiteFilters.maxPrice}
-                  onChange={(e) => setWebsiteFilters({...websiteFilters, maxPrice: e.target.value})}
-                  className="p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-white"
-                />
-                <input
-                  type="text"
-                  placeholder="Category"
-                  value={websiteFilters.category}
-                  onChange={(e) => setWebsiteFilters({...websiteFilters, category: e.target.value})}
-                  className="p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-white"
+                  onChange={(e) => setWebsiteFilters({ ...websiteFilters, maxPrice: e.target.value })}
                 />
               </div>
               
-              {/* Filter Actions */}
-              <div className="flex justify-between items-center">
-                <p className="text-gray-400 text-sm">
-                  {(() => {
-                    const hasFilters = websiteFilters.search || websiteFilters.minDA || websiteFilters.maxPrice || websiteFilters.category;
-                    if (hasFilters) {
-                      return `Found ${filteredWebsites.length} websites matching your filters`;
-                    } else {
-                      return `Showing top ${filteredWebsites.length} websites`;
-                    }
-                  })()}
-                </p>
+              {/* Clear Filters Button */}
+              <div className="flex justify-end">
                 <button
                   onClick={clearWebsiteFilters}
                   className="bg-gray-700 hover:bg-gray-600 text-gray-300 px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center gap-2"
@@ -649,14 +646,24 @@ export default function MyOrders() {
               </div>
             </div>
 
+            {/* Results count */}
+            <div className="mb-4 flex justify-between items-center">
+              <p className="text-gray-400">
+                {(() => {
+                  const hasFilters = websiteFilters.search || websiteFilters.categories.length > 0 || websiteFilters.minDA || websiteFilters.maxPrice;
+                  if (hasFilters) {
+                    return `Found ${filteredWebsites.length} websites matching your filters`;
+                  } else {
+                    return `Showing top ${filteredWebsites.length} websites`;
+                  }
+                })()}
+              </p>
+            </div>
+
             {websitesLoading ? (
               <div className="flex justify-center items-center h-64">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-                <p className="ml-4 text-gray-400">
-                  {websiteFilters.search || websiteFilters.minDA || websiteFilters.maxPrice || websiteFilters.category 
-                    ? 'Searching database...' 
-                    : 'Loading top websites...'}
-                </p>
+                <p className="ml-4 text-gray-400">Loading top websites...</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -667,7 +674,7 @@ export default function MyOrders() {
                     </svg>
                     <p className="text-gray-400 text-lg">
                       {(() => {
-                        const hasFilters = websiteFilters.search || websiteFilters.minDA || websiteFilters.maxPrice || websiteFilters.category;
+                        const hasFilters = websiteFilters.search || websiteFilters.categories.length > 0 || websiteFilters.minDA || websiteFilters.maxPrice;
                         if (websites.length === 0) {
                           return 'No websites available yet';
                         } else if (hasFilters) {
@@ -679,7 +686,7 @@ export default function MyOrders() {
                     </p>
                     <p className="text-gray-500 text-sm mt-2">
                       {(() => {
-                        const hasFilters = websiteFilters.search || websiteFilters.minDA || websiteFilters.maxPrice || websiteFilters.category;
+                        const hasFilters = websiteFilters.search || websiteFilters.categories.length > 0 || websiteFilters.minDA || websiteFilters.maxPrice;
                         if (websites.length === 0) {
                           return 'Sellers haven\'t added any websites yet. Check back later or contact sellers directly.';
                         } else if (hasFilters) {

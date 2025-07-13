@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getSupabase } from '@/lib/supabaseClient';
 
@@ -23,6 +23,75 @@ export default function HomePage() {
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  
+  // Website slider state
+  const [websites, setWebsites] = useState([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [websitesLoading, setWebsitesLoading] = useState(true);
+
+  // Fetch websites for slider
+  useEffect(() => {
+    const fetchWebsites = async () => {
+      try {
+        const supabase = getSupabase();
+        const { data: websitesData, error } = await supabase
+          .from('web_sites')
+          .select('*')
+          .not('moz_da', 'is', null)
+          .not('similarweb_traffic', 'is', null)
+          .order('moz_da', { ascending: false })
+          .limit(20); // Get top 20 websites for slider
+
+        if (error) {
+          console.error('Error fetching websites:', error);
+        } else {
+          setWebsites(websitesData || []);
+        }
+      } catch (error) {
+        console.error('Error in fetchWebsites:', error);
+      } finally {
+        setWebsitesLoading(false);
+      }
+    };
+
+    fetchWebsites();
+  }, []);
+
+  // Auto-slide functionality
+  useEffect(() => {
+    if (websites.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % websites.length);
+      }, 5000); // Change slide every 5 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [websites.length]);
+
+  // Helper function to parse categories
+  const parseCategories = (categories) => {
+    if (typeof categories === 'string') {
+      try {
+        return JSON.parse(categories);
+      } catch (e) {
+        return [];
+      }
+    }
+    return Array.isArray(categories) ? categories : [];
+  };
+
+  // Slider navigation functions
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % websites.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + websites.length) % websites.length);
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -201,19 +270,96 @@ export default function HomePage() {
             <p className="text-xl lg:text-2xl text-gray-100 mb-8 leading-relaxed">
               Connect with high-authority websites and boost your SEO rankings through quality guest posting opportunities.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/buyer/websites"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 text-center"
-              >
-                Browse Websites
-              </Link>
-              <Link
-                href="/add-website"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 text-center"
-              >
-                Submit Your Site
-              </Link>
+            {/* Website Slider */}
+            <div className="mt-8">
+              {websitesLoading ? (
+                <div className="flex justify-center items-center h-64">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                  <p className="ml-4 text-white">Loading websites...</p>
+                </div>
+              ) : websites.length > 0 ? (
+                <div className="relative">
+                  <div className="overflow-hidden rounded-xl bg-gray-800/50 backdrop-blur-sm border border-gray-700">
+                    <div 
+                      className="flex transition-transform duration-500 ease-in-out"
+                      style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                    >
+                      {websites.map((website, index) => {
+                        const categories = parseCategories(website.category);
+                        return (
+                          <div key={website.id} className="w-full flex-shrink-0 p-6">
+                            <div className="flex flex-col md:flex-row items-center gap-6">
+                              <div className="flex-1">
+                                <div className="flex items-center gap-3 mb-3">
+                                  <h3 className="text-xl font-bold text-white">{website.link}</h3>
+                                  {website.badge && (
+                                    <span className="bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                      {website.badge}
+                                    </span>
+                                  )}
+                                </div>
+                                
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                                  <div className="text-center">
+                                    <p className="text-2xl font-bold text-blue-400">{website.moz_da || 'N/A'}</p>
+                                    <p className="text-sm text-gray-400">Domain Authority</p>
+                                  </div>
+                                  <div className="text-center">
+                                    <p className="text-2xl font-bold text-green-400">${website.price_from || 'N/A'}</p>
+                                    <p className="text-sm text-gray-400">Starting Price</p>
+                                  </div>
+                                  <div className="text-center">
+                                    <p className="text-2xl font-bold text-purple-400">{website.similarweb_traffic || 'N/A'}</p>
+                                    <p className="text-sm text-gray-400">Monthly Traffic</p>
+                                  </div>
+                                  <div className="text-center">
+                                    <p className="text-2xl font-bold text-orange-400">{website.tat || 'N/A'}</p>
+                                    <p className="text-sm text-gray-400">Turnaround Time</p>
+                                  </div>
+                                </div>
+                                
+                                {categories.length > 0 && (
+                                  <div className="flex flex-wrap gap-2 mb-4">
+                                    {categories.slice(0, 3).map((category, catIndex) => (
+                                      <span key={catIndex} className="bg-gray-700 text-gray-300 px-2 py-1 rounded-full text-xs">
+                                        {category}
+                                      </span>
+                                    ))}
+                                    {categories.length > 3 && (
+                                      <span className="bg-gray-700 text-gray-300 px-2 py-1 rounded-full text-xs">
+                                        +{categories.length - 3} more
+                                      </span>
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  
+
+                  
+                  {/* Dots indicator */}
+                  <div className="flex justify-center mt-4 space-x-2">
+                    {websites.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => goToSlide(index)}
+                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                          index === currentSlide ? 'bg-blue-500' : 'bg-gray-500'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center py-12">
+                  <p className="text-gray-400 text-lg">No websites available at the moment.</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -251,46 +397,46 @@ export default function HomePage() {
       </div>
 
       {/* Features section */}
-      <div className="relative z-20 bg-white bg-opacity-95 backdrop-blur-sm py-16">
+      <div className="relative z-20 bg-gray-900 bg-opacity-95 backdrop-blur-sm py-16">
         <div className="max-w-7xl mx-auto px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
               Why Choose GuestLinked?
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               The most comprehensive platform for guest posting opportunities with verified, high-quality websites.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center p-6">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="bg-blue-600/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Verified Quality</h3>
-              <p className="text-gray-600">All websites are manually verified for DA, traffic, and quality standards.</p>
+              <h3 className="text-xl font-semibold text-white mb-2">Verified Quality</h3>
+              <p className="text-gray-400">All websites are manually verified for DA, traffic, and quality standards.</p>
             </div>
 
             <div className="text-center p-6">
-              <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="bg-green-600/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Boost Your SEO</h3>
-              <p className="text-gray-600">Get high-quality backlinks from authoritative domains to improve your rankings.</p>
+              <h3 className="text-xl font-semibold text-white mb-2">Boost Your SEO</h3>
+              <p className="text-gray-400">Get high-quality backlinks from authoritative domains to improve your rankings.</p>
             </div>
 
             <div className="text-center p-6">
-              <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="bg-purple-600/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Fast Turnaround</h3>
-              <p className="text-gray-600">Quick approval and publishing times to get your content live faster.</p>
+              <h3 className="text-xl font-semibold text-white mb-2">Fast Turnaround</h3>
+              <p className="text-gray-400">Quick approval and publishing times to get your content live faster.</p>
             </div>
           </div>
         </div>
