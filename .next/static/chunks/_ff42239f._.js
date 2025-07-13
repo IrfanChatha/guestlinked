@@ -538,6 +538,36 @@ function WebsitesPage() {
                                     if (!isMounted) return;
                                     setWebsites(uniqueWebsites);
                                     setFiltered(uniqueWebsites);
+                                    // Extract unique categories from websites data
+                                    const allCategories = new Set();
+                                    uniqueWebsites.forEach({
+                                        "WebsitesPage.useEffect.checkUserAndFetchWebsites.fetchAllWebsites": (website)=>{
+                                            let categories = website.category;
+                                            // If category is a string, try to parse it as JSON
+                                            if (typeof categories === 'string') {
+                                                try {
+                                                    categories = JSON.parse(categories);
+                                                } catch (e) {
+                                                    console.warn('Failed to parse category JSON for website:', website.link, categories);
+                                                    categories = [];
+                                                }
+                                            }
+                                            // Ensure categories is an array
+                                            if (Array.isArray(categories)) {
+                                                categories.forEach({
+                                                    "WebsitesPage.useEffect.checkUserAndFetchWebsites.fetchAllWebsites": (cat)=>{
+                                                        if (cat && typeof cat === 'string' && cat.trim()) {
+                                                            allCategories.add(cat.trim());
+                                                        }
+                                                    }
+                                                }["WebsitesPage.useEffect.checkUserAndFetchWebsites.fetchAllWebsites"]);
+                                            }
+                                        }
+                                    }["WebsitesPage.useEffect.checkUserAndFetchWebsites.fetchAllWebsites"]);
+                                    // Convert set to sorted array
+                                    const sortedCategories = Array.from(allCategories).sort();
+                                    setCategories(sortedCategories);
+                                    console.log(`Extracted ${sortedCategories.length} unique categories`);
                                     setLoading(false);
                                 } catch (error) {
                                     console.error('Error in fetchAllWebsites:', error);
@@ -573,11 +603,23 @@ function WebsitesPage() {
             const { search, categories, minDA, maxPrice } = filters;
             const results = websites.filter({
                 "WebsitesPage.useEffect.results": (site)=>{
-                    const matchSearch = site.link?.toLowerCase().includes(search.toLowerCase()) || site.category && Array.isArray(site.category) && site.category.some({
+                    // Parse categories for this site
+                    let siteCategories = site.category;
+                    if (typeof siteCategories === 'string') {
+                        try {
+                            siteCategories = JSON.parse(siteCategories);
+                        } catch (e) {
+                            siteCategories = [];
+                        }
+                    }
+                    if (!Array.isArray(siteCategories)) {
+                        siteCategories = [];
+                    }
+                    const matchSearch = site.link?.toLowerCase().includes(search.toLowerCase()) || siteCategories.some({
                         "WebsitesPage.useEffect.results": (cat)=>cat?.toLowerCase().includes(search.toLowerCase())
                     }["WebsitesPage.useEffect.results"]);
-                    const matchCategories = categories.length === 0 || site.category && Array.isArray(site.category) && categories.every({
-                        "WebsitesPage.useEffect.results": (selectedCat)=>site.category.some({
+                    const matchCategories = categories.length === 0 || categories.every({
+                        "WebsitesPage.useEffect.results": (selectedCat)=>siteCategories.some({
                                 "WebsitesPage.useEffect.results": (cat)=>cat?.toLowerCase() === selectedCat.toLowerCase()
                             }["WebsitesPage.useEffect.results"])
                     }["WebsitesPage.useEffect.results"]);
@@ -611,14 +653,14 @@ function WebsitesPage() {
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$Navbar$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/app/buyer/websites/page.jsx",
-                    lineNumber: 208,
+                    lineNumber: 250,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black opacity-90 pointer-events-none"
                 }, void 0, false, {
                     fileName: "[project]/app/buyer/websites/page.jsx",
-                    lineNumber: 209,
+                    lineNumber: 251,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -629,23 +671,23 @@ function WebsitesPage() {
                             className: "animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"
                         }, void 0, false, {
                             fileName: "[project]/app/buyer/websites/page.jsx",
-                            lineNumber: 212,
+                            lineNumber: 254,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/buyer/websites/page.jsx",
-                        lineNumber: 211,
+                        lineNumber: 253,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/buyer/websites/page.jsx",
-                    lineNumber: 210,
+                    lineNumber: 252,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/buyer/websites/page.jsx",
-            lineNumber: 207,
+            lineNumber: 249,
             columnNumber: 7
         }, this);
     }
@@ -654,14 +696,14 @@ function WebsitesPage() {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$Navbar$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/app/buyer/websites/page.jsx",
-                lineNumber: 221,
+                lineNumber: 263,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black opacity-90 pointer-events-none"
             }, void 0, false, {
                 fileName: "[project]/app/buyer/websites/page.jsx",
-                lineNumber: 222,
+                lineNumber: 264,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -676,7 +718,7 @@ function WebsitesPage() {
                                     children: "Guest Posting Websites"
                                 }, void 0, false, {
                                     fileName: "[project]/app/buyer/websites/page.jsx",
-                                    lineNumber: 227,
+                                    lineNumber: 269,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -684,18 +726,18 @@ function WebsitesPage() {
                                     children: "Discover high-quality websites for your guest posting campaigns"
                                 }, void 0, false, {
                                     fileName: "[project]/app/buyer/websites/page.jsx",
-                                    lineNumber: 228,
+                                    lineNumber: 270,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/buyer/websites/page.jsx",
-                            lineNumber: 226,
+                            lineNumber: 268,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/buyer/websites/page.jsx",
-                        lineNumber: 225,
+                        lineNumber: 267,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -715,7 +757,7 @@ function WebsitesPage() {
                                             })
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/websites/page.jsx",
-                                        lineNumber: 235,
+                                        lineNumber: 277,
                                         columnNumber: 11
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -731,7 +773,7 @@ function WebsitesPage() {
                                                         children: filters.categories.length === 0 ? 'All Categories' : `${filters.categories.length} selected`
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/buyer/websites/page.jsx",
-                                                        lineNumber: 248,
+                                                        lineNumber: 290,
                                                         columnNumber: 15
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -746,18 +788,18 @@ function WebsitesPage() {
                                                             d: "M19 9l-7 7-7-7"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/buyer/websites/page.jsx",
-                                                            lineNumber: 254,
+                                                            lineNumber: 296,
                                                             columnNumber: 17
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/buyer/websites/page.jsx",
-                                                        lineNumber: 253,
+                                                        lineNumber: 295,
                                                         columnNumber: 15
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                                lineNumber: 243,
+                                                lineNumber: 285,
                                                 columnNumber: 13
                                             }, this),
                                             isDropdownOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -774,7 +816,7 @@ function WebsitesPage() {
                                                                     className: "mr-3 w-4 h-4 text-blue-600 bg-gray-600 border-gray-500 rounded focus:ring-blue-500 focus:ring-2"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/buyer/websites/page.jsx",
-                                                                    lineNumber: 263,
+                                                                    lineNumber: 305,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -782,29 +824,29 @@ function WebsitesPage() {
                                                                     children: category
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/buyer/websites/page.jsx",
-                                                                    lineNumber: 269,
+                                                                    lineNumber: 311,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, category, true, {
                                                             fileName: "[project]/app/buyer/websites/page.jsx",
-                                                            lineNumber: 262,
+                                                            lineNumber: 304,
                                                             columnNumber: 21
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/buyer/websites/page.jsx",
-                                                    lineNumber: 260,
+                                                    lineNumber: 302,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                                lineNumber: 259,
+                                                lineNumber: 301,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/buyer/websites/page.jsx",
-                                        lineNumber: 242,
+                                        lineNumber: 284,
                                         columnNumber: 11
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -818,7 +860,7 @@ function WebsitesPage() {
                                             })
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/websites/page.jsx",
-                                        lineNumber: 276,
+                                        lineNumber: 318,
                                         columnNumber: 11
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -832,13 +874,13 @@ function WebsitesPage() {
                                             })
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/websites/page.jsx",
-                                        lineNumber: 283,
+                                        lineNumber: 325,
                                         columnNumber: 11
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                lineNumber: 234,
+                                lineNumber: 276,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -859,30 +901,30 @@ function WebsitesPage() {
                                                 d: "M6 18L18 6M6 6l12 12"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                                lineNumber: 299,
+                                                lineNumber: 341,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/buyer/websites/page.jsx",
-                                            lineNumber: 298,
+                                            lineNumber: 340,
                                             columnNumber: 15
                                         }, this),
                                         "Clear Filters"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/buyer/websites/page.jsx",
-                                    lineNumber: 294,
+                                    lineNumber: 336,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                lineNumber: 293,
+                                lineNumber: 335,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/buyer/websites/page.jsx",
-                        lineNumber: 233,
+                        lineNumber: 275,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -907,13 +949,13 @@ function WebsitesPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/buyer/websites/page.jsx",
-                                        lineNumber: 311,
+                                        lineNumber: 353,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                lineNumber: 308,
+                                lineNumber: 350,
                                 columnNumber: 11
                             }, this),
                             totalPages > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -926,13 +968,13 @@ function WebsitesPage() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                lineNumber: 315,
+                                lineNumber: 357,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/buyer/websites/page.jsx",
-                        lineNumber: 307,
+                        lineNumber: 349,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -949,7 +991,7 @@ function WebsitesPage() {
                                                 children: "Link"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                                lineNumber: 326,
+                                                lineNumber: 368,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -957,7 +999,7 @@ function WebsitesPage() {
                                                 children: "Categories"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                                lineNumber: 327,
+                                                lineNumber: 369,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -965,7 +1007,7 @@ function WebsitesPage() {
                                                 children: "Price"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                                lineNumber: 328,
+                                                lineNumber: 370,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -973,7 +1015,7 @@ function WebsitesPage() {
                                                 children: "Traffic"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                                lineNumber: 329,
+                                                lineNumber: 371,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -981,7 +1023,7 @@ function WebsitesPage() {
                                                 children: "DA / AS / DR"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                                lineNumber: 330,
+                                                lineNumber: 372,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -989,7 +1031,7 @@ function WebsitesPage() {
                                                 children: "TAT"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                                lineNumber: 331,
+                                                lineNumber: 373,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -997,18 +1039,18 @@ function WebsitesPage() {
                                                 children: "Link Type"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                                lineNumber: 332,
+                                                lineNumber: 374,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/buyer/websites/page.jsx",
-                                        lineNumber: 325,
+                                        lineNumber: 367,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/buyer/websites/page.jsx",
-                                    lineNumber: 324,
+                                    lineNumber: 366,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -1025,34 +1067,47 @@ function WebsitesPage() {
                                                         children: site.link
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/buyer/websites/page.jsx",
-                                                        lineNumber: 339,
+                                                        lineNumber: 381,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/buyer/websites/page.jsx",
-                                                    lineNumber: 338,
+                                                    lineNumber: 380,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                     className: "px-6 py-4",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "flex flex-wrap gap-1",
-                                                        children: (site.category && Array.isArray(site.category) ? site.category : []).filter(Boolean).map((category, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "bg-blue-900/50 text-blue-300 px-2 py-1 rounded-md text-xs font-medium",
-                                                                children: category
-                                                            }, index, false, {
-                                                                fileName: "[project]/app/buyer/websites/page.jsx",
-                                                                lineNumber: 353,
-                                                                columnNumber: 27
-                                                            }, this))
+                                                        children: (()=>{
+                                                            let categories = site.category;
+                                                            if (typeof categories === 'string') {
+                                                                try {
+                                                                    categories = JSON.parse(categories);
+                                                                } catch (e) {
+                                                                    categories = [];
+                                                                }
+                                                            }
+                                                            if (!Array.isArray(categories)) {
+                                                                categories = [];
+                                                            }
+                                                            return categories.filter(Boolean).map((category, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "bg-blue-900/50 text-blue-300 px-2 py-1 rounded-md text-xs font-medium",
+                                                                    children: category
+                                                                }, index, false, {
+                                                                    fileName: "[project]/app/buyer/websites/page.jsx",
+                                                                    lineNumber: 407,
+                                                                    columnNumber: 29
+                                                                }, this));
+                                                        })()
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/buyer/websites/page.jsx",
-                                                        lineNumber: 349,
+                                                        lineNumber: 391,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/buyer/websites/page.jsx",
-                                                    lineNumber: 348,
+                                                    lineNumber: 390,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1067,12 +1122,12 @@ function WebsitesPage() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/buyer/websites/page.jsx",
-                                                        lineNumber: 363,
+                                                        lineNumber: 418,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/buyer/websites/page.jsx",
-                                                    lineNumber: 362,
+                                                    lineNumber: 417,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1082,12 +1137,12 @@ function WebsitesPage() {
                                                         children: site.similarweb_traffic
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/buyer/websites/page.jsx",
-                                                        lineNumber: 368,
+                                                        lineNumber: 423,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/buyer/websites/page.jsx",
-                                                    lineNumber: 367,
+                                                    lineNumber: 422,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1103,7 +1158,7 @@ function WebsitesPage() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                                                lineNumber: 374,
+                                                                lineNumber: 429,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1114,7 +1169,7 @@ function WebsitesPage() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                                                lineNumber: 375,
+                                                                lineNumber: 430,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1125,18 +1180,18 @@ function WebsitesPage() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                                                lineNumber: 376,
+                                                                lineNumber: 431,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/buyer/websites/page.jsx",
-                                                        lineNumber: 373,
+                                                        lineNumber: 428,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/buyer/websites/page.jsx",
-                                                    lineNumber: 372,
+                                                    lineNumber: 427,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1146,12 +1201,12 @@ function WebsitesPage() {
                                                         children: site.tat
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/buyer/websites/page.jsx",
-                                                        lineNumber: 380,
+                                                        lineNumber: 435,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/buyer/websites/page.jsx",
-                                                    lineNumber: 379,
+                                                    lineNumber: 434,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1161,34 +1216,34 @@ function WebsitesPage() {
                                                         children: site.link_attribution_type
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/buyer/websites/page.jsx",
-                                                        lineNumber: 385,
+                                                        lineNumber: 440,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/buyer/websites/page.jsx",
-                                                    lineNumber: 384,
+                                                    lineNumber: 439,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, site.id, true, {
                                             fileName: "[project]/app/buyer/websites/page.jsx",
-                                            lineNumber: 337,
+                                            lineNumber: 379,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/app/buyer/websites/page.jsx",
-                                    lineNumber: 335,
+                                    lineNumber: 377,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/buyer/websites/page.jsx",
-                            lineNumber: 323,
+                            lineNumber: 365,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/buyer/websites/page.jsx",
-                        lineNumber: 322,
+                        lineNumber: 364,
                         columnNumber: 9
                     }, this),
                     totalPages > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1201,7 +1256,7 @@ function WebsitesPage() {
                                 children: "Previous"
                             }, void 0, false, {
                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                lineNumber: 398,
+                                lineNumber: 453,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1221,7 +1276,7 @@ function WebsitesPage() {
                                             children: "1"
                                         }, 1, false, {
                                             fileName: "[project]/app/buyer/websites/page.jsx",
-                                            lineNumber: 424,
+                                            lineNumber: 479,
                                             columnNumber: 21
                                         }, this));
                                         if (startPage > 2) {
@@ -1230,7 +1285,7 @@ function WebsitesPage() {
                                                 children: "..."
                                             }, "start-ellipsis", false, {
                                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                                lineNumber: 434,
+                                                lineNumber: 489,
                                                 columnNumber: 23
                                             }, this));
                                         }
@@ -1242,7 +1297,7 @@ function WebsitesPage() {
                                             children: i
                                         }, i, false, {
                                             fileName: "[project]/app/buyer/websites/page.jsx",
-                                            lineNumber: 443,
+                                            lineNumber: 498,
                                             columnNumber: 21
                                         }, this));
                                     }
@@ -1253,7 +1308,7 @@ function WebsitesPage() {
                                                 children: "..."
                                             }, "end-ellipsis", false, {
                                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                                lineNumber: 460,
+                                                lineNumber: 515,
                                                 columnNumber: 23
                                             }, this));
                                         }
@@ -1263,7 +1318,7 @@ function WebsitesPage() {
                                             children: totalPages
                                         }, totalPages, false, {
                                             fileName: "[project]/app/buyer/websites/page.jsx",
-                                            lineNumber: 466,
+                                            lineNumber: 521,
                                             columnNumber: 21
                                         }, this));
                                     }
@@ -1271,7 +1326,7 @@ function WebsitesPage() {
                                 })()
                             }, void 0, false, {
                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                lineNumber: 411,
+                                lineNumber: 466,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1281,25 +1336,25 @@ function WebsitesPage() {
                                 children: "Next"
                             }, void 0, false, {
                                 fileName: "[project]/app/buyer/websites/page.jsx",
-                                lineNumber: 480,
+                                lineNumber: 535,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/buyer/websites/page.jsx",
-                        lineNumber: 397,
+                        lineNumber: 452,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/buyer/websites/page.jsx",
-                lineNumber: 223,
+                lineNumber: 265,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/buyer/websites/page.jsx",
-        lineNumber: 220,
+        lineNumber: 262,
         columnNumber: 5
     }, this);
 }

@@ -144,6 +144,37 @@ export default function WebsitesPage() {
 
             setWebsites(uniqueWebsites)
             setFiltered(uniqueWebsites)
+            
+            // Extract unique categories from websites data
+            const allCategories = new Set()
+            uniqueWebsites.forEach(website => {
+              let categories = website.category
+              
+              // If category is a string, try to parse it as JSON
+              if (typeof categories === 'string') {
+                try {
+                  categories = JSON.parse(categories)
+                } catch (e) {
+                  console.warn('Failed to parse category JSON for website:', website.link, categories)
+                  categories = []
+                }
+              }
+              
+              // Ensure categories is an array
+              if (Array.isArray(categories)) {
+                categories.forEach(cat => {
+                  if (cat && typeof cat === 'string' && cat.trim()) {
+                    allCategories.add(cat.trim())
+                  }
+                })
+              }
+            })
+            
+            // Convert set to sorted array
+            const sortedCategories = Array.from(allCategories).sort()
+            setCategories(sortedCategories)
+            console.log(`Extracted ${sortedCategories.length} unique categories`)
+            
             setLoading(false)
             
           } catch (error) {
@@ -176,16 +207,27 @@ export default function WebsitesPage() {
   useEffect(() => {
     const { search, categories, minDA, maxPrice } = filters;
     const results = websites.filter((site) => {
+      // Parse categories for this site
+      let siteCategories = site.category
+      if (typeof siteCategories === 'string') {
+        try {
+          siteCategories = JSON.parse(siteCategories)
+        } catch (e) {
+          siteCategories = []
+        }
+      }
+      if (!Array.isArray(siteCategories)) {
+        siteCategories = []
+      }
+      
       const matchSearch =
         site.link?.toLowerCase().includes(search.toLowerCase()) ||
-        (site.category && Array.isArray(site.category) && 
-         site.category.some(cat => cat?.toLowerCase().includes(search.toLowerCase())));
+        siteCategories.some(cat => cat?.toLowerCase().includes(search.toLowerCase()));
       const matchCategories =
         categories.length === 0 ||
-        (site.category && Array.isArray(site.category) && 
-         categories.every(selectedCat => 
-           site.category.some(cat => cat?.toLowerCase() === selectedCat.toLowerCase())
-         ));
+        categories.every(selectedCat => 
+          siteCategories.some(cat => cat?.toLowerCase() === selectedCat.toLowerCase())
+        );
       const matchDA = !minDA || (site.moz_da || 0) >= parseInt(minDA);
       const matchPrice = !maxPrice || (site.price_to || 0) <= parseInt(maxPrice);
 
@@ -347,16 +389,29 @@ export default function WebsitesPage() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex flex-wrap gap-1">
-                      {(site.category && Array.isArray(site.category) ? site.category : [])
-                        .filter(Boolean)
-                        .map((category, index) => (
-                          <span 
-                            key={index}
-                            className="bg-blue-900/50 text-blue-300 px-2 py-1 rounded-md text-xs font-medium"
-                          >
-                            {category}
-                          </span>
-                        ))}
+                      {(() => {
+                        let categories = site.category
+                        if (typeof categories === 'string') {
+                          try {
+                            categories = JSON.parse(categories)
+                          } catch (e) {
+                            categories = []
+                          }
+                        }
+                        if (!Array.isArray(categories)) {
+                          categories = []
+                        }
+                        return categories
+                          .filter(Boolean)
+                          .map((category, index) => (
+                            <span 
+                              key={index}
+                              className="bg-blue-900/50 text-blue-300 px-2 py-1 rounded-md text-xs font-medium"
+                            >
+                              {category}
+                            </span>
+                          ))
+                      })()}
                     </div>
                   </td>
                   <td className="px-6 py-4">
