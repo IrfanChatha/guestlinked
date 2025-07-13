@@ -126,23 +126,25 @@ module.exports = mod;
 var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.s({
-    "getSupabase": (()=>getSupabase)
+    "getSupabase": (()=>getSupabase),
+    "supabase": (()=>supabase)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$module__evaluation$3e$__ = __turbopack_context__.i("[project]/node_modules/@supabase/ssr/dist/module/index.js [app-ssr] (ecmascript) <module evaluation>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$createBrowserClient$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@supabase/ssr/dist/module/createBrowserClient.js [app-ssr] (ecmascript)");
 ;
 const supabaseUrl = ("TURBOPACK compile-time value", "https://jiiekvdjjxwmgcjdjzqs.supabase.co");
 const supabaseAnonKey = ("TURBOPACK compile-time value", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppaWVrdmRqanh3bWdjamRqenFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIxNDcyNTEsImV4cCI6MjA2NzcyMzI1MX0.8JRUeGhnF53BFeDX11VszSdJ-bo98QiKM4NI2CDbm4U");
-let supabase;
+let supabaseInstance;
 const getSupabase = ()=>{
-    if (!supabase) {
+    if (!supabaseInstance) {
         if ("TURBOPACK compile-time falsy", 0) {
             "TURBOPACK unreachable";
         }
-        supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$createBrowserClient$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createBrowserClient"])(supabaseUrl, supabaseAnonKey);
+        supabaseInstance = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$createBrowserClient$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createBrowserClient"])(supabaseUrl, supabaseAnonKey);
     }
-    return supabase;
+    return supabaseInstance;
 };
+const supabase = getSupabase();
 }}),
 "[project]/app/components/Navbar.jsx [app-ssr] (ecmascript)": ((__turbopack_context__) => {
 "use strict";

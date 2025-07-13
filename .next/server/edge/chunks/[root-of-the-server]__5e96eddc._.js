@@ -31,9 +31,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/esm/server/web/spec-extension/response.js [middleware-edge] (ecmascript)");
 ;
 ;
-// Simple in-memory cache for user settings (you can replace with Redis in production)
-const userSettingsCache = new Map();
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 async function middleware(request) {
     let response = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].next({
         request: {
@@ -53,77 +50,66 @@ async function middleware(request) {
             }
         }
     });
-    const { data: { user } } = await supabase.auth.getUser();
     // Define protected routes that require authentication
     const protectedRoutes = [
         '/dashboard',
         '/buyer/buyer-dashboard',
+        '/buyer/websites',
         '/seller/seller-dashboard',
         '/add-website',
-        '/my-orders',
-        '/manage-orders',
-        '/my-websites'
+        '/buyer/my-orders',
+        '/buyer/manage-orders',
+        '/seller/my-websites'
     ];
-    // Check if the current path is a protected route
-    const isProtectedRoute = protectedRoutes.some((route)=>request.nextUrl.pathname.startsWith(route));
-    // If user is not authenticated and trying to access protected route
-    if (!user && isProtectedRoute) {
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/', request.url));
-    }
-    // If user is authenticated, check role-based access
-    if (user && isProtectedRoute) {
-        try {
-            // Check cache first
-            const cacheKey = user.id;
-            const cached = userSettingsCache.get(cacheKey);
-            let userSettings;
-            if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
-                userSettings = cached.data;
-            } else {
-                // Fetch user settings to determine role (only if not cached)
-                const { data: settings, error } = await supabase.from('users_settings_tb').select('role').eq('user_id', user.id).single();
-                if (error || !settings) {
-                    console.error('Middleware - Error fetching user settings:', error);
-                    return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/', request.url));
-                }
-                userSettings = settings;
-                // Cache the result
-                userSettingsCache.set(cacheKey, {
-                    data: userSettings,
-                    timestamp: Date.now()
-                });
-            }
-            const { role } = userSettings;
-            const pathname = request.nextUrl.pathname;
-            // Role-based routing logic
-            if (role === 'Buyer') {
-                // Buyer-specific routes
-                if (pathname.startsWith('/seller/seller-dashboard') || pathname.startsWith('/add-website') || pathname.startsWith('/manage-orders') || pathname.startsWith('/my-websites')) {
-                    return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/buyer/buyer-dashboard', request.url));
-                }
-                // Redirect old dashboard to buyer dashboard
-                if (pathname === '/dashboard') {
-                    return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/buyer/buyer-dashboard', request.url));
-                }
-            } else if (role === 'Seller') {
-                // Seller-specific routes
-                if (pathname.startsWith('/buyer/buyer-dashboard') || pathname.startsWith('/my-orders')) {
-                    return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/seller/seller-dashboard', request.url));
-                }
-                // Redirect old dashboard to seller dashboard
-                if (pathname === '/dashboard') {
-                    return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/seller/seller-dashboard', request.url));
-                }
-            } else {
-                // For users without specific roles, redirect to general dashboard
-                if (pathname.startsWith('/buyer/buyer-dashboard') || pathname.startsWith('/seller/seller-dashboard')) {
+    // Define routes that authenticated users should not access
+    const publicOnlyRoutes = [
+        '/'
+    ];
+    const pathname = request.nextUrl.pathname;
+    const isProtectedRoute = protectedRoutes.some((route)=>pathname.startsWith(route));
+    const isPublicOnlyRoute = publicOnlyRoutes.includes(pathname);
+    try {
+        // Quick auth check with timeout
+        const authPromise = supabase.auth.getUser();
+        const timeoutPromise = new Promise((_, reject)=>setTimeout(()=>reject(new Error('Auth timeout')), 3000));
+        const { data: { user } } = await Promise.race([
+            authPromise,
+            timeoutPromise
+        ]);
+        // If user is authenticated and trying to access public-only routes (like home page)
+        if (user && isPublicOnlyRoute) {
+            try {
+                // Fetch user role to redirect to appropriate dashboard
+                const { data: userSettings, error: settingsError } = await supabase.from('users_settings_tb').select('role').eq('user_id', user.id).single();
+                if (!settingsError && userSettings?.role) {
+                    if (userSettings.role === 'Buyer') {
+                        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/buyer/buyer-dashboard', request.url));
+                    } else if (userSettings.role === 'Seller') {
+                        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/seller/seller-dashboard', request.url));
+                    } else {
+                        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/dashboard', request.url));
+                    }
+                } else {
+                    // If role fetch fails, redirect to general dashboard
                     return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/dashboard', request.url));
                 }
+            } catch (roleError) {
+                console.error('Error fetching user role:', roleError);
+                // Fallback to general dashboard
+                return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/dashboard', request.url));
             }
-        } catch (error) {
-            console.error('Middleware error:', error);
+        }
+        // If user is not authenticated and trying to access protected routes
+        if (!user && isProtectedRoute) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/', request.url));
         }
+    } catch (error) {
+        console.error('Middleware auth error:', error.message);
+        // If auth check fails and trying to access protected route, redirect to home
+        if (isProtectedRoute) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/', request.url));
+        }
+    // If auth check fails on public routes, allow access
     }
     return response;
 }
