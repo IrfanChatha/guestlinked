@@ -31,10 +31,9 @@ export async function middleware(request) {
     '/dashboard',
     '/buyer/buyer-dashboard', 
     '/buyer/websites',
+    '/buyer/buyer-orders',
     '/seller/seller-dashboard',
     '/add-website',
-    '/buyer/my-orders',
-    '/buyer/manage-orders',
     '/seller/my-websites'
   ]
 

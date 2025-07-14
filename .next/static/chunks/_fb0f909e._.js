@@ -149,7 +149,7 @@ function Navbar() {
                 },
                 ...commonItems,
                 {
-                    href: '/my-orders',
+                    href: '/buyer/buyer-orders',
                     label: 'My Orders',
                     requireAuth: true
                 }

@@ -112,7 +112,7 @@ export default function Navbar() {
       return [
         { href: '/buyer/buyer-dashboard', label: 'Dashboard', requireAuth: true },
         ...commonItems,
-        { href: '/my-orders', label: 'My Orders', requireAuth: true },
+        { href: '/buyer/buyer-orders', label: 'My Orders', requireAuth: true },
       ];
     } else if (userSettings.role === 'Seller') {
       return [
