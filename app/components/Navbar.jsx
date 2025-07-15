@@ -126,7 +126,6 @@ export default function Navbar() {
       return [
         { href: '/dashboard', label: 'Dashboard', requireAuth: true },
         ...commonItems,
-        { href: '/add-website', label: 'Submit Site', requireAuth: true },
       ];
     }
   };
@@ -181,7 +180,7 @@ export default function Navbar() {
               <div className="flex items-center space-x-4">
                 <div className="text-right">
                   <p className="text-sm font-medium text-white">
-                    {userSettings.name || 'User'}
+                    Welcome {userSettings.name || 'User'}
                   </p>
                   <p className="text-xs text-gray-300">
                     {user.email}

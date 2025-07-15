@@ -181,12 +181,7 @@ function Navbar() {
                     label: 'Dashboard',
                     requireAuth: true
                 },
-                ...commonItems,
-                {
-                    href: '/add-website',
-                    label: 'Submit Site',
-                    requireAuth: true
-                }
+                ...commonItems
             ];
         }
     };
@@ -205,7 +200,7 @@ function Navbar() {
                             children: "GuestLinked"
                         }, void 0, false, {
                             fileName: "[project]/app/components/Navbar.jsx",
-                            lineNumber: 141,
+                            lineNumber: 140,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -214,28 +209,28 @@ function Navbar() {
                                 className: "h-4 bg-gray-600 rounded w-24"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Navbar.jsx",
-                                lineNumber: 145,
+                                lineNumber: 144,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/components/Navbar.jsx",
-                            lineNumber: 144,
+                            lineNumber: 143,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/Navbar.jsx",
-                    lineNumber: 140,
+                    lineNumber: 139,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/components/Navbar.jsx",
-                lineNumber: 139,
+                lineNumber: 138,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/components/Navbar.jsx",
-            lineNumber: 138,
+            lineNumber: 137,
             columnNumber: 7
         }, this);
     }
@@ -255,7 +250,7 @@ function Navbar() {
                                 children: "GuestLinked"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Navbar.jsx",
-                                lineNumber: 158,
+                                lineNumber: 157,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -266,18 +261,18 @@ function Navbar() {
                                         children: item.label
                                     }, item.href, false, {
                                         fileName: "[project]/app/components/Navbar.jsx",
-                                        lineNumber: 164,
+                                        lineNumber: 163,
                                         columnNumber: 19
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Navbar.jsx",
-                                lineNumber: 161,
+                                lineNumber: 160,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Navbar.jsx",
-                        lineNumber: 157,
+                        lineNumber: 156,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -290,10 +285,13 @@ function Navbar() {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-sm font-medium text-white",
-                                            children: userSettings.name || 'User'
-                                        }, void 0, false, {
+                                            children: [
+                                                "Welcome ",
+                                                userSettings.name || 'User'
+                                            ]
+                                        }, void 0, true, {
                                             fileName: "[project]/app/components/Navbar.jsx",
-                                            lineNumber: 183,
+                                            lineNumber: 182,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -301,13 +299,13 @@ function Navbar() {
                                             children: user.email
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/Navbar.jsx",
-                                            lineNumber: 186,
+                                            lineNumber: 185,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/components/Navbar.jsx",
-                                    lineNumber: 182,
+                                    lineNumber: 181,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -317,12 +315,12 @@ function Navbar() {
                                         children: userSettings.name?.[0]?.toUpperCase() || 'U'
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Navbar.jsx",
-                                        lineNumber: 191,
+                                        lineNumber: 190,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/Navbar.jsx",
-                                    lineNumber: 190,
+                                    lineNumber: 189,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -341,25 +339,25 @@ function Navbar() {
                                                 d: "M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/Navbar.jsx",
-                                                lineNumber: 200,
+                                                lineNumber: 199,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/Navbar.jsx",
-                                            lineNumber: 199,
+                                            lineNumber: 198,
                                             columnNumber: 19
                                         }, this),
                                         "Sign Out"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/components/Navbar.jsx",
-                                    lineNumber: 195,
+                                    lineNumber: 194,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/components/Navbar.jsx",
-                            lineNumber: 181,
+                            lineNumber: 180,
                             columnNumber: 15
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                             href: "/",
@@ -367,28 +365,28 @@ function Navbar() {
                             children: "Sign In"
                         }, void 0, false, {
                             fileName: "[project]/app/components/Navbar.jsx",
-                            lineNumber: 206,
+                            lineNumber: 205,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/components/Navbar.jsx",
-                        lineNumber: 179,
+                        lineNumber: 178,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/Navbar.jsx",
-                lineNumber: 156,
+                lineNumber: 155,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/components/Navbar.jsx",
-            lineNumber: 155,
+            lineNumber: 154,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/components/Navbar.jsx",
-        lineNumber: 154,
+        lineNumber: 153,
         columnNumber: 5
     }, this);
 }
@@ -436,7 +434,8 @@ function BuyerDashboard() {
         totalOrders: 0,
         activeOrders: 0,
         completedOrders: 0,
-        totalSpent: 0
+        totalSpent: 0,
+        totalWebsites: 0
     });
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
@@ -454,7 +453,7 @@ function BuyerDashboard() {
                         // Set user immediately to show partial UI
                         setUser(user);
                         // Fetch user settings in parallel with minimal data
-                        const { data: settings, error: settingsError } = await supabase.from('users_settings_tb').select('name, role').eq('user_id', user.id).single();
+                        const { data: settings, error: settingsError } = await supabase.from('users_settings_tb').select('name, role, user_id').eq('user_id', user.id).single();
                         if (settingsError || !settings) {
                             console.error('Error fetching user settings:', settingsError);
                             router.push('/');
@@ -473,7 +472,7 @@ function BuyerDashboard() {
                         setUserSettings(settings);
                         setLoading(false);
                         // Load stats in background (non-blocking)
-                        loadStatsInBackground(user.id);
+                        loadStatsInBackground(settings.user_id);
                     } catch (error) {
                         console.error('Error in buyer dashboard:', error);
                         router.push('/');
@@ -485,33 +484,91 @@ function BuyerDashboard() {
                 "BuyerDashboard.useEffect.loadStatsInBackground": async (userId)=>{
                     try {
                         const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabaseClient$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getSupabase"])();
-                        // For now, using placeholder data since we don't have orders table yet
-                        // In the future, you can uncomment and modify this query:
-                        /*
-        const { data: orders, error: ordersError } = await supabase
-          .from('orders')
-          .select('id, status, total_amount')
-          .eq('buyer_id', userId);
-
-        if (!ordersError && orders) {
-          const totalOrders = orders.length;
-          const activeOrders = orders.filter(o => o.status === 'active').length;
-          const completedOrders = orders.filter(o => o.status === 'completed').length;
-          const totalSpent = orders.reduce((sum, o) => sum + (o.total_amount || 0), 0);
-          
-          setStats({
-            totalOrders,
-            activeOrders,
-            completedOrders,
-            totalSpent
-          });
-        }
-        */ // Placeholder stats for now
+                        // Fetch all orders for this buyer (need order_id for updates)
+                        const { data: orders, error: ordersError } = await supabase.from('buyer_orders').select('order_id, status, budget, posting_from_date, posting_to_date, created_at').eq('buyer_id', userId);
+                        if (ordersError) {
+                            console.error('Error fetching orders:', ordersError);
+                            return;
+                        }
+                        // Check for orders that should be marked as completed
+                        const currentDate = new Date();
+                        const ordersToComplete = orders ? orders.filter({
+                            "BuyerDashboard.useEffect.loadStatsInBackground": (order)=>{
+                                // Only update orders that are not already completed or rejected
+                                if ([
+                                    'completed',
+                                    'rejected'
+                                ].includes(order.status?.toLowerCase())) {
+                                    return false;
+                                }
+                                // Check if posting_to_date has passed
+                                if (order.posting_to_date) {
+                                    const toDate = new Date(order.posting_to_date);
+                                    return currentDate > toDate;
+                                }
+                                return false;
+                            }
+                        }["BuyerDashboard.useEffect.loadStatsInBackground"]) : [];
+                        // Update orders that have passed their posting_to_date
+                        if (ordersToComplete.length > 0) {
+                            console.log(`Updating ${ordersToComplete.length} orders to completed status`);
+                            const orderIdsToUpdate = ordersToComplete.map({
+                                "BuyerDashboard.useEffect.loadStatsInBackground.orderIdsToUpdate": (order)=>order.order_id
+                            }["BuyerDashboard.useEffect.loadStatsInBackground.orderIdsToUpdate"]);
+                            const { error: updateError } = await supabase.from('buyer_orders').update({
+                                status: 'completed',
+                                updated_at: new Date().toISOString()
+                            }).in('order_id', orderIdsToUpdate);
+                            if (updateError) {
+                                console.error('Error updating order statuses:', updateError);
+                            } else {
+                                console.log(`Successfully updated ${orderIdsToUpdate.length} orders to completed`);
+                                // Update the local orders data to reflect the changes
+                                orders.forEach({
+                                    "BuyerDashboard.useEffect.loadStatsInBackground": (order)=>{
+                                        if (orderIdsToUpdate.includes(order.order_id)) {
+                                            order.status = 'completed';
+                                        }
+                                    }
+                                }["BuyerDashboard.useEffect.loadStatsInBackground"]);
+                            }
+                        }
+                        // Fetch websites count
+                        const { data: websites, error: websitesError } = await supabase.from('buyer_websites_tb').select('id').eq('buyer_id', userId);
+                        if (websitesError) {
+                            console.error('Error fetching websites:', websitesError);
+                        }
+                        // Calculate stats from updated orders data
+                        const totalOrders = orders ? orders.length : 0;
+                        const totalSpent = orders ? orders.reduce({
+                            "BuyerDashboard.useEffect.loadStatsInBackground": (sum, order)=>sum + (parseFloat(order.budget) || 0)
+                        }["BuyerDashboard.useEffect.loadStatsInBackground"], 0) : 0;
+                        // Calculate active orders (orders within posting date range)
+                        const activeOrders = orders ? orders.filter({
+                            "BuyerDashboard.useEffect.loadStatsInBackground": (order)=>{
+                                if (!order.posting_from_date || !order.posting_to_date) return false;
+                                const fromDate = new Date(order.posting_from_date);
+                                const toDate = new Date(order.posting_to_date);
+                                // Active if current date is between posting dates and status is not completed/rejected
+                                return currentDate >= fromDate && currentDate <= toDate && ![
+                                    'completed',
+                                    'rejected'
+                                ].includes(order.status?.toLowerCase());
+                            }
+                        }["BuyerDashboard.useEffect.loadStatsInBackground"]).length : 0;
+                        // Calculate completed orders (status = completed)
+                        const completedOrders = orders ? orders.filter({
+                            "BuyerDashboard.useEffect.loadStatsInBackground": (order)=>{
+                                return order.status?.toLowerCase() === 'completed';
+                            }
+                        }["BuyerDashboard.useEffect.loadStatsInBackground"]).length : 0;
+                        // Update stats
                         setStats({
-                            totalOrders: 0,
-                            activeOrders: 0,
-                            completedOrders: 0,
-                            totalSpent: 0
+                            totalOrders,
+                            activeOrders,
+                            completedOrders,
+                            totalSpent: Math.round(totalSpent * 100) / 100,
+                            totalWebsites: websites ? websites.length : 0
                         });
                     } catch (error) {
                         console.error('Error loading stats:', error);
@@ -548,7 +605,7 @@ function BuyerDashboard() {
                         className: "animate-spin rounded-full h-16 w-16 border-t-2 border-blue-500 mx-auto mb-4"
                     }, void 0, false, {
                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                        lineNumber: 133,
+                        lineNumber: 200,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -556,18 +613,18 @@ function BuyerDashboard() {
                         children: "Loading your dashboard..."
                     }, void 0, false, {
                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                        lineNumber: 134,
+                        lineNumber: 201,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                lineNumber: 132,
+                lineNumber: 199,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-            lineNumber: 131,
+            lineNumber: 198,
             columnNumber: 7
         }, this);
     }
@@ -578,102 +635,36 @@ function BuyerDashboard() {
                 className: "absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black opacity-90 pointer-events-none"
             }, void 0, false, {
                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                lineNumber: 143,
+                lineNumber: 210,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$Navbar$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                lineNumber: 145,
+                lineNumber: 212,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
                 className: "relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pt-24",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "mb-10",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex items-center space-x-6",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center shadow-lg",
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-4xl font-bold text-white",
-                                        children: userSettings?.name?.[0]?.toUpperCase() || 'B'
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 153,
-                                        columnNumber: 15
-                                    }, this)
-                                }, void 0, false, {
-                                    fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                    lineNumber: 152,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                            className: "text-3xl font-bold text-white mb-2",
-                                            children: [
-                                                "Welcome, ",
-                                                userSettings?.name || 'Buyer'
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                            lineNumber: 158,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-gray-400",
-                                            children: user?.email
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                            lineNumber: 161,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold mt-2",
-                                            children: "Buyer Account"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                            lineNumber: 162,
-                                            columnNumber: 15
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                    lineNumber: 157,
-                                    columnNumber: 13
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                            lineNumber: 151,
-                            columnNumber: 11
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                        lineNumber: 150,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8",
+                        className: "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-700 transform transition-all hover:scale-105",
+                                className: "bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-700 transform transition-all hover:scale-105",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center justify-between mb-4",
+                                        className: "flex items-center justify-between mb-2",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                className: "text-lg font-semibold text-white",
+                                                className: "text-sm font-medium text-white",
                                                 children: "Total Orders"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                                lineNumber: 174,
+                                                lineNumber: 221,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                className: "w-8 h-8 text-blue-500",
+                                                className: "w-5 h-5 text-blue-500",
                                                 fill: "none",
                                                 stroke: "currentColor",
                                                 viewBox: "0 0 24 24",
@@ -684,58 +675,58 @@ function BuyerDashboard() {
                                                     d: "M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                                    lineNumber: 176,
+                                                    lineNumber: 223,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                                lineNumber: 175,
+                                                lineNumber: 222,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 173,
+                                        lineNumber: 220,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-2xl font-bold text-blue-400",
+                                        className: "text-3xl font-bold text-blue-400",
                                         children: stats.totalOrders
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 179,
+                                        lineNumber: 226,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-sm text-gray-400",
+                                        className: "text-xs text-gray-400",
                                         children: "All time orders"
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 180,
+                                        lineNumber: 227,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                lineNumber: 172,
+                                lineNumber: 219,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-700 transform transition-all hover:scale-105",
+                                className: "bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-700 transform transition-all hover:scale-105",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center justify-between mb-4",
+                                        className: "flex items-center justify-between mb-2",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                className: "text-lg font-semibold text-white",
+                                                className: "text-sm font-medium text-white",
                                                 children: "Active Orders"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                                lineNumber: 186,
+                                                lineNumber: 233,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                className: "w-8 h-8 text-yellow-500",
+                                                className: "w-5 h-5 text-yellow-500",
                                                 fill: "none",
                                                 stroke: "currentColor",
                                                 viewBox: "0 0 24 24",
@@ -746,58 +737,58 @@ function BuyerDashboard() {
                                                     d: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                                    lineNumber: 188,
+                                                    lineNumber: 235,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                                lineNumber: 187,
+                                                lineNumber: 234,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 185,
+                                        lineNumber: 232,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-2xl font-bold text-yellow-400",
+                                        className: "text-3xl font-bold text-yellow-400",
                                         children: stats.activeOrders
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 191,
+                                        lineNumber: 238,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-sm text-gray-400",
+                                        className: "text-xs text-gray-400",
                                         children: "In progress"
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 192,
+                                        lineNumber: 239,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                lineNumber: 184,
+                                lineNumber: 231,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-700 transform transition-all hover:scale-105",
+                                className: "bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-700 transform transition-all hover:scale-105",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center justify-between mb-4",
+                                        className: "flex items-center justify-between mb-2",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                className: "text-lg font-semibold text-white",
+                                                className: "text-sm font-medium text-white",
                                                 children: "Completed"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                                lineNumber: 198,
+                                                lineNumber: 245,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                className: "w-8 h-8 text-green-500",
+                                                className: "w-5 h-5 text-green-500",
                                                 fill: "none",
                                                 stroke: "currentColor",
                                                 viewBox: "0 0 24 24",
@@ -808,58 +799,58 @@ function BuyerDashboard() {
                                                     d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                                    lineNumber: 200,
+                                                    lineNumber: 247,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                                lineNumber: 199,
+                                                lineNumber: 246,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 197,
+                                        lineNumber: 244,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-2xl font-bold text-green-400",
+                                        className: "text-3xl font-bold text-green-400",
                                         children: stats.completedOrders
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 203,
+                                        lineNumber: 250,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-sm text-gray-400",
+                                        className: "text-xs text-gray-400",
                                         children: "Successfully completed"
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 204,
+                                        lineNumber: 251,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                lineNumber: 196,
+                                lineNumber: 243,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-700 transform transition-all hover:scale-105",
+                                className: "bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-700 transform transition-all hover:scale-105",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center justify-between mb-4",
+                                        className: "flex items-center justify-between mb-2",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                className: "text-lg font-semibold text-white",
+                                                className: "text-sm font-medium text-white",
                                                 children: "Total Spent"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                                lineNumber: 210,
+                                                lineNumber: 257,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                className: "w-8 h-8 text-purple-500",
+                                                className: "w-5 h-5 text-purple-500",
                                                 fill: "none",
                                                 stroke: "currentColor",
                                                 viewBox: "0 0 24 24",
@@ -870,53 +861,115 @@ function BuyerDashboard() {
                                                     d: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                                    lineNumber: 212,
+                                                    lineNumber: 259,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                                lineNumber: 211,
+                                                lineNumber: 258,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 209,
+                                        lineNumber: 256,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-2xl font-bold text-purple-400",
+                                        className: "text-3xl font-bold text-purple-400",
                                         children: [
                                             "$",
                                             stats.totalSpent
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 215,
+                                        lineNumber: 262,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-sm text-gray-400",
+                                        className: "text-xs text-gray-400",
                                         children: "Total investment"
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 216,
+                                        lineNumber: 263,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                lineNumber: 208,
+                                lineNumber: 255,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-700 transform transition-all hover:scale-105",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center justify-between mb-2",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                className: "text-sm font-medium text-white",
+                                                children: "Your Websites"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
+                                                lineNumber: 269,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                className: "w-5 h-5 text-orange-500",
+                                                fill: "none",
+                                                stroke: "currentColor",
+                                                viewBox: "0 0 24 24",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                    strokeLinecap: "round",
+                                                    strokeLinejoin: "round",
+                                                    strokeWidth: 2,
+                                                    d: "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
+                                                    lineNumber: 271,
+                                                    columnNumber: 17
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
+                                                lineNumber: 270,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
+                                        lineNumber: 268,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-3xl font-bold text-orange-400",
+                                        children: stats.totalWebsites
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
+                                        lineNumber: 274,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-xs text-gray-400",
+                                        children: "Websites added"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
+                                        lineNumber: 275,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
+                                lineNumber: 267,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                        lineNumber: 170,
+                        lineNumber: 217,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "grid grid-cols-1 md:grid-cols-2 gap-8",
+                        className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-700 transform transition-all hover:scale-105",
@@ -929,7 +982,7 @@ function BuyerDashboard() {
                                                 children: "Browse Websites"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                                lineNumber: 225,
+                                                lineNumber: 284,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -944,18 +997,18 @@ function BuyerDashboard() {
                                                     d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                                    lineNumber: 227,
+                                                    lineNumber: 286,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                                lineNumber: 226,
+                                                lineNumber: 285,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 224,
+                                        lineNumber: 283,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -963,22 +1016,22 @@ function BuyerDashboard() {
                                         children: "Find high-quality websites for your guest posting campaigns"
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 230,
+                                        lineNumber: 289,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                         href: "/buyer/websites",
                                         className: "w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-center font-medium transition-all duration-300 block",
-                                        children: "Browse Available Websites"
+                                        children: "Browse Websites"
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 233,
+                                        lineNumber: 292,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                lineNumber: 223,
+                                lineNumber: 282,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -992,7 +1045,7 @@ function BuyerDashboard() {
                                                 children: "My Orders"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                                lineNumber: 244,
+                                                lineNumber: 303,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -1007,18 +1060,18 @@ function BuyerDashboard() {
                                                     d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                                    lineNumber: 246,
+                                                    lineNumber: 305,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                                lineNumber: 245,
+                                                lineNumber: 304,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 243,
+                                        lineNumber: 302,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1026,106 +1079,170 @@ function BuyerDashboard() {
                                         children: "Track your guest posting orders and submissions"
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 249,
+                                        lineNumber: 308,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                        href: "/my-orders",
+                                        href: "/buyer/buyer-orders",
                                         className: "w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg text-center font-medium transition-all duration-300 block",
                                         children: "View My Orders"
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 252,
+                                        lineNumber: 311,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                lineNumber: 242,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                        lineNumber: 221,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "mt-8 bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-700",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                className: "text-xl font-semibold text-white mb-6",
-                                children: "Recent Activity"
-                            }, void 0, false, {
-                                fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                lineNumber: 263,
+                                lineNumber: 301,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "text-center py-8",
+                                className: "bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-700 transform transition-all hover:scale-105",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                        className: "w-16 h-16 text-gray-600 mx-auto mb-4",
-                                        fill: "none",
-                                        stroke: "currentColor",
-                                        viewBox: "0 0 24 24",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                            strokeLinecap: "round",
-                                            strokeLinejoin: "round",
-                                            strokeWidth: 2,
-                                            d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                            lineNumber: 266,
-                                            columnNumber: 15
-                                        }, this)
-                                    }, void 0, false, {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center justify-between mb-6",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                className: "text-xl font-semibold text-white",
+                                                children: "Add Agents"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
+                                                lineNumber: 322,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                className: "w-8 h-8 text-purple-500",
+                                                fill: "none",
+                                                stroke: "currentColor",
+                                                viewBox: "0 0 24 24",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                    strokeLinecap: "round",
+                                                    strokeLinejoin: "round",
+                                                    strokeWidth: 2,
+                                                    d: "M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
+                                                    lineNumber: 324,
+                                                    columnNumber: 17
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
+                                                lineNumber: 323,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 265,
+                                        lineNumber: 321,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-gray-400",
-                                        children: "No recent activity"
+                                        className: "text-gray-400 mb-4",
+                                        children: "Create agent accounts to help manage your orders"
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 268,
+                                        lineNumber: 327,
                                         columnNumber: 13
                                     }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-sm text-gray-500 mt-2",
-                                        children: "Start by browsing websites and placing your first order"
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                        href: "/buyer/add-agent",
+                                        className: "w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg text-center font-medium transition-all duration-300 block",
+                                        children: "Add New Agent"
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                        lineNumber: 269,
+                                        lineNumber: 330,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                                lineNumber: 264,
+                                lineNumber: 320,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-700 transform transition-all hover:scale-105",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center justify-between mb-6",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                className: "text-xl font-semibold text-white",
+                                                children: "Your Websites"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
+                                                lineNumber: 341,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                className: "w-8 h-8 text-orange-500",
+                                                fill: "none",
+                                                stroke: "currentColor",
+                                                viewBox: "0 0 24 24",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                    strokeLinecap: "round",
+                                                    strokeLinejoin: "round",
+                                                    strokeWidth: 2,
+                                                    d: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 7.172V5L8 4z"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
+                                                    lineNumber: 343,
+                                                    columnNumber: 17
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
+                                                lineNumber: 342,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
+                                        lineNumber: 340,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-gray-400 mb-4",
+                                        children: "View and manage your owned website properties"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
+                                        lineNumber: 346,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                        href: "/buyer/add-website",
+                                        className: "w-full bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg text-center font-medium transition-all duration-300 block",
+                                        children: "Manage Your Websites"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
+                                        lineNumber: 349,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
+                                lineNumber: 339,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                        lineNumber: 262,
+                        lineNumber: 280,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-                lineNumber: 148,
+                lineNumber: 215,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/buyer/buyer-dashboard/page.jsx",
-        lineNumber: 141,
+        lineNumber: 208,
         columnNumber: 5
     }, this);
 }
-_s(BuyerDashboard, "k0WZ5RL8DURlE0iqaK9gPenm5Vs=", false, function() {
+_s(BuyerDashboard, "gZzYil+lqn0c1fEQNdhkNrRjfvU=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];

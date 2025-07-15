@@ -181,12 +181,7 @@ function Navbar() {
                     label: 'Dashboard',
                     requireAuth: true
                 },
-                ...commonItems,
-                {
-                    href: '/add-website',
-                    label: 'Submit Site',
-                    requireAuth: true
-                }
+                ...commonItems
             ];
         }
     };
@@ -205,7 +200,7 @@ function Navbar() {
                             children: "GuestLinked"
                         }, void 0, false, {
                             fileName: "[project]/app/components/Navbar.jsx",
-                            lineNumber: 141,
+                            lineNumber: 140,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -214,28 +209,28 @@ function Navbar() {
                                 className: "h-4 bg-gray-600 rounded w-24"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Navbar.jsx",
-                                lineNumber: 145,
+                                lineNumber: 144,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/components/Navbar.jsx",
-                            lineNumber: 144,
+                            lineNumber: 143,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/Navbar.jsx",
-                    lineNumber: 140,
+                    lineNumber: 139,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/components/Navbar.jsx",
-                lineNumber: 139,
+                lineNumber: 138,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/components/Navbar.jsx",
-            lineNumber: 138,
+            lineNumber: 137,
             columnNumber: 7
         }, this);
     }
@@ -255,7 +250,7 @@ function Navbar() {
                                 children: "GuestLinked"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Navbar.jsx",
-                                lineNumber: 158,
+                                lineNumber: 157,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -266,18 +261,18 @@ function Navbar() {
                                         children: item.label
                                     }, item.href, false, {
                                         fileName: "[project]/app/components/Navbar.jsx",
-                                        lineNumber: 164,
+                                        lineNumber: 163,
                                         columnNumber: 19
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Navbar.jsx",
-                                lineNumber: 161,
+                                lineNumber: 160,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Navbar.jsx",
-                        lineNumber: 157,
+                        lineNumber: 156,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -290,10 +285,13 @@ function Navbar() {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-sm font-medium text-white",
-                                            children: userSettings.name || 'User'
-                                        }, void 0, false, {
+                                            children: [
+                                                "Welcome ",
+                                                userSettings.name || 'User'
+                                            ]
+                                        }, void 0, true, {
                                             fileName: "[project]/app/components/Navbar.jsx",
-                                            lineNumber: 183,
+                                            lineNumber: 182,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -301,13 +299,13 @@ function Navbar() {
                                             children: user.email
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/Navbar.jsx",
-                                            lineNumber: 186,
+                                            lineNumber: 185,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/components/Navbar.jsx",
-                                    lineNumber: 182,
+                                    lineNumber: 181,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -317,12 +315,12 @@ function Navbar() {
                                         children: userSettings.name?.[0]?.toUpperCase() || 'U'
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Navbar.jsx",
-                                        lineNumber: 191,
+                                        lineNumber: 190,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/Navbar.jsx",
-                                    lineNumber: 190,
+                                    lineNumber: 189,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -341,25 +339,25 @@ function Navbar() {
                                                 d: "M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/Navbar.jsx",
-                                                lineNumber: 200,
+                                                lineNumber: 199,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/Navbar.jsx",
-                                            lineNumber: 199,
+                                            lineNumber: 198,
                                             columnNumber: 19
                                         }, this),
                                         "Sign Out"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/components/Navbar.jsx",
-                                    lineNumber: 195,
+                                    lineNumber: 194,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/components/Navbar.jsx",
-                            lineNumber: 181,
+                            lineNumber: 180,
                             columnNumber: 15
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                             href: "/",
@@ -367,28 +365,28 @@ function Navbar() {
                             children: "Sign In"
                         }, void 0, false, {
                             fileName: "[project]/app/components/Navbar.jsx",
-                            lineNumber: 206,
+                            lineNumber: 205,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/components/Navbar.jsx",
-                        lineNumber: 179,
+                        lineNumber: 178,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/Navbar.jsx",
-                lineNumber: 156,
+                lineNumber: 155,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/components/Navbar.jsx",
-            lineNumber: 155,
+            lineNumber: 154,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/components/Navbar.jsx",
-        lineNumber: 154,
+        lineNumber: 153,
         columnNumber: 5
     }, this);
 }
@@ -455,6 +453,12 @@ function BuyerOrders() {
     const [filteredWebsites, setFilteredWebsites] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [showCategoryDropdown, setShowCategoryDropdown] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [allWebsites, setAllWebsites] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]); // Store all websites for filtering
+    // New state for buyer websites tab
+    const [buyerWebsites, setBuyerWebsites] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [selectedBuyerWebsite, setSelectedBuyerWebsite] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [buyerWebsitesLoading, setBuyerWebsitesLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [filteredWebsitesForBuyer, setFilteredWebsitesForBuyer] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [loadingWebsitesForBuyer, setLoadingWebsitesForBuyer] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     // Available categories
     const availableCategories = [
         'Agriculture',
@@ -598,8 +602,8 @@ function BuyerOrders() {
                             router.push('/');
                             return;
                         }
-                        // Only buyers can access this page
-                        if (settings.role !== 'Buyer') {
+                        // Only buyers and agents can access this page
+                        if (settings.role !== 'Buyer' && settings.role !== 'Agent') {
                             if (settings.role === 'Seller') {
                                 router.push('/seller/seller-dashboard');
                             } else {
@@ -607,10 +611,17 @@ function BuyerOrders() {
                             }
                             return;
                         }
+                        // For agents, ensure they have a parent buyer
+                        if (settings.role === 'Agent' && !settings.parent_buyer_id) {
+                            console.error('Agent has no parent buyer');
+                            router.push('/');
+                            return;
+                        }
                         setUser(settings);
                         setLoading(false);
-                        // Load orders using settings.user_id
-                        loadMyOrders(settings.user_id);
+                        // Load orders using the appropriate buyer ID
+                        const buyerId = settings.role === 'Agent' ? settings.parent_buyer_id : settings.user_id;
+                        loadMyOrders(buyerId);
                     } catch (error) {
                         console.error('Error in checkUser:', error);
                         setLoading(false);
@@ -678,7 +689,8 @@ function BuyerOrders() {
         try {
             const { data: ordersData, error: ordersError } = await supabase.from('buyer_orders').select(`
           *,
-          web_sites:website_id (*)
+          web_sites:website_id (*),
+          creator:created_by (name, email)
         `).eq('buyer_id', userId).order('created_at', {
                 ascending: false
             });
@@ -691,6 +703,149 @@ function BuyerOrders() {
             console.error('Error in loadMyOrders:', error);
         } finally{
             setOrdersLoading(false);
+        }
+    };
+    // Load buyer's websites
+    const loadBuyerWebsites = async ()=>{
+        if (!user) return;
+        setBuyerWebsitesLoading(true);
+        const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabaseClient$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getSupabase"])();
+        try {
+            const buyerId = user.role === 'Agent' ? user.parent_buyer_id : user.user_id;
+            const { data: websites, error } = await supabase.from('buyer_websites_tb').select('*').eq('buyer_id', buyerId).order('added_at', {
+                ascending: false
+            });
+            if (error) {
+                console.error('Error loading buyer websites:', error);
+                return;
+            }
+            setBuyerWebsites(websites || []);
+        } catch (error) {
+            console.error('Error in loadBuyerWebsites:', error);
+        } finally{
+            setBuyerWebsitesLoading(false);
+        }
+    };
+    // Load websites filtered by buyer website categories
+    const loadWebsitesForBuyerWebsite = async (buyerWebsite)=>{
+        if (!buyerWebsite || !buyerWebsite.category) return;
+        setLoadingWebsitesForBuyer(true);
+        setSelectedBuyerWebsite(buyerWebsite);
+        const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabaseClient$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getSupabase"])();
+        try {
+            // Get buyer website categories
+            const buyerCategories = Array.isArray(buyerWebsite.category) ? buyerWebsite.category : [
+                buyerWebsite.category
+            ];
+            console.log('Filtering web_sites for buyer website categories:', buyerCategories);
+            // Fetch ALL websites from the database (remove limit to get full records)
+            const { data: allWebsitesData, error: websitesError } = await supabase.from('web_sites').select('*').order('similarweb_traffic', {
+                ascending: false,
+                nullsLast: true
+            });
+            if (websitesError) {
+                console.error('Error loading websites:', websitesError);
+                return;
+            }
+            console.log(`Fetched ${allWebsitesData?.length || 0} total websites from database`);
+            // Filter websites based on buyer website categories with more flexible matching
+            const filtered = allWebsitesData.filter((website)=>{
+                let websiteCategories = [];
+                // Add individual category fields
+                if (website.category_1) websiteCategories.push(website.category_1);
+                if (website.category_2) websiteCategories.push(website.category_2);
+                if (website.category_3) websiteCategories.push(website.category_3);
+                // Also check if there's a 'category' field that might be JSON
+                if (website.category) {
+                    try {
+                        const parsedCategories = typeof website.category === 'string' ? JSON.parse(website.category) : website.category;
+                        if (Array.isArray(parsedCategories)) {
+                            websiteCategories = [
+                                ...websiteCategories,
+                                ...parsedCategories
+                            ];
+                        } else if (typeof parsedCategories === 'string') {
+                            websiteCategories.push(parsedCategories);
+                        }
+                    } catch (e) {
+                        websiteCategories.push(website.category);
+                    }
+                }
+                // Remove duplicates and filter out null/undefined
+                websiteCategories = [
+                    ...new Set(websiteCategories.filter(Boolean))
+                ];
+                // More flexible matching - exact match, partial match, or broad category match
+                return buyerCategories.some((buyerCategory)=>{
+                    const buyerCat = buyerCategory.toLowerCase().trim();
+                    return websiteCategories.some((websiteCategory)=>{
+                        const webCat = websiteCategory?.toLowerCase().trim();
+                        // Exact match
+                        if (webCat === buyerCat) return true;
+                        // Partial match (contains)
+                        if (webCat?.includes(buyerCat) || buyerCat.includes(webCat)) return true;
+                        // Broad category matching for common terms
+                        const broadMatches = {
+                            'ecommerce': [
+                                'shopping',
+                                'retail',
+                                'business',
+                                'commerce'
+                            ],
+                            'shopping': [
+                                'ecommerce',
+                                'retail',
+                                'business',
+                                'commerce'
+                            ],
+                            'business': [
+                                'ecommerce',
+                                'shopping',
+                                'b2b',
+                                'finance',
+                                'corporate'
+                            ],
+                            'technology': [
+                                'tech',
+                                'software',
+                                'computers',
+                                'electronics'
+                            ],
+                            'health': [
+                                'fitness',
+                                'wellness',
+                                'medical',
+                                'healthcare'
+                            ],
+                            'lifestyle': [
+                                'fashion',
+                                'beauty',
+                                'home',
+                                'travel'
+                            ],
+                            'finance': [
+                                'business',
+                                'investment',
+                                'money',
+                                'banking'
+                            ]
+                        };
+                        if (broadMatches[buyerCat]) {
+                            return broadMatches[buyerCat].some((match)=>webCat?.includes(match));
+                        }
+                        if (broadMatches[webCat]) {
+                            return broadMatches[webCat].some((match)=>buyerCat.includes(match));
+                        }
+                        return false;
+                    });
+                });
+            });
+            console.log(`Found ${filtered.length} websites matching categories:`, buyerCategories);
+            setFilteredWebsitesForBuyer(filtered);
+        } catch (error) {
+            console.error('Error loading websites for buyer website:', error);
+        } finally{
+            setLoadingWebsitesForBuyer(false);
         }
     };
     // Handle input changes
@@ -741,7 +896,7 @@ function BuyerOrders() {
             // Create the order using user_id from users_settings_tb
             const orderToInsert = {
                 order_id: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$uuid$2f$dist$2f$esm$2d$browser$2f$v4$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__v4$3e$__["v4"])(),
-                buyer_id: user.user_id,
+                buyer_id: user.role === 'Agent' ? user.parent_buyer_id : user.user_id,
                 website_id: selectedWebsite.id,
                 article_title: orderData.article_title.trim(),
                 article_content: orderData.article_content.trim(),
@@ -749,9 +904,10 @@ function BuyerOrders() {
                 anchor_text: orderData.anchor_text?.trim() || null,
                 special_requirements: orderData.special_requirements?.trim() || null,
                 budget: Number(parseFloat(orderData.budget || '0').toFixed(2)),
-                status: 'pending',
+                status: 'submitted',
                 posting_from_date: orderData.posting_from_date ? new Date(orderData.posting_from_date).toISOString() : null,
                 posting_to_date: orderData.posting_to_date ? new Date(orderData.posting_to_date).toISOString() : null,
+                created_by: user.user_id,
                 created_at: new Date().toISOString(),
                 updated_at: new Date().toISOString()
             };
@@ -811,8 +967,14 @@ function BuyerOrders() {
             console.log('Order successfully created:', insertedOrder);
             setMessage('Order submitted successfully!');
             // Refresh orders list
-            await loadMyOrders(user.user_id);
-            console.log('Orders list refreshed');
+            try {
+                const buyerId = user.role === 'Agent' ? user.parent_buyer_id : user.user_id;
+                await loadMyOrders(buyerId);
+                console.log('Orders list refreshed');
+            } catch (refreshError) {
+                console.error('Error refreshing orders list:', refreshError);
+            // Don't fail the whole process if refresh fails
+            }
             // Close modal after a short delay
             setTimeout(()=>{
                 setShowOrderModal(false);
@@ -838,16 +1000,34 @@ function BuyerOrders() {
     };
     const getStatusColor = (status)=>{
         switch(status?.toLowerCase()){
+            case 'submitted':
+                return 'text-green-400 bg-green-400/10 border-green-400/20';
             case 'pending':
                 return 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20';
             case 'in_progress':
-                return 'text-blue-400 bg-blue-400/10 border-blue-400/20';
+                return 'text-purple-400 bg-purple-400/10 border-purple-400/20';
             case 'completed':
-                return 'text-green-400 bg-green-400/10 border-green-400/20';
+                return 'text-blue-400 bg-blue-400/10 border-blue-400/20';
             case 'rejected':
                 return 'text-red-400 bg-red-400/10 border-red-400/20';
             default:
                 return 'text-gray-400 bg-gray-400/10 border-gray-400/20';
+        }
+    };
+    const getStatusIcon = (status)=>{
+        switch(status?.toLowerCase()){
+            case 'submitted':
+                return '✓';
+            case 'pending':
+                return '⏳';
+            case 'in_progress':
+                return '🔄';
+            case 'completed':
+                return '✅';
+            case 'rejected':
+                return '❌';
+            default:
+                return '';
         }
     };
     const formatDate = (dateString)=>{
@@ -866,12 +1046,12 @@ function BuyerOrders() {
                 className: "animate-spin rounded-full h-32 w-32 border-b-2 border-green-500"
             }, void 0, false, {
                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                lineNumber: 489,
+                lineNumber: 664,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-            lineNumber: 488,
+            lineNumber: 663,
             columnNumber: 7
         }, this);
     }
@@ -880,7 +1060,7 @@ function BuyerOrders() {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$Navbar$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                lineNumber: 496,
+                lineNumber: 671,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -894,7 +1074,7 @@ function BuyerOrders() {
                                 children: "Buyer Orders"
                             }, void 0, false, {
                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                lineNumber: 500,
+                                lineNumber: 675,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -902,13 +1082,13 @@ function BuyerOrders() {
                                 children: "Manage your guest posting orders"
                             }, void 0, false, {
                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                lineNumber: 501,
+                                lineNumber: 676,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                        lineNumber: 499,
+                        lineNumber: 674,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -920,7 +1100,7 @@ function BuyerOrders() {
                                 children: "My Orders"
                             }, void 0, false, {
                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                lineNumber: 506,
+                                lineNumber: 681,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -932,13 +1112,25 @@ function BuyerOrders() {
                                 children: "Browse Websites"
                             }, void 0, false, {
                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                lineNumber: 516,
+                                lineNumber: 691,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: ()=>{
+                                    setActiveTab('order-for-website');
+                                    loadBuyerWebsites();
+                                },
+                                className: `px-6 py-3 rounded-lg font-medium transition-colors ${activeTab === 'order-for-website' ? 'bg-green-600 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'}`,
+                                children: "Order for Your Website"
+                            }, void 0, false, {
+                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                lineNumber: 704,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                        lineNumber: 505,
+                        lineNumber: 680,
                         columnNumber: 9
                     }, this),
                     activeTab === 'my-orders' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -949,7 +1141,7 @@ function BuyerOrders() {
                                 children: "Your Orders"
                             }, void 0, false, {
                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                lineNumber: 534,
+                                lineNumber: 722,
                                 columnNumber: 13
                             }, this),
                             ordersLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -958,12 +1150,12 @@ function BuyerOrders() {
                                     className: "animate-spin rounded-full h-8 w-8 border-b-2 border-green-500"
                                 }, void 0, false, {
                                     fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                    lineNumber: 538,
+                                    lineNumber: 726,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                lineNumber: 537,
+                                lineNumber: 725,
                                 columnNumber: 15
                             }, this) : orders.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "text-center py-8",
@@ -973,7 +1165,7 @@ function BuyerOrders() {
                                         children: "No orders found"
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                        lineNumber: 542,
+                                        lineNumber: 730,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -985,236 +1177,408 @@ function BuyerOrders() {
                                         children: "Browse Websites to Place Order"
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                        lineNumber: 543,
+                                        lineNumber: 731,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                lineNumber: 541,
+                                lineNumber: 729,
                                 columnNumber: 15
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "space-y-4",
                                 children: orders.map((order)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "bg-gray-700 rounded-lg p-4",
+                                        className: "bg-gray-800 rounded-lg border border-gray-700 p-4",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex justify-between items-start mb-3",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                                className: "text-lg font-semibold text-white",
-                                                                children: order.article_title
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 559,
-                                                                columnNumber: 25
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-gray-300",
-                                                                children: [
-                                                                    "Website: ",
-                                                                    order.web_sites?.link || 'N/A'
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 560,
-                                                                columnNumber: 25
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 558,
-                                                        columnNumber: 23
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: `px-3 py-1 rounded-full text-sm border ${getStatusColor(order.status)}`,
-                                                        children: order.status
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 562,
-                                                        columnNumber: 23
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                lineNumber: 557,
-                                                columnNumber: 21
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "grid grid-cols-2 md:grid-cols-4 gap-4 text-sm",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-gray-400",
-                                                                children: "Budget"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 569,
-                                                                columnNumber: 25
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-white",
-                                                                children: [
-                                                                    "$",
-                                                                    order.budget
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 570,
-                                                                columnNumber: 25
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 568,
-                                                        columnNumber: 23
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-gray-400",
-                                                                children: "Target URL"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 573,
-                                                                columnNumber: 25
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-green-400 truncate",
-                                                                children: order.target_url
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 574,
-                                                                columnNumber: 25
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 572,
-                                                        columnNumber: 23
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-gray-400",
-                                                                children: "Posting Period"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 577,
-                                                                columnNumber: 25
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-white",
-                                                                children: order.posting_from_date && order.posting_to_date ? `${formatDate(order.posting_from_date)} - ${formatDate(order.posting_to_date)}` : 'Not specified'
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 578,
-                                                                columnNumber: 25
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 576,
-                                                        columnNumber: 23
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-gray-400",
-                                                                children: "Created"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 586,
-                                                                columnNumber: 25
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-white",
-                                                                children: formatDate(order.created_at)
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 587,
-                                                                columnNumber: 25
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 585,
-                                                        columnNumber: 23
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                lineNumber: 567,
-                                                columnNumber: 21
-                                            }, this),
-                                            order.anchor_text && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "mt-3",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-gray-400 text-sm",
+                                                className: "flex justify-between items-center mb-3",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "flex-1",
                                                     children: [
-                                                        "Anchor Text: ",
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "text-white",
-                                                            children: order.anchor_text
-                                                        }, void 0, false, {
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "flex items-center justify-between mb-2",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                                    className: "text-lg font-bold text-white",
+                                                                    children: order.article_title
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                    lineNumber: 749,
+                                                                    columnNumber: 27
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: `px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(order.status)} flex items-center gap-1`,
+                                                                    children: [
+                                                                        getStatusIcon(order.status),
+                                                                        " ",
+                                                                        order.status.toUpperCase()
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                    lineNumber: 750,
+                                                                    columnNumber: 27
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
                                                             fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                            lineNumber: 593,
-                                                            columnNumber: 75
+                                                            lineNumber: 748,
+                                                            columnNumber: 25
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "flex items-center gap-6 text-xs text-gray-400",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    children: [
+                                                                        "Created: ",
+                                                                        formatDate(order.created_at)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                    lineNumber: 755,
+                                                                    columnNumber: 27
+                                                                }, this),
+                                                                order.creator && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    children: [
+                                                                        "By: ",
+                                                                        order.creator.name || order.creator.email || 'Unknown'
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                    lineNumber: 757,
+                                                                    columnNumber: 29
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "text-green-400 font-bold",
+                                                                    children: [
+                                                                        "$",
+                                                                        order.budget
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                    lineNumber: 759,
+                                                                    columnNumber: 27
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                            lineNumber: 754,
+                                                            columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                    lineNumber: 593,
-                                                    columnNumber: 25
+                                                    lineNumber: 747,
+                                                    columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                lineNumber: 592,
-                                                columnNumber: 23
+                                                lineNumber: 746,
+                                                columnNumber: 21
                                             }, this),
-                                            order.special_requirements && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "mt-3",
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "grid grid-cols-1 lg:grid-cols-3 gap-4 text-sm",
                                                 children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "text-gray-400 text-sm",
-                                                        children: "Special Requirements:"
-                                                    }, void 0, false, {
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "bg-gray-700 rounded p-3",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex items-center gap-2 mb-2",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                                        className: "w-4 h-4 text-blue-400",
+                                                                        fill: "none",
+                                                                        stroke: "currentColor",
+                                                                        viewBox: "0 0 24 24",
+                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                                            strokeLinecap: "round",
+                                                                            strokeLinejoin: "round",
+                                                                            strokeWidth: 2,
+                                                                            d: "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                            lineNumber: 770,
+                                                                            columnNumber: 29
+                                                                        }, this)
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 769,
+                                                                        columnNumber: 27
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "font-medium text-blue-400",
+                                                                        children: "My Website"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 772,
+                                                                        columnNumber: 27
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                lineNumber: 768,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                className: "text-white text-xs truncate mb-1",
+                                                                children: order.target_url
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                lineNumber: 774,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            order.anchor_text && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                className: "text-green-400 text-xs",
+                                                                children: [
+                                                                    "Anchor: ",
+                                                                    order.anchor_text
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                lineNumber: 776,
+                                                                columnNumber: 27
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 599,
-                                                        columnNumber: 25
+                                                        lineNumber: 767,
+                                                        columnNumber: 23
                                                     }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "text-white text-sm",
-                                                        children: order.special_requirements
-                                                    }, void 0, false, {
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "bg-gray-700 rounded p-3",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex items-center gap-2 mb-2",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                                        className: "w-4 h-4 text-purple-400",
+                                                                        fill: "none",
+                                                                        stroke: "currentColor",
+                                                                        viewBox: "0 0 24 24",
+                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                                            strokeLinecap: "round",
+                                                                            strokeLinejoin: "round",
+                                                                            strokeWidth: 2,
+                                                                            d: "M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                            lineNumber: 784,
+                                                                            columnNumber: 29
+                                                                        }, this)
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 783,
+                                                                        columnNumber: 27
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "font-medium text-purple-400",
+                                                                        children: "Guest Posting"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 786,
+                                                                        columnNumber: 27
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                lineNumber: 782,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                className: "text-white text-xs mb-1",
+                                                                children: order.web_sites?.link || 'N/A'
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                lineNumber: 788,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex gap-1",
+                                                                children: order.web_sites?.category_1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "bg-purple-600 text-white px-2 py-0.5 rounded text-xs",
+                                                                    children: order.web_sites.category_1
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                    lineNumber: 791,
+                                                                    columnNumber: 29
+                                                                }, this)
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                lineNumber: 789,
+                                                                columnNumber: 25
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 600,
-                                                        columnNumber: 25
+                                                        lineNumber: 781,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "bg-gray-700 rounded p-3",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex items-center gap-2 mb-2",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                                        className: "w-4 h-4 text-orange-400",
+                                                                        fill: "none",
+                                                                        stroke: "currentColor",
+                                                                        viewBox: "0 0 24 24",
+                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                                            strokeLinecap: "round",
+                                                                            strokeLinejoin: "round",
+                                                                            strokeWidth: 2,
+                                                                            d: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                            lineNumber: 802,
+                                                                            columnNumber: 29
+                                                                        }, this)
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 801,
+                                                                        columnNumber: 27
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "font-medium text-orange-400",
+                                                                        children: "Posting Period"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 804,
+                                                                        columnNumber: 27
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                lineNumber: 800,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "grid grid-cols-2 gap-2 text-xs",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        children: [
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                className: "text-gray-400",
+                                                                                children: "From:"
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                                lineNumber: 808,
+                                                                                columnNumber: 29
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                                className: "text-white",
+                                                                                children: order.posting_from_date ? new Date(order.posting_from_date).toLocaleDateString('en-US', {
+                                                                                    month: 'short',
+                                                                                    day: 'numeric'
+                                                                                }) : 'N/A'
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                                lineNumber: 809,
+                                                                                columnNumber: 29
+                                                                            }, this)
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 807,
+                                                                        columnNumber: 27
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        children: [
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                className: "text-gray-400",
+                                                                                children: "To:"
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                                lineNumber: 812,
+                                                                                columnNumber: 29
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                                className: "text-white",
+                                                                                children: order.posting_to_date ? new Date(order.posting_to_date).toLocaleDateString('en-US', {
+                                                                                    month: 'short',
+                                                                                    day: 'numeric'
+                                                                                }) : 'N/A'
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                                lineNumber: 813,
+                                                                                columnNumber: 29
+                                                                            }, this)
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 811,
+                                                                        columnNumber: 27
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                lineNumber: 806,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            order.posting_from_date && order.posting_to_date && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                className: "text-yellow-400 text-xs mt-1",
+                                                                children: [
+                                                                    Math.ceil((new Date(order.posting_to_date) - new Date(order.posting_from_date)) / (1000 * 60 * 60 * 24)),
+                                                                    " days"
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                lineNumber: 817,
+                                                                columnNumber: 27
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                        lineNumber: 799,
+                                                        columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                lineNumber: 598,
+                                                lineNumber: 765,
+                                                columnNumber: 21
+                                            }, this),
+                                            order.special_requirements && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "mt-3 bg-gray-750 rounded p-2",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-gray-400 text-xs",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "font-medium",
+                                                            children: "Requirements:"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                            lineNumber: 828,
+                                                            columnNumber: 27
+                                                        }, this),
+                                                        " ",
+                                                        order.special_requirements
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                    lineNumber: 827,
+                                                    columnNumber: 25
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                lineNumber: 826,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, order.order_id, true, {
                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                        lineNumber: 556,
+                                        lineNumber: 744,
                                         columnNumber: 19
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                lineNumber: 554,
+                                lineNumber: 742,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                        lineNumber: 533,
+                        lineNumber: 721,
                         columnNumber: 11
                     }, this),
                     activeTab === 'browse-websites' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1228,7 +1592,7 @@ function BuyerOrders() {
                                         children: "Top 50 Websites by Traffic"
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                        lineNumber: 613,
+                                        lineNumber: 842,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1244,7 +1608,7 @@ function BuyerOrders() {
                                                             children: "Categories"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                            lineNumber: 621,
+                                                            lineNumber: 850,
                                                             columnNumber: 21
                                                         }, this),
                                                         selectedCategories.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1252,7 +1616,7 @@ function BuyerOrders() {
                                                             children: selectedCategories.length
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                            lineNumber: 623,
+                                                            lineNumber: 852,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -1267,18 +1631,18 @@ function BuyerOrders() {
                                                                 d: "M19 9l-7 7-7-7"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 628,
+                                                                lineNumber: 857,
                                                                 columnNumber: 23
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                            lineNumber: 627,
+                                                            lineNumber: 856,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                    lineNumber: 617,
+                                                    lineNumber: 846,
                                                     columnNumber: 19
                                                 }, this),
                                                 showCategoryDropdown && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1294,7 +1658,7 @@ function BuyerOrders() {
                                                                         children: "Select Categories"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                        lineNumber: 636,
+                                                                        lineNumber: 865,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     selectedCategories.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1303,13 +1667,13 @@ function BuyerOrders() {
                                                                         children: "Clear All"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                        lineNumber: 638,
+                                                                        lineNumber: 867,
                                                                         columnNumber: 29
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 635,
+                                                                lineNumber: 864,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1324,7 +1688,7 @@ function BuyerOrders() {
                                                                                 className: "text-green-600 bg-gray-600 border-gray-500 rounded focus:ring-green-500"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                                lineNumber: 649,
+                                                                                lineNumber: 878,
                                                                                 columnNumber: 31
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1332,46 +1696,46 @@ function BuyerOrders() {
                                                                                 children: category
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                                lineNumber: 655,
+                                                                                lineNumber: 884,
                                                                                 columnNumber: 31
                                                                             }, this)
                                                                         ]
                                                                     }, category, true, {
                                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                        lineNumber: 648,
+                                                                        lineNumber: 877,
                                                                         columnNumber: 29
                                                                     }, this))
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 646,
+                                                                lineNumber: 875,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 634,
+                                                        lineNumber: 863,
                                                         columnNumber: 23
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                    lineNumber: 633,
+                                                    lineNumber: 862,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                            lineNumber: 616,
+                                            lineNumber: 845,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                        lineNumber: 614,
+                                        lineNumber: 843,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                lineNumber: 612,
+                                lineNumber: 841,
                                 columnNumber: 13
                             }, this),
                             selectedCategories.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1384,7 +1748,7 @@ function BuyerOrders() {
                                             children: "Filtered by:"
                                         }, void 0, false, {
                                             fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                            lineNumber: 670,
+                                            lineNumber: 899,
                                             columnNumber: 19
                                         }, this),
                                         selectedCategories.map((category)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1397,24 +1761,24 @@ function BuyerOrders() {
                                                         children: "×"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 677,
+                                                        lineNumber: 906,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, category, true, {
                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                lineNumber: 672,
+                                                lineNumber: 901,
                                                 columnNumber: 21
                                             }, this))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                    lineNumber: 669,
+                                    lineNumber: 898,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                lineNumber: 668,
+                                lineNumber: 897,
                                 columnNumber: 15
                             }, this),
                             websitesLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1423,12 +1787,12 @@ function BuyerOrders() {
                                     className: "animate-spin rounded-full h-8 w-8 border-b-2 border-green-500"
                                 }, void 0, false, {
                                     fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                    lineNumber: 691,
+                                    lineNumber: 920,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                lineNumber: 690,
+                                lineNumber: 919,
                                 columnNumber: 15
                             }, this) : filteredWebsites.length === 0 && allWebsites.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "text-center py-8",
@@ -1438,7 +1802,7 @@ function BuyerOrders() {
                                         children: "No websites found matching the selected categories"
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                        lineNumber: 695,
+                                        lineNumber: 924,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1446,7 +1810,7 @@ function BuyerOrders() {
                                         children: "Try selecting different categories or clear all filters to see all websites."
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                        lineNumber: 696,
+                                        lineNumber: 925,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1455,13 +1819,13 @@ function BuyerOrders() {
                                         children: "Clear Filters"
                                     }, void 0, false, {
                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                        lineNumber: 699,
+                                        lineNumber: 928,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                lineNumber: 694,
+                                lineNumber: 923,
                                 columnNumber: 15
                             }, this) : filteredWebsites.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "text-center py-8",
@@ -1470,12 +1834,12 @@ function BuyerOrders() {
                                     children: "No websites available"
                                 }, void 0, false, {
                                     fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                    lineNumber: 708,
+                                    lineNumber: 937,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                lineNumber: 707,
+                                lineNumber: 936,
                                 columnNumber: 15
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6",
@@ -1490,7 +1854,7 @@ function BuyerOrders() {
                                                         children: website.link
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 715,
+                                                        lineNumber: 944,
                                                         columnNumber: 23
                                                     }, this),
                                                     website.badge && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1498,13 +1862,13 @@ function BuyerOrders() {
                                                         children: website.badge
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 717,
+                                                        lineNumber: 946,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                lineNumber: 714,
+                                                lineNumber: 943,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1518,7 +1882,7 @@ function BuyerOrders() {
                                                                 children: website.moz_da || 'N/A'
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 725,
+                                                                lineNumber: 954,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1526,13 +1890,13 @@ function BuyerOrders() {
                                                                 children: "Moz DA"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 726,
+                                                                lineNumber: 955,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 724,
+                                                        lineNumber: 953,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1543,7 +1907,7 @@ function BuyerOrders() {
                                                                 children: website.semrush_as || 'N/A'
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 729,
+                                                                lineNumber: 958,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1551,13 +1915,13 @@ function BuyerOrders() {
                                                                 children: "Semrush AS"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 730,
+                                                                lineNumber: 959,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 728,
+                                                        lineNumber: 957,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1568,7 +1932,7 @@ function BuyerOrders() {
                                                                 children: website.ahrefs_dr_range || 'N/A'
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 733,
+                                                                lineNumber: 962,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1576,19 +1940,19 @@ function BuyerOrders() {
                                                                 children: "Ahrefs DR"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 734,
+                                                                lineNumber: 963,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 732,
+                                                        lineNumber: 961,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                lineNumber: 723,
+                                                lineNumber: 952,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1602,7 +1966,7 @@ function BuyerOrders() {
                                                                 children: website.similarweb_traffic || 'N/A'
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 740,
+                                                                lineNumber: 969,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1610,13 +1974,13 @@ function BuyerOrders() {
                                                                 children: "Traffic"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 741,
+                                                                lineNumber: 970,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 739,
+                                                        lineNumber: 968,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1630,7 +1994,7 @@ function BuyerOrders() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 744,
+                                                                lineNumber: 973,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1638,19 +2002,19 @@ function BuyerOrders() {
                                                                 children: "Price"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                                lineNumber: 745,
+                                                                lineNumber: 974,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 743,
+                                                        lineNumber: 972,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                lineNumber: 738,
+                                                lineNumber: 967,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1661,7 +2025,7 @@ function BuyerOrders() {
                                                         children: website.category_1
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 751,
+                                                        lineNumber: 980,
                                                         columnNumber: 25
                                                     }, this),
                                                     website.category_2 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1669,7 +2033,7 @@ function BuyerOrders() {
                                                         children: website.category_2
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 756,
+                                                        lineNumber: 985,
                                                         columnNumber: 25
                                                     }, this),
                                                     website.category_3 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1677,13 +2041,13 @@ function BuyerOrders() {
                                                         children: website.category_3
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 761,
+                                                        lineNumber: 990,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                lineNumber: 749,
+                                                lineNumber: 978,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1696,7 +2060,7 @@ function BuyerOrders() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 768,
+                                                        lineNumber: 997,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1706,13 +2070,13 @@ function BuyerOrders() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                        lineNumber: 769,
+                                                        lineNumber: 998,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                lineNumber: 767,
+                                                lineNumber: 996,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1721,373 +2085,926 @@ function BuyerOrders() {
                                                 children: "Place Order"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                lineNumber: 772,
+                                                lineNumber: 1001,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, website.id, true, {
                                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                        lineNumber: 713,
+                                        lineNumber: 942,
                                         columnNumber: 19
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                lineNumber: 711,
+                                lineNumber: 940,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                        lineNumber: 611,
+                        lineNumber: 840,
                         columnNumber: 11
+                    }, this),
+                    activeTab === 'order-for-website' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "space-y-6",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "bg-gray-800 rounded-lg p-6",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                        className: "text-xl font-bold text-white mb-4",
+                                        children: "Your Websites"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                        lineNumber: 1018,
+                                        columnNumber: 15
+                                    }, this),
+                                    buyerWebsitesLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex justify-center py-8",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "animate-spin rounded-full h-8 w-8 border-b-2 border-green-500"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                            lineNumber: 1022,
+                                            columnNumber: 19
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                        lineNumber: 1021,
+                                        columnNumber: 17
+                                    }, this) : buyerWebsites.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "text-center py-8",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-gray-400 mb-4",
+                                                children: "No websites found"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                lineNumber: 1026,
+                                                columnNumber: 19
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-sm text-gray-500 mb-4",
+                                                children: "You need to add your websites first to find matching guest posting opportunities."
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                lineNumber: 1027,
+                                                columnNumber: 19
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                onClick: ()=>router.push('/buyer/add-website'),
+                                                className: "bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors",
+                                                children: "Add Your Websites"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                lineNumber: 1030,
+                                                columnNumber: 19
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                        lineNumber: 1025,
+                                        columnNumber: 17
+                                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
+                                        children: buyerWebsites.map((website)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: `bg-gray-700 rounded-lg p-4 cursor-pointer transition-all border-2 ${selectedBuyerWebsite?.id === website.id ? 'border-green-500 bg-gray-600' : 'border-transparent hover:border-gray-500'}`,
+                                                onClick: ()=>loadWebsitesForBuyerWebsite(website),
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                        className: "text-lg font-semibold text-white mb-2",
+                                                        children: website.website_name
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                        lineNumber: 1049,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "text-blue-400 text-sm mb-3 truncate",
+                                                        children: website.website_url
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                        lineNumber: 1050,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "flex flex-wrap gap-1 mb-3",
+                                                        children: (Array.isArray(website.category) ? website.category : [
+                                                            website.category
+                                                        ]).filter(Boolean).map((cat, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "bg-blue-600 text-white px-2 py-1 rounded-md text-xs",
+                                                                children: cat
+                                                            }, index, false, {
+                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                lineNumber: 1056,
+                                                                columnNumber: 29
+                                                            }, this))
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                        lineNumber: 1052,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "text-xs text-gray-400",
+                                                        children: [
+                                                            "Added ",
+                                                            new Date(website.added_at).toLocaleDateString()
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                        lineNumber: 1065,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    selectedBuyerWebsite?.id === website.id && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "mt-2 text-green-400 text-sm font-medium",
+                                                        children: "✓ Selected - Finding matching websites..."
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                        lineNumber: 1070,
+                                                        columnNumber: 25
+                                                    }, this)
+                                                ]
+                                            }, website.id, true, {
+                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                lineNumber: 1040,
+                                                columnNumber: 21
+                                            }, this))
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                        lineNumber: 1038,
+                                        columnNumber: 17
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                lineNumber: 1017,
+                                columnNumber: 13
+                            }, this),
+                            selectedBuyerWebsite && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "bg-gray-800 rounded-lg p-6",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex justify-between items-center mb-4",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                                        className: "text-xl font-bold text-white",
+                                                        children: [
+                                                            'Guest Posting Opportunities for "',
+                                                            selectedBuyerWebsite.website_name,
+                                                            '"'
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                        lineNumber: 1085,
+                                                        columnNumber: 21
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "text-gray-400 text-sm",
+                                                        children: [
+                                                            "Websites matching your categories: ",
+                                                            (Array.isArray(selectedBuyerWebsite.category) ? selectedBuyerWebsite.category : [
+                                                                selectedBuyerWebsite.category
+                                                            ]).filter(Boolean).join(', ')
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                        lineNumber: 1088,
+                                                        columnNumber: 21
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                lineNumber: 1084,
+                                                columnNumber: 19
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                onClick: ()=>{
+                                                    setSelectedBuyerWebsite(null);
+                                                    setFilteredWebsitesForBuyer([]);
+                                                },
+                                                className: "text-gray-400 hover:text-white",
+                                                children: "✕ Clear Selection"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                lineNumber: 1094,
+                                                columnNumber: 19
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                        lineNumber: 1083,
+                                        columnNumber: 17
+                                    }, this),
+                                    loadingWebsitesForBuyer ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex justify-center py-8",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "animate-spin rounded-full h-8 w-8 border-b-2 border-green-500"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                            lineNumber: 1107,
+                                            columnNumber: 21
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                        lineNumber: 1106,
+                                        columnNumber: 19
+                                    }, this) : filteredWebsitesForBuyer.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "text-center py-8",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-gray-400 mb-2",
+                                                children: "No matching websites found"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                lineNumber: 1111,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-sm text-gray-500",
+                                                children: "Try adding more categories to your website or browse all websites instead."
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                lineNumber: 1112,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                onClick: ()=>setActiveTab('browse-websites'),
+                                                className: "mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors",
+                                                children: "Browse All Websites"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                lineNumber: 1115,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                        lineNumber: 1110,
+                                        columnNumber: 19
+                                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "mb-4 text-sm text-gray-400",
+                                                children: [
+                                                    "Found ",
+                                                    filteredWebsitesForBuyer.length,
+                                                    " matching websites"
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                lineNumber: 1124,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6",
+                                                children: filteredWebsitesForBuyer.map((website)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "bg-gray-700 rounded-lg p-4",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "mb-3",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                                        className: "text-lg font-semibold text-white mb-1 truncate",
+                                                                        children: website.link
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 1131,
+                                                                        columnNumber: 29
+                                                                    }, this),
+                                                                    website.badge && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "bg-blue-600 text-white px-2 py-1 rounded-full text-xs",
+                                                                        children: website.badge
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 1133,
+                                                                        columnNumber: 31
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                lineNumber: 1130,
+                                                                columnNumber: 27
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "grid grid-cols-3 gap-1 mb-3 text-xs",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        className: "bg-gray-800 rounded p-1 text-center",
+                                                                        children: [
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                                className: "text-blue-400 font-bold text-lg",
+                                                                                children: website.moz_da || 'N/A'
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                                lineNumber: 1141,
+                                                                                columnNumber: 31
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                                className: "text-gray-400",
+                                                                                children: "Moz DA"
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                                lineNumber: 1142,
+                                                                                columnNumber: 31
+                                                                            }, this)
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 1140,
+                                                                        columnNumber: 29
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        className: "bg-gray-800 rounded p-1 text-center",
+                                                                        children: [
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                                className: "text-red-400 font-bold text-lg",
+                                                                                children: website.semrush_as || 'N/A'
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                                lineNumber: 1145,
+                                                                                columnNumber: 31
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                                className: "text-gray-400",
+                                                                                children: "Semrush AS"
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                                lineNumber: 1146,
+                                                                                columnNumber: 31
+                                                                            }, this)
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 1144,
+                                                                        columnNumber: 29
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        className: "bg-gray-800 rounded p-1 text-center",
+                                                                        children: [
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                                className: "text-orange-400 font-bold text-lg",
+                                                                                children: website.ahrefs_dr_range || 'N/A'
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                                lineNumber: 1149,
+                                                                                columnNumber: 31
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                                className: "text-gray-400",
+                                                                                children: "Ahrefs DR"
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                                lineNumber: 1150,
+                                                                                columnNumber: 31
+                                                                            }, this)
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 1148,
+                                                                        columnNumber: 29
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                lineNumber: 1139,
+                                                                columnNumber: 27
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "grid grid-cols-2 gap-2 mb-3 text-xs",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        className: "bg-gray-800 rounded p-1 text-center",
+                                                                        children: [
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                                className: "text-purple-400 font-bold text-lg",
+                                                                                children: website.similarweb_traffic || 'N/A'
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                                lineNumber: 1156,
+                                                                                columnNumber: 31
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                                className: "text-gray-400",
+                                                                                children: "Traffic"
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                                lineNumber: 1157,
+                                                                                columnNumber: 31
+                                                                            }, this)
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 1155,
+                                                                        columnNumber: 29
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        className: "bg-gray-800 rounded p-1 text-center",
+                                                                        children: [
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                                className: "text-green-400 font-bold text-lg",
+                                                                                children: [
+                                                                                    "$",
+                                                                                    website.price_from || 'N/A'
+                                                                                ]
+                                                                            }, void 0, true, {
+                                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                                lineNumber: 1160,
+                                                                                columnNumber: 31
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                                className: "text-gray-400",
+                                                                                children: "Price"
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                                lineNumber: 1161,
+                                                                                columnNumber: 31
+                                                                            }, this)
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 1159,
+                                                                        columnNumber: 29
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                lineNumber: 1154,
+                                                                columnNumber: 27
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex flex-wrap mb-3 text-xs",
+                                                                children: [
+                                                                    website.category_1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "inline-block bg-green-600 text-white rounded-full px-2 py-1 mr-1 mb-1",
+                                                                        children: website.category_1
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 1167,
+                                                                        columnNumber: 31
+                                                                    }, this),
+                                                                    website.category_2 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "inline-block bg-green-600 text-white rounded-full px-2 py-1 mr-1 mb-1",
+                                                                        children: website.category_2
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 1172,
+                                                                        columnNumber: 31
+                                                                    }, this),
+                                                                    website.category_3 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "inline-block bg-green-600 text-white rounded-full px-2 py-1 mb-1",
+                                                                        children: website.category_3
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 1177,
+                                                                        columnNumber: 31
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                lineNumber: 1165,
+                                                                columnNumber: 27
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex items-center justify-between text-xs text-gray-400 mb-3",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        children: [
+                                                                            "TAT: ",
+                                                                            website.tat || 'N/A'
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 1184,
+                                                                        columnNumber: 29
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        children: [
+                                                                            "Link: ",
+                                                                            website.link_attribution_type || 'N/A'
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                        lineNumber: 1185,
+                                                                        columnNumber: 29
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                lineNumber: 1183,
+                                                                columnNumber: 27
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                onClick: ()=>handleOrderClick(website),
+                                                                className: "w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors",
+                                                                children: [
+                                                                    "Place Order for ",
+                                                                    selectedBuyerWebsite.website_name
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                                lineNumber: 1188,
+                                                                columnNumber: 27
+                                                            }, this)
+                                                        ]
+                                                    }, website.id, true, {
+                                                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                        lineNumber: 1129,
+                                                        columnNumber: 25
+                                                    }, this))
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                lineNumber: 1127,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                lineNumber: 1082,
+                                columnNumber: 15
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                        lineNumber: 1015,
+                        columnNumber: 11
+                    }, this),
+                    showOrderModal && selectedWebsite && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "bg-gray-800 rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex justify-between items-center mb-6",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                            className: "text-xl font-bold text-white",
+                                            children: [
+                                                "Place Order for ",
+                                                selectedWebsite.link
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                            lineNumber: 1209,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: ()=>setShowOrderModal(false),
+                                            className: "text-gray-400 hover:text-white",
+                                            children: "✕"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                            lineNumber: 1212,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                    lineNumber: 1208,
+                                    columnNumber: 13
+                                }, this),
+                                message && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: `mb-4 p-3 rounded-lg ${message.includes('success') ? 'bg-green-900 text-green-300 border border-green-700' : 'bg-red-900 text-red-300 border border-red-700'}`,
+                                    children: message
+                                }, void 0, false, {
+                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                    lineNumber: 1221,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+                                    onSubmit: handleSubmitOrder,
+                                    className: "space-y-4",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                    className: "block text-sm font-medium text-gray-300 mb-2",
+                                                    children: "Article Title *"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                    lineNumber: 1232,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                    type: "text",
+                                                    name: "article_title",
+                                                    value: orderData.article_title,
+                                                    onChange: handleInputChange,
+                                                    className: "w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500",
+                                                    placeholder: "Enter your article title",
+                                                    required: true,
+                                                    maxLength: 500
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                    lineNumber: 1233,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                            lineNumber: 1231,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                    className: "block text-sm font-medium text-gray-300 mb-2",
+                                                    children: "Article Content *"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                    lineNumber: 1246,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
+                                                    name: "article_content",
+                                                    value: orderData.article_content,
+                                                    onChange: handleInputChange,
+                                                    className: "w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500",
+                                                    placeholder: "Enter your article content",
+                                                    required: true,
+                                                    rows: 6
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                    lineNumber: 1247,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                            lineNumber: 1245,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                    className: "block text-sm font-medium text-gray-300 mb-2",
+                                                    children: "Target URL *"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                    lineNumber: 1259,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                    type: "url",
+                                                    name: "target_url",
+                                                    value: orderData.target_url,
+                                                    onChange: handleInputChange,
+                                                    className: "w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500",
+                                                    placeholder: "https://example.com",
+                                                    required: true,
+                                                    maxLength: 1000
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                    lineNumber: 1260,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                            lineNumber: 1258,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                    className: "block text-sm font-medium text-gray-300 mb-2",
+                                                    children: "Anchor Text"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                    lineNumber: 1273,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                    type: "text",
+                                                    name: "anchor_text",
+                                                    value: orderData.anchor_text,
+                                                    onChange: handleInputChange,
+                                                    className: "w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500",
+                                                    placeholder: "Enter anchor text for the link",
+                                                    maxLength: 200
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                    lineNumber: 1274,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                            lineNumber: 1272,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                    className: "block text-sm font-medium text-gray-300 mb-2",
+                                                    children: [
+                                                        "Budget *",
+                                                        selectedWebsite.price_from && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "text-green-400 ml-2 text-sm",
+                                                            children: [
+                                                                "(Website price: $",
+                                                                selectedWebsite.price_from,
+                                                                selectedWebsite.price_to ? ` - $${selectedWebsite.price_to}` : '+',
+                                                                ")"
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                            lineNumber: 1289,
+                                                            columnNumber: 21
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                    lineNumber: 1286,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                    type: "number",
+                                                    name: "budget",
+                                                    value: orderData.budget,
+                                                    onChange: handleInputChange,
+                                                    className: "w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500",
+                                                    placeholder: selectedWebsite.price_from ? `Minimum: $${selectedWebsite.price_from}` : "Enter your budget",
+                                                    required: true,
+                                                    min: selectedWebsite.price_from || "0",
+                                                    step: "0.01"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                    lineNumber: 1294,
+                                                    columnNumber: 17
+                                                }, this),
+                                                selectedWebsite.price_from && orderData.budget && parseFloat(orderData.budget) < parseFloat(selectedWebsite.price_from) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-red-400 text-sm mt-1",
+                                                    children: [
+                                                        "Budget should be at least $",
+                                                        selectedWebsite.price_from
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                    lineNumber: 1306,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                            lineNumber: 1285,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "grid grid-cols-1 md:grid-cols-2 gap-4",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                            className: "block text-sm font-medium text-gray-300 mb-2",
+                                                            children: "Posting From Date"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                            lineNumber: 1314,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                            type: "date",
+                                                            name: "posting_from_date",
+                                                            value: orderData.posting_from_date,
+                                                            onChange: handleInputChange,
+                                                            className: "w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                            lineNumber: 1315,
+                                                            columnNumber: 19
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                    lineNumber: 1313,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                            className: "block text-sm font-medium text-gray-300 mb-2",
+                                                            children: "Posting To Date"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                            lineNumber: 1324,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                            type: "date",
+                                                            name: "posting_to_date",
+                                                            value: orderData.posting_to_date,
+                                                            onChange: handleInputChange,
+                                                            className: "w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                            lineNumber: 1325,
+                                                            columnNumber: 19
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                    lineNumber: 1323,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                            lineNumber: 1312,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                    className: "block text-sm font-medium text-gray-300 mb-2",
+                                                    children: "Special Requirements"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                    lineNumber: 1336,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
+                                                    name: "special_requirements",
+                                                    value: orderData.special_requirements,
+                                                    onChange: handleInputChange,
+                                                    className: "w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500",
+                                                    placeholder: "Any special requirements or notes (optional)",
+                                                    rows: 3
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                    lineNumber: 1337,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                            lineNumber: 1335,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex gap-4 pt-4",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                    type: "button",
+                                                    onClick: ()=>setShowOrderModal(false),
+                                                    className: "flex-1 bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg transition-colors",
+                                                    disabled: submitting,
+                                                    children: "Cancel"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                    lineNumber: 1348,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                    type: "submit",
+                                                    className: "flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
+                                                    disabled: submitting,
+                                                    children: submitting ? 'Submitting...' : 'Submit Order'
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                                    lineNumber: 1356,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                            lineNumber: 1347,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                                    lineNumber: 1230,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                            lineNumber: 1207,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/app/buyer/buyer-orders/page.jsx",
+                        lineNumber: 1206,
+                        columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                lineNumber: 498,
+                lineNumber: 673,
                 columnNumber: 7
-            }, this),
-            showOrderModal && selectedWebsite && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "bg-gray-800 rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex justify-between items-center mb-6",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                    className: "text-xl font-bold text-white",
-                                    children: [
-                                        "Place Order for ",
-                                        selectedWebsite.link
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                    lineNumber: 791,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    onClick: ()=>setShowOrderModal(false),
-                                    className: "text-gray-400 hover:text-white",
-                                    children: "✕"
-                                }, void 0, false, {
-                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                    lineNumber: 794,
-                                    columnNumber: 15
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                            lineNumber: 790,
-                            columnNumber: 13
-                        }, this),
-                        message && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: `mb-4 p-3 rounded-lg ${message.includes('success') ? 'bg-green-900 text-green-300 border border-green-700' : 'bg-red-900 text-red-300 border border-red-700'}`,
-                            children: message
-                        }, void 0, false, {
-                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                            lineNumber: 803,
-                            columnNumber: 15
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
-                            onSubmit: handleSubmitOrder,
-                            className: "space-y-4",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                            className: "block text-sm font-medium text-gray-300 mb-2",
-                                            children: "Article Title *"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                            lineNumber: 814,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                            type: "text",
-                                            name: "article_title",
-                                            value: orderData.article_title,
-                                            onChange: handleInputChange,
-                                            className: "w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500",
-                                            placeholder: "Enter your article title",
-                                            required: true,
-                                            maxLength: 500
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                            lineNumber: 815,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                    lineNumber: 813,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                            className: "block text-sm font-medium text-gray-300 mb-2",
-                                            children: "Article Content *"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                            lineNumber: 828,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
-                                            name: "article_content",
-                                            value: orderData.article_content,
-                                            onChange: handleInputChange,
-                                            className: "w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500",
-                                            placeholder: "Enter your article content",
-                                            required: true,
-                                            rows: 6
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                            lineNumber: 829,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                    lineNumber: 827,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                            className: "block text-sm font-medium text-gray-300 mb-2",
-                                            children: "Target URL *"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                            lineNumber: 841,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                            type: "url",
-                                            name: "target_url",
-                                            value: orderData.target_url,
-                                            onChange: handleInputChange,
-                                            className: "w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500",
-                                            placeholder: "https://example.com",
-                                            required: true,
-                                            maxLength: 1000
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                            lineNumber: 842,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                    lineNumber: 840,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                            className: "block text-sm font-medium text-gray-300 mb-2",
-                                            children: "Anchor Text"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                            lineNumber: 855,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                            type: "text",
-                                            name: "anchor_text",
-                                            value: orderData.anchor_text,
-                                            onChange: handleInputChange,
-                                            className: "w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500",
-                                            placeholder: "Enter anchor text for the link",
-                                            maxLength: 200
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                            lineNumber: 856,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                    lineNumber: 854,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                            className: "block text-sm font-medium text-gray-300 mb-2",
-                                            children: "Budget *"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                            lineNumber: 868,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                            type: "number",
-                                            name: "budget",
-                                            value: orderData.budget,
-                                            onChange: handleInputChange,
-                                            className: "w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500",
-                                            placeholder: "Enter your budget",
-                                            required: true,
-                                            min: "0",
-                                            step: "0.01"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                            lineNumber: 869,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                    lineNumber: 867,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "grid grid-cols-1 md:grid-cols-2 gap-4",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                    className: "block text-sm font-medium text-gray-300 mb-2",
-                                                    children: "Posting From Date"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                    lineNumber: 884,
-                                                    columnNumber: 19
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                    type: "date",
-                                                    name: "posting_from_date",
-                                                    value: orderData.posting_from_date,
-                                                    onChange: handleInputChange,
-                                                    className: "w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                    lineNumber: 885,
-                                                    columnNumber: 19
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                            lineNumber: 883,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                    className: "block text-sm font-medium text-gray-300 mb-2",
-                                                    children: "Posting To Date"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                    lineNumber: 894,
-                                                    columnNumber: 19
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                    type: "date",
-                                                    name: "posting_to_date",
-                                                    value: orderData.posting_to_date,
-                                                    onChange: handleInputChange,
-                                                    className: "w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                                    lineNumber: 895,
-                                                    columnNumber: 19
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                            lineNumber: 893,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                    lineNumber: 882,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                            className: "block text-sm font-medium text-gray-300 mb-2",
-                                            children: "Special Requirements"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                            lineNumber: 906,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
-                                            name: "special_requirements",
-                                            value: orderData.special_requirements,
-                                            onChange: handleInputChange,
-                                            className: "w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500",
-                                            placeholder: "Any special requirements or notes (optional)",
-                                            rows: 3
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                            lineNumber: 907,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                    lineNumber: 905,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex gap-4 pt-4",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                            type: "button",
-                                            onClick: ()=>setShowOrderModal(false),
-                                            className: "flex-1 bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg transition-colors",
-                                            disabled: submitting,
-                                            children: "Cancel"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                            lineNumber: 918,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                            type: "submit",
-                                            className: "flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
-                                            disabled: submitting,
-                                            children: submitting ? 'Submitting...' : 'Submit Order'
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                            lineNumber: 926,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                                    lineNumber: 917,
-                                    columnNumber: 15
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                            lineNumber: 812,
-                            columnNumber: 13
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                    lineNumber: 789,
-                    columnNumber: 11
-                }, this)
-            }, void 0, false, {
-                fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-                lineNumber: 788,
-                columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/buyer/buyer-orders/page.jsx",
-        lineNumber: 495,
+        lineNumber: 670,
         columnNumber: 5
     }, this);
 }
-_s(BuyerOrders, "+bxs5nPBE8+Z+oig3WJjPTMKI70=", false, function() {
+_s(BuyerOrders, "4Mg94sGnULMJ3uCyP8fI1UzcnEk=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];

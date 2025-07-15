@@ -200,10 +200,10 @@ export default function HomePage() {
             // Wait a bit for auth state to propagate
             await new Promise(resolve => setTimeout(resolve, 1000));
             
-            // Fetch user role from users_settings_tb
+            // Fetch user role and hierarchy from users_settings_tb
             const { data: userSettings, error: settingsError } = await supabase
               .from('users_settings_tb')
-              .select('role')
+              .select('role, parent_buyer_id, user_id')
               .eq('user_id', data.user.id)
               .single();
 
@@ -216,7 +216,10 @@ export default function HomePage() {
               console.log('Redirecting user with role:', userSettings.role);
               
               // Redirect to appropriate dashboard based on role
-              if (userSettings.role === 'Buyer') {
+              if (userSettings.role === 'Agent') {
+                console.log('Redirecting to agent dashboard');
+                window.location.href = '/agent/dashboard';
+              } else if (userSettings.role === 'Buyer') {
                 console.log('Redirecting to buyer dashboard');
                 window.location.href = '/buyer/buyer-dashboard';
               } else if (userSettings.role === 'Seller') {

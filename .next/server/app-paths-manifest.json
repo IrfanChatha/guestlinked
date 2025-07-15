@@ -1,8 +1,15 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
+  "/add-website/page": "app/add-website/page.js",
+  "/agent/dashboard/page": "app/agent/dashboard/page.js",
+  "/api/invite-agent/route": "app/api/invite-agent/route.js",
+  "/buyer/add-agent/page": "app/buyer/add-agent/page.js",
+  "/buyer/add-website/page": "app/buyer/add-website/page.js",
+  "/buyer/agents/page": "app/buyer/agents/page.js",
   "/buyer/buyer-dashboard/page": "app/buyer/buyer-dashboard/page.js",
   "/buyer/buyer-orders/page": "app/buyer/buyer-orders/page.js",
   "/buyer/websites/page": "app/buyer/websites/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/page": "app/page.js"
 }

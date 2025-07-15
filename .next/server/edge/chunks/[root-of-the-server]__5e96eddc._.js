@@ -43,78 +43,117 @@ async function middleware(request) {
                 return request.cookies.getAll();
             },
             setAll (cookiesToSet) {
-                cookiesToSet.forEach(({ name, value, options })=>{
-                    request.cookies.set(name, value);
-                    response.cookies.set(name, value, options);
+                cookiesToSet.forEach(({ name, value, options })=>request.cookies.set(name, value));
+                response = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].next({
+                    request
                 });
+                cookiesToSet.forEach(({ name, value, options })=>response.cookies.set(name, value, options));
             }
         }
     });
     // Define protected routes that require authentication
     const protectedRoutes = [
         '/dashboard',
-        '/buyer/buyer-dashboard',
-        '/buyer/websites',
-        '/buyer/buyer-orders',
-        '/seller/seller-dashboard',
-        '/add-website',
-        '/seller/my-websites'
+        '/buyer',
+        '/seller',
+        '/agent'
     ];
-    // Define routes that authenticated users should not access
-    const publicOnlyRoutes = [
-        '/'
-    ];
-    const pathname = request.nextUrl.pathname;
-    const isProtectedRoute = protectedRoutes.some((route)=>pathname.startsWith(route));
-    const isPublicOnlyRoute = publicOnlyRoutes.includes(pathname);
+    const isProtectedRoute = protectedRoutes.some((route)=>request.nextUrl.pathname.startsWith(route));
+    // Skip auth check for public routes
+    if (!isProtectedRoute) {
+        return response;
+    }
     try {
-        // Quick auth check with timeout
-        const authPromise = supabase.auth.getUser();
-        const timeoutPromise = new Promise((_, reject)=>setTimeout(()=>reject(new Error('Auth timeout')), 3000));
-        const { data: { user } } = await Promise.race([
-            authPromise,
-            timeoutPromise
-        ]);
-        // If user is authenticated and trying to access public-only routes (like home page)
-        if (user && isPublicOnlyRoute) {
+        // Add timeout to auth check with AbortController
+        const controller = new AbortController();
+        const timeoutId = setTimeout(()=>controller.abort(), 8000) // Increase timeout to 8 seconds
+        ;
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+        clearTimeout(timeoutId);
+        if (authError) {
+            if ("TURBOPACK compile-time truthy", 1) {
+                console.error('Middleware auth error:', authError.message);
+            }
+            // Redirect to home if auth fails
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/', request.url));
+        }
+        if (user) {
+            // Add timeout for role fetch as well
+            const roleController = new AbortController();
+            const roleTimeoutId = setTimeout(()=>roleController.abort(), 5000);
             try {
-                // Fetch user role to redirect to appropriate dashboard
-                const { data: userSettings, error: settingsError } = await supabase.from('users_settings_tb').select('role').eq('user_id', user.id).single();
-                if (!settingsError && userSettings?.role) {
-                    if (userSettings.role === 'Buyer') {
-                        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/buyer/buyer-dashboard', request.url));
-                    } else if (userSettings.role === 'Seller') {
-                        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/seller/seller-dashboard', request.url));
-                    } else {
-                        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/dashboard', request.url));
+                const { data: settings, error: roleError } = await supabase.from('users_settings_tb').select('role, parent_buyer_id').eq('user_id', user.id).single();
+                clearTimeout(roleTimeoutId);
+                if (roleError) {
+                    if ("TURBOPACK compile-time truthy", 1) {
+                        console.error('Error fetching user role in middleware:', roleError);
                     }
-                } else {
-                    // If role fetch fails, redirect to general dashboard
-                    return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/dashboard', request.url));
+                    // If we can't get role, allow access but log error
+                    return response;
+                }
+                if (settings && settings.role) {
+                    const userRole = settings.role;
+                    const pathname = request.nextUrl.pathname;
+                    // Role-based redirects with improved logic
+                    if (userRole === 'Agent') {
+                        if (!pathname.startsWith('/agent')) {
+                            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/agent/dashboard', request.url));
+                        }
+                    } else if (userRole === 'Buyer') {
+                        if (!pathname.startsWith('/buyer')) {
+                            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/buyer/buyer-dashboard', request.url));
+                        }
+                    } else if (userRole === 'Seller') {
+                        if (!pathname.startsWith('/seller')) {
+                            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/seller/seller-dashboard', request.url));
+                        }
+                    } else {
+                        // Unknown role, redirect to general dashboard
+                        if (pathname !== '/dashboard') {
+                            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/dashboard', request.url));
+                        }
+                    }
                 }
             } catch (roleError) {
-                console.error('Error fetching user role:', roleError);
-                // Fallback to general dashboard
-                return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/dashboard', request.url));
+                if (roleError.name === 'AbortError') {
+                    if ("TURBOPACK compile-time truthy", 1) {
+                        console.warn('Role fetch timeout, allowing access');
+                    }
+                    return response;
+                }
+                throw roleError;
             }
-        }
-        // If user is not authenticated and trying to access protected routes
-        if (!user && isProtectedRoute) {
+        } else {
+            // No user, redirect to home
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/', request.url));
         }
     } catch (error) {
-        console.error('Middleware auth error:', error.message);
+        if (error.name === 'AbortError') {
+            if ("TURBOPACK compile-time truthy", 1) {
+                console.warn('Auth timeout, allowing access');
+            }
+            // On timeout, allow access for better UX
+            return response;
+        }
+        if ("TURBOPACK compile-time truthy", 1) {
+            console.error('Middleware auth error:', error.message);
+        }
         // If auth check fails and trying to access protected route, redirect to home
         if (isProtectedRoute) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/', request.url));
         }
-    // If auth check fails on public routes, allow access
     }
     return response;
 }
 const config = {
     matcher: [
-        '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)'
+        /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - public folder
+     */ '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)'
     ]
 };
 }}),

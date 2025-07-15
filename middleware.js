@@ -17,10 +17,13 @@ export async function middleware(request) {
           return request.cookies.getAll()
         },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) => {
-            request.cookies.set(name, value)
-            response.cookies.set(name, value, options)
+          cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value))
+          response = NextResponse.next({
+            request,
           })
+          cookiesToSet.forEach(({ name, value, options }) =>
+            response.cookies.set(name, value, options)
+          )
         },
       },
     }
@@ -29,73 +32,113 @@ export async function middleware(request) {
   // Define protected routes that require authentication
   const protectedRoutes = [
     '/dashboard',
-    '/buyer/buyer-dashboard', 
-    '/buyer/websites',
-    '/buyer/buyer-orders',
-    '/seller/seller-dashboard',
-    '/add-website',
-    '/seller/my-websites'
+    '/buyer',
+    '/seller', 
+    '/agent'
   ]
+  
+  const isProtectedRoute = protectedRoutes.some(route => 
+    request.nextUrl.pathname.startsWith(route)
+  )
 
-  // Define routes that authenticated users should not access
-  const publicOnlyRoutes = ['/']
-
-  const pathname = request.nextUrl.pathname
-  const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route))
-  const isPublicOnlyRoute = publicOnlyRoutes.includes(pathname)
+  // Skip auth check for public routes
+  if (!isProtectedRoute) {
+    return response
+  }
 
   try {
-    // Quick auth check with timeout
-    const authPromise = supabase.auth.getUser()
-    const timeoutPromise = new Promise((_, reject) => 
-      setTimeout(() => reject(new Error('Auth timeout')), 3000)
-    )
+    // Add timeout to auth check with AbortController
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 8000) // Increase timeout to 8 seconds
     
-    const { data: { user } } = await Promise.race([authPromise, timeoutPromise])
-    
-    // If user is authenticated and trying to access public-only routes (like home page)
-    if (user && isPublicOnlyRoute) {
-      try {
-        // Fetch user role to redirect to appropriate dashboard
-        const { data: userSettings, error: settingsError } = await supabase
-          .from('users_settings_tb')
-          .select('role')
-          .eq('user_id', user.id)
-          .single()
+    const { data: { user }, error: authError } = await supabase.auth.getUser()
+    clearTimeout(timeoutId)
 
-        if (!settingsError && userSettings?.role) {
-          if (userSettings.role === 'Buyer') {
-            return NextResponse.redirect(new URL('/buyer/buyer-dashboard', request.url))
-          } else if (userSettings.role === 'Seller') {
-            return NextResponse.redirect(new URL('/seller/seller-dashboard', request.url))
-          } else {
-            return NextResponse.redirect(new URL('/dashboard', request.url))
-          }
-        } else {
-          // If role fetch fails, redirect to general dashboard
-          return NextResponse.redirect(new URL('/dashboard', request.url))
-        }
-      } catch (roleError) {
-        console.error('Error fetching user role:', roleError)
-        // Fallback to general dashboard
-        return NextResponse.redirect(new URL('/dashboard', request.url))
+    if (authError) {
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Middleware auth error:', authError.message)
       }
-    }
-    
-    // If user is not authenticated and trying to access protected routes
-    if (!user && isProtectedRoute) {
+      // Redirect to home if auth fails
       return NextResponse.redirect(new URL('/', request.url))
     }
-    
+
+    if (user) {
+      // Add timeout for role fetch as well
+      const roleController = new AbortController()
+      const roleTimeoutId = setTimeout(() => roleController.abort(), 5000)
+      
+      try {
+        const { data: settings, error: roleError } = await supabase
+          .from('users_settings_tb')
+          .select('role, parent_buyer_id')
+          .eq('user_id', user.id)
+          .single()
+        
+        clearTimeout(roleTimeoutId)
+
+        if (roleError) {
+          if (process.env.NODE_ENV === 'development') {
+            console.error('Error fetching user role in middleware:', roleError)
+          }
+          // If we can't get role, allow access but log error
+          return response
+        }
+
+        if (settings && settings.role) {
+          const userRole = settings.role
+          const pathname = request.nextUrl.pathname
+
+          // Role-based redirects with improved logic
+          if (userRole === 'Agent') {
+            if (!pathname.startsWith('/agent')) {
+              return NextResponse.redirect(new URL('/agent/dashboard', request.url))
+            }
+          } else if (userRole === 'Buyer') {
+            if (!pathname.startsWith('/buyer')) {
+              return NextResponse.redirect(new URL('/buyer/buyer-dashboard', request.url))
+            }
+          } else if (userRole === 'Seller') {
+            if (!pathname.startsWith('/seller')) {
+              return NextResponse.redirect(new URL('/seller/seller-dashboard', request.url))
+            }
+          } else {
+            // Unknown role, redirect to general dashboard
+            if (pathname !== '/dashboard') {
+              return NextResponse.redirect(new URL('/dashboard', request.url))
+            }
+          }
+        }
+      } catch (roleError) {
+        if (roleError.name === 'AbortError') {
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('Role fetch timeout, allowing access')
+          }
+          return response
+        }
+        throw roleError
+      }
+    } else {
+      // No user, redirect to home
+      return NextResponse.redirect(new URL('/', request.url))
+    }
+
   } catch (error) {
-    console.error('Middleware auth error:', error.message)
+    if (error.name === 'AbortError') {
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('Auth timeout, allowing access')
+      }
+      // On timeout, allow access for better UX
+      return response
+    }
+    
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Middleware auth error:', error.message)
+    }
     
     // If auth check fails and trying to access protected route, redirect to home
     if (isProtectedRoute) {
       return NextResponse.redirect(new URL('/', request.url))
     }
-    
-    // If auth check fails on public routes, allow access
   }
 
   return response
@@ -103,6 +146,13 @@ export async function middleware(request) {
 
 export const config = {
   matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - public folder
+     */
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 }

@@ -35,6 +35,13 @@ export default function BuyerOrders() {
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
   const [allWebsites, setAllWebsites] = useState([]); // Store all websites for filtering
   
+  // New state for buyer websites tab
+  const [buyerWebsites, setBuyerWebsites] = useState([]);
+  const [selectedBuyerWebsite, setSelectedBuyerWebsite] = useState(null);
+  const [buyerWebsitesLoading, setBuyerWebsitesLoading] = useState(false);
+  const [filteredWebsitesForBuyer, setFilteredWebsitesForBuyer] = useState([]);
+  const [loadingWebsitesForBuyer, setLoadingWebsitesForBuyer] = useState(false);
+  
   // Available categories
   const availableCategories = [
     'Agriculture',
@@ -177,8 +184,8 @@ export default function BuyerOrders() {
           return;
         }
 
-        // Only buyers can access this page
-        if (settings.role !== 'Buyer') {
+        // Only buyers and agents can access this page
+        if (settings.role !== 'Buyer' && settings.role !== 'Agent') {
           if (settings.role === 'Seller') {
             router.push('/seller/seller-dashboard');
           } else {
@@ -187,11 +194,19 @@ export default function BuyerOrders() {
           return;
         }
 
+        // For agents, ensure they have a parent buyer
+        if (settings.role === 'Agent' && !settings.parent_buyer_id) {
+          console.error('Agent has no parent buyer');
+          router.push('/');
+          return;
+        }
+
         setUser(settings);
         setLoading(false);
         
-        // Load orders using settings.user_id
-        loadMyOrders(settings.user_id);
+        // Load orders using the appropriate buyer ID
+        const buyerId = settings.role === 'Agent' ? settings.parent_buyer_id : settings.user_id;
+        loadMyOrders(buyerId);
       } catch (error) {
         console.error('Error in checkUser:', error);
         setLoading(false);
@@ -267,7 +282,8 @@ export default function BuyerOrders() {
         .from('buyer_orders')
         .select(`
           *,
-          web_sites:website_id (*)
+          web_sites:website_id (*),
+          creator:created_by (name, email)
         `)
         .eq('buyer_id', userId)
         .order('created_at', { ascending: false });
@@ -282,6 +298,139 @@ export default function BuyerOrders() {
       console.error('Error in loadMyOrders:', error);
     } finally {
       setOrdersLoading(false);
+    }
+  };
+
+  // Load buyer's websites
+  const loadBuyerWebsites = async () => {
+    if (!user) return;
+    
+    setBuyerWebsitesLoading(true);
+    const supabase = getSupabase();
+    
+    try {
+      const buyerId = user.role === 'Agent' ? user.parent_buyer_id : user.user_id;
+      
+      const { data: websites, error } = await supabase
+        .from('buyer_websites_tb')
+        .select('*')
+        .eq('buyer_id', buyerId)
+        .order('added_at', { ascending: false });
+
+      if (error) {
+        console.error('Error loading buyer websites:', error);
+        return;
+      }
+
+      setBuyerWebsites(websites || []);
+    } catch (error) {
+      console.error('Error in loadBuyerWebsites:', error);
+    } finally {
+      setBuyerWebsitesLoading(false);
+    }
+  };
+
+  // Load websites filtered by buyer website categories
+  const loadWebsitesForBuyerWebsite = async (buyerWebsite) => {
+    if (!buyerWebsite || !buyerWebsite.category) return;
+    
+    setLoadingWebsitesForBuyer(true);
+    setSelectedBuyerWebsite(buyerWebsite);
+    
+    const supabase = getSupabase();
+    
+    try {
+      // Get buyer website categories
+      const buyerCategories = Array.isArray(buyerWebsite.category) 
+        ? buyerWebsite.category 
+        : [buyerWebsite.category];
+      
+      console.log('Filtering web_sites for buyer website categories:', buyerCategories);
+      
+      // Fetch ALL websites from the database (remove limit to get full records)
+      const { data: allWebsitesData, error: websitesError } = await supabase
+        .from('web_sites')
+        .select('*')
+        .order('similarweb_traffic', { ascending: false, nullsLast: true });
+
+      if (websitesError) {
+        console.error('Error loading websites:', websitesError);
+        return;
+      }
+
+      console.log(`Fetched ${allWebsitesData?.length || 0} total websites from database`);
+
+      // Filter websites based on buyer website categories with more flexible matching
+      const filtered = allWebsitesData.filter(website => {
+        let websiteCategories = [];
+        
+        // Add individual category fields
+        if (website.category_1) websiteCategories.push(website.category_1);
+        if (website.category_2) websiteCategories.push(website.category_2);
+        if (website.category_3) websiteCategories.push(website.category_3);
+        
+        // Also check if there's a 'category' field that might be JSON
+        if (website.category) {
+          try {
+            const parsedCategories = typeof website.category === 'string' 
+              ? JSON.parse(website.category) 
+              : website.category;
+            if (Array.isArray(parsedCategories)) {
+              websiteCategories = [...websiteCategories, ...parsedCategories];
+            } else if (typeof parsedCategories === 'string') {
+              websiteCategories.push(parsedCategories);
+            }
+          } catch (e) {
+            websiteCategories.push(website.category);
+          }
+        }
+        
+        // Remove duplicates and filter out null/undefined
+        websiteCategories = [...new Set(websiteCategories.filter(Boolean))];
+        
+        // More flexible matching - exact match, partial match, or broad category match
+        return buyerCategories.some(buyerCategory => {
+          const buyerCat = buyerCategory.toLowerCase().trim();
+          return websiteCategories.some(websiteCategory => {
+            const webCat = websiteCategory?.toLowerCase().trim();
+            
+            // Exact match
+            if (webCat === buyerCat) return true;
+            
+            // Partial match (contains)
+            if (webCat?.includes(buyerCat) || buyerCat.includes(webCat)) return true;
+            
+            // Broad category matching for common terms
+            const broadMatches = {
+              'ecommerce': ['shopping', 'retail', 'business', 'commerce'],
+              'shopping': ['ecommerce', 'retail', 'business', 'commerce'],
+              'business': ['ecommerce', 'shopping', 'b2b', 'finance', 'corporate'],
+              'technology': ['tech', 'software', 'computers', 'electronics'],
+              'health': ['fitness', 'wellness', 'medical', 'healthcare'],
+              'lifestyle': ['fashion', 'beauty', 'home', 'travel'],
+              'finance': ['business', 'investment', 'money', 'banking']
+            };
+            
+            if (broadMatches[buyerCat]) {
+              return broadMatches[buyerCat].some(match => webCat?.includes(match));
+            }
+            
+            if (broadMatches[webCat]) {
+              return broadMatches[webCat].some(match => buyerCat.includes(match));
+            }
+            
+            return false;
+          });
+        });
+      });
+      
+      console.log(`Found ${filtered.length} websites matching categories:`, buyerCategories);
+      setFilteredWebsitesForBuyer(filtered);
+      
+    } catch (error) {
+      console.error('Error loading websites for buyer website:', error);
+    } finally {
+      setLoadingWebsitesForBuyer(false);
     }
   };
 
@@ -343,7 +492,7 @@ export default function BuyerOrders() {
       // Create the order using user_id from users_settings_tb
       const orderToInsert = {
         order_id: uuidv4(), // Primary key
-        buyer_id: user.user_id, // UUID from users_settings_tb
+          buyer_id: user.role === 'Agent' ? user.parent_buyer_id : user.user_id, // UUID from users_settings_tb
         website_id: selectedWebsite.id, // UUID from web_sites
         article_title: orderData.article_title.trim(),
         article_content: orderData.article_content.trim(),
@@ -351,9 +500,10 @@ export default function BuyerOrders() {
         anchor_text: orderData.anchor_text?.trim() || null,
         special_requirements: orderData.special_requirements?.trim() || null,
         budget: Number(parseFloat(orderData.budget || '0').toFixed(2)),
-        status: 'pending',
+        status: 'submitted',
         posting_from_date: orderData.posting_from_date ? new Date(orderData.posting_from_date).toISOString() : null,
         posting_to_date: orderData.posting_to_date ? new Date(orderData.posting_to_date).toISOString() : null,
+        created_by: user.user_id, // Current logged-in user ID
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
       };
@@ -430,8 +580,14 @@ export default function BuyerOrders() {
       setMessage('Order submitted successfully!');
       
       // Refresh orders list
-      await loadMyOrders(user.user_id);
-      console.log('Orders list refreshed');
+      try {
+        const buyerId = user.role === 'Agent' ? user.parent_buyer_id : user.user_id;
+        await loadMyOrders(buyerId);
+        console.log('Orders list refreshed');
+      } catch (refreshError) {
+        console.error('Error refreshing orders list:', refreshError);
+        // Don't fail the whole process if refresh fails
+      }
       
       // Close modal after a short delay
       setTimeout(() => {
@@ -460,16 +616,35 @@ export default function BuyerOrders() {
 
   const getStatusColor = (status) => {
     switch (status?.toLowerCase()) {
+      case 'submitted':
+        return 'text-green-400 bg-green-400/10 border-green-400/20';
       case 'pending':
         return 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20';
       case 'in_progress':
-        return 'text-blue-400 bg-blue-400/10 border-blue-400/20';
+        return 'text-purple-400 bg-purple-400/10 border-purple-400/20';
       case 'completed':
-        return 'text-green-400 bg-green-400/10 border-green-400/20';
+        return 'text-blue-400 bg-blue-400/10 border-blue-400/20';
       case 'rejected':
         return 'text-red-400 bg-red-400/10 border-red-400/20';
       default:
         return 'text-gray-400 bg-gray-400/10 border-gray-400/20';
+    }
+  };
+
+  const getStatusIcon = (status) => {
+    switch (status?.toLowerCase()) {
+      case 'submitted':
+        return '✓';
+      case 'pending':
+        return '⏳';
+      case 'in_progress':
+        return '🔄';
+      case 'completed':
+        return '✅';
+      case 'rejected':
+        return '❌';
+      default:
+        return '';
     }
   };
 
@@ -526,6 +701,19 @@ export default function BuyerOrders() {
           >
             Browse Websites
           </button>
+          <button
+            onClick={() => {
+              setActiveTab('order-for-website');
+              loadBuyerWebsites();
+            }}
+            className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+              activeTab === 'order-for-website'
+                ? 'bg-green-600 text-white'
+                : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+            }`}
+          >
+            Order for Your Website
+          </button>
         </div>
 
         {/* Tab Content */}
@@ -553,51 +741,109 @@ export default function BuyerOrders() {
             ) : (
               <div className="space-y-4">
                 {orders.map((order) => (
-                  <div key={order.order_id} className="bg-gray-700 rounded-lg p-4">
-                    <div className="flex justify-between items-start mb-3">
-                      <div>
-                        <h3 className="text-lg font-semibold text-white">{order.article_title}</h3>
-                        <p className="text-gray-300">Website: {order.web_sites?.link || 'N/A'}</p>
-                      </div>
-                      <span className={`px-3 py-1 rounded-full text-sm border ${getStatusColor(order.status)}`}>
-                        {order.status}
-                      </span>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                      <div>
-                        <p className="text-gray-400">Budget</p>
-                        <p className="text-white">${order.budget}</p>
-                      </div>
-                      <div>
-                        <p className="text-gray-400">Target URL</p>
-                        <p className="text-green-400 truncate">{order.target_url}</p>
-                      </div>
-                      <div>
-                        <p className="text-gray-400">Posting Period</p>
-                        <p className="text-white">
-                          {order.posting_from_date && order.posting_to_date
-                            ? `${formatDate(order.posting_from_date)} - ${formatDate(order.posting_to_date)}`
-                            : 'Not specified'
-                          }
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-gray-400">Created</p>
-                        <p className="text-white">{formatDate(order.created_at)}</p>
+                  <div key={order.order_id} className="bg-gray-800 rounded-lg border border-gray-700 p-4">
+                    {/* Row 1: Header with title, status, and key info */}
+                    <div className="flex justify-between items-center mb-3">
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between mb-2">
+                          <h3 className="text-lg font-bold text-white">{order.article_title}</h3>
+                          <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(order.status)} flex items-center gap-1`}>
+                            {getStatusIcon(order.status)} {order.status.toUpperCase()}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-6 text-xs text-gray-400">
+                          <span>Created: {formatDate(order.created_at)}</span>
+                          {order.creator && (
+                            <span>By: {order.creator.name || order.creator.email || 'Unknown'}</span>
+                          )}
+                          <span className="text-green-400 font-bold">${order.budget}</span>
+                        </div>
                       </div>
                     </div>
 
-                    {order.anchor_text && (
-                      <div className="mt-3">
-                        <p className="text-gray-400 text-sm">Anchor Text: <span className="text-white">{order.anchor_text}</span></p>
+                    {/* Row 2: Website info and posting details */}
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 text-sm">
+                      {/* My Website */}
+                      <div className="bg-gray-700 rounded p-3">
+                        <div className="flex items-center gap-2 mb-2">
+                          <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
+                          </svg>
+                          <span className="font-medium text-blue-400">My Website</span>
+                        </div>
+                        <div className="space-y-1">
+                          <div>
+                            <span className="text-gray-400 text-xs">Website:</span>
+                            <p className="text-white text-xs truncate">
+                              {(() => {
+                                try {
+                                  return new URL(order.target_url).origin;
+                                } catch {
+                                  return order.target_url.split('/')[0] + '//' + order.target_url.split('/')[2] || order.target_url;
+                                }
+                              })()}
+                            </p>
+                          </div>
+                          <div>
+                            <span className="text-gray-400 text-xs">Target URL:</span>
+                            <p className="text-blue-300 text-xs truncate">{order.target_url}</p>
+                          </div>
+                          {order.anchor_text && (
+                            <p className="text-green-400 text-xs">Anchor: {order.anchor_text}</p>
+                          )}
+                        </div>
                       </div>
-                    )}
 
+                      {/* Guest Posting Website */}
+                      <div className="bg-gray-700 rounded p-3">
+                        <div className="flex items-center gap-2 mb-2">
+                          <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                          </svg>
+                          <span className="font-medium text-purple-400">Guest Posting</span>
+                        </div>
+                        <p className="text-white text-xs mb-1">{order.web_sites?.link || 'N/A'}</p>
+                        <div className="flex gap-1">
+                          {order.web_sites?.category_1 && (
+                            <span className="bg-purple-600 text-white px-2 py-0.5 rounded text-xs">
+                              {order.web_sites.category_1}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Posting Schedule */}
+                      <div className="bg-gray-700 rounded p-3">
+                        <div className="flex items-center gap-2 mb-2">
+                          <svg className="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                          <span className="font-medium text-orange-400">Posting Period</span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2 text-xs">
+                          <div>
+                            <span className="text-gray-400">From:</span>
+                            <p className="text-white">{order.posting_from_date ? new Date(order.posting_from_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'N/A'}</p>
+                          </div>
+                          <div>
+                            <span className="text-gray-400">To:</span>
+                            <p className="text-white">{order.posting_to_date ? new Date(order.posting_to_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'N/A'}</p>
+                          </div>
+                        </div>
+                        {order.posting_from_date && order.posting_to_date && (
+                          <p className="text-yellow-400 text-xs mt-1">
+                            {Math.ceil((new Date(order.posting_to_date) - new Date(order.posting_from_date)) / (1000 * 60 * 60 * 24))} days
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Special Requirements (if any) - collapsed by default */}
                     {order.special_requirements && (
-                      <div className="mt-3">
-                        <p className="text-gray-400 text-sm">Special Requirements:</p>
-                        <p className="text-white text-sm">{order.special_requirements}</p>
+                      <div className="mt-3 bg-gray-750 rounded p-2">
+                        <p className="text-gray-400 text-xs">
+                          <span className="font-medium">Requirements:</span> {order.special_requirements}
+                        </p>
                       </div>
                     )}
                   </div>
@@ -781,7 +1027,196 @@ export default function BuyerOrders() {
             )}
           </div>
         )}
-      </div>
+
+        {activeTab === 'order-for-website' && (
+          <div className="space-y-6">
+            {/* Buyer Websites Selection */}
+            <div className="bg-gray-800 rounded-lg p-6">
+              <h2 className="text-xl font-bold text-white mb-4">Your Websites</h2>
+              
+              {buyerWebsitesLoading ? (
+                <div className="flex justify-center py-8">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-500"></div>
+                </div>
+              ) : buyerWebsites.length === 0 ? (
+                <div className="text-center py-8">
+                  <p className="text-gray-400 mb-4">No websites found</p>
+                  <p className="text-sm text-gray-500 mb-4">
+                    You need to add your websites first to find matching guest posting opportunities.
+                  </p>
+                  <button
+                    onClick={() => router.push('/buyer/add-website')}
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors"
+                  >
+                    Add Your Websites
+                  </button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {buyerWebsites.map((website) => (
+                    <div 
+                      key={website.id} 
+                      className={`bg-gray-700 rounded-lg p-4 cursor-pointer transition-all border-2 ${
+                        selectedBuyerWebsite?.id === website.id 
+                          ? 'border-green-500 bg-gray-600' 
+                          : 'border-transparent hover:border-gray-500'
+                      }`}
+                      onClick={() => loadWebsitesForBuyerWebsite(website)}
+                    >
+                      <h3 className="text-lg font-semibold text-white mb-2">{website.website_name}</h3>
+                      <p className="text-blue-400 text-sm mb-3 truncate">{website.website_url}</p>
+                      
+                      <div className="flex flex-wrap gap-1 mb-3">
+                        {(Array.isArray(website.category) ? website.category : [website.category])
+                          .filter(Boolean)
+                          .map((cat, index) => (
+                            <span 
+                              key={index} 
+                              className="bg-blue-600 text-white px-2 py-1 rounded-md text-xs"
+                            >
+                              {cat}
+                            </span>
+                          ))}
+                      </div>
+                      
+                      <div className="text-xs text-gray-400">
+                        Added {new Date(website.added_at).toLocaleDateString()}
+                      </div>
+                      
+                      {selectedBuyerWebsite?.id === website.id && (
+                        <div className="mt-2 text-green-400 text-sm font-medium">
+                          ✓ Selected - Finding matching websites...
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Filtered Websites for Selected Buyer Website */}
+            {selectedBuyerWebsite && (
+              <div className="bg-gray-800 rounded-lg p-6">
+                <div className="flex justify-between items-center mb-4">
+                  <div>
+                    <h2 className="text-xl font-bold text-white">
+                      Guest Posting Opportunities for "{selectedBuyerWebsite.website_name}"
+                    </h2>
+                    <p className="text-gray-400 text-sm">
+                      Websites matching your categories: {(Array.isArray(selectedBuyerWebsite.category) 
+                        ? selectedBuyerWebsite.category 
+                        : [selectedBuyerWebsite.category]).filter(Boolean).join(', ')}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setSelectedBuyerWebsite(null);
+                      setFilteredWebsitesForBuyer([]);
+                    }}
+                    className="text-gray-400 hover:text-white"
+                  >
+                    ✕ Clear Selection
+                  </button>
+                </div>
+                
+                {loadingWebsitesForBuyer ? (
+                  <div className="flex justify-center py-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-500"></div>
+                  </div>
+                ) : filteredWebsitesForBuyer.length === 0 ? (
+                  <div className="text-center py-8">
+                    <p className="text-gray-400 mb-2">No matching websites found</p>
+                    <p className="text-sm text-gray-500">
+                      Try adding more categories to your website or browse all websites instead.
+                    </p>
+                    <button
+                      onClick={() => setActiveTab('browse-websites')}
+                      className="mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors"
+                    >
+                      Browse All Websites
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <div className="mb-4 text-sm text-gray-400">
+                      Found {filteredWebsitesForBuyer.length} matching websites
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {filteredWebsitesForBuyer.map((website) => (
+                        <div key={website.id} className="bg-gray-700 rounded-lg p-4">
+                          <div className="mb-3">
+                            <h3 className="text-lg font-semibold text-white mb-1 truncate">{website.link}</h3>
+                            {website.badge && (
+                              <span className="bg-blue-600 text-white px-2 py-1 rounded-full text-xs">
+                                {website.badge}
+                              </span>
+                            )}
+                          </div>
+                          
+                          <div className="grid grid-cols-3 gap-1 mb-3 text-xs">
+                            <div className="bg-gray-800 rounded p-1 text-center">
+                              <p className="text-blue-400 font-bold text-lg">{website.moz_da || 'N/A'}</p>
+                              <p className="text-gray-400">Moz DA</p>
+                            </div>
+                            <div className="bg-gray-800 rounded p-1 text-center">
+                              <p className="text-red-400 font-bold text-lg">{website.semrush_as || 'N/A'}</p>
+                              <p className="text-gray-400">Semrush AS</p>
+                            </div>
+                            <div className="bg-gray-800 rounded p-1 text-center">
+                              <p className="text-orange-400 font-bold text-lg">{website.ahrefs_dr_range || 'N/A'}</p>
+                              <p className="text-gray-400">Ahrefs DR</p>
+                            </div>
+                          </div>
+                          
+                          <div className="grid grid-cols-2 gap-2 mb-3 text-xs">
+                            <div className="bg-gray-800 rounded p-1 text-center">
+                              <p className="text-purple-400 font-bold text-lg">{website.similarweb_traffic || 'N/A'}</p>
+                              <p className="text-gray-400">Traffic</p>
+                            </div>
+                            <div className="bg-gray-800 rounded p-1 text-center">
+                              <p className="text-green-400 font-bold text-lg">${website.price_from || 'N/A'}</p>
+                              <p className="text-gray-400">Price</p>
+                            </div>
+                          </div>
+                          
+                          <div className="flex flex-wrap mb-3 text-xs">
+                            {website.category_1 && (
+                              <span className="inline-block bg-green-600 text-white rounded-full px-2 py-1 mr-1 mb-1">
+                                {website.category_1}
+                              </span>
+                            )}
+                            {website.category_2 && (
+                              <span className="inline-block bg-green-600 text-white rounded-full px-2 py-1 mr-1 mb-1">
+                                {website.category_2}
+                              </span>
+                            )}
+                            {website.category_3 && (
+                              <span className="inline-block bg-green-600 text-white rounded-full px-2 py-1 mb-1">
+                                {website.category_3}
+                              </span>
+                            )}
+                          </div>
+                          
+                          <div className="flex items-center justify-between text-xs text-gray-400 mb-3">
+                            <span>TAT: {website.tat || 'N/A'}</span>
+                            <span>Link: {website.link_attribution_type || 'N/A'}</span>
+                          </div>
+                          
+                          <button
+                            onClick={() => handleOrderClick(website)}
+                            className="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors"
+                          >
+                            Place Order for {selectedBuyerWebsite.website_name}
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
+        )}
 
       {/* Order Modal */}
       {showOrderModal && selectedWebsite && (
@@ -865,18 +1300,30 @@ export default function BuyerOrders() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">Budget *</label>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Budget *
+                  {selectedWebsite.price_from && (
+                    <span className="text-green-400 ml-2 text-sm">
+                      (Website price: ${selectedWebsite.price_from}{selectedWebsite.price_to ? ` - $${selectedWebsite.price_to}` : '+'})
+                    </span>
+                  )}
+                </label>
                 <input
                   type="number"
                   name="budget"
                   value={orderData.budget}
                   onChange={handleInputChange}
                   className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
-                  placeholder="Enter your budget"
+                  placeholder={selectedWebsite.price_from ? `Minimum: $${selectedWebsite.price_from}` : "Enter your budget"}
                   required
-                  min="0"
+                  min={selectedWebsite.price_from || "0"}
                   step="0.01"
                 />
+                {selectedWebsite.price_from && orderData.budget && parseFloat(orderData.budget) < parseFloat(selectedWebsite.price_from) && (
+                  <p className="text-red-400 text-sm mt-1">
+                    Budget should be at least ${selectedWebsite.price_from}
+                  </p>
+                )}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -935,6 +1382,7 @@ export default function BuyerOrders() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 } 

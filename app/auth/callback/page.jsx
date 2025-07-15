@@ -15,10 +15,10 @@ export default function CallbackPage() {
         const { data: { user } } = await supabase.auth.getUser();
         
         if (user) {
-          // Fetch user settings to determine role
+          // Fetch user settings to determine role and hierarchy
           const { data: userSettings, error } = await supabase
             .from('users_settings_tb')
-            .select('role')
+            .select('role, parent_buyer_id, user_id')
             .eq('user_id', user.id)
             .single();
 
@@ -30,7 +30,9 @@ export default function CallbackPage() {
           }
 
           // Redirect based on role
-          if (userSettings.role === 'Buyer') {
+          if (userSettings.role === 'Agent') {
+            router.push('/agent/dashboard');
+          } else if (userSettings.role === 'Buyer') {
             router.push('/buyer/buyer-dashboard');
           } else if (userSettings.role === 'Seller') {
             router.push('/seller/seller-dashboard');
